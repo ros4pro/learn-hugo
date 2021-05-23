@@ -7,7 +7,6 @@ enableGitInfo: true
 params:
   themeVariant: "ros"
   disableBreadcrumb: true
-  titleSeparator: "-"
 
 defaultContentLanguage: fr
 defaultContentLanguageInSubdir: true

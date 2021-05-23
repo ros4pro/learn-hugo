@@ -12,3 +12,7 @@ github.com/ros4pro/template-hugo v0.0.0-20210523190144-1a8b7dd0875a h1:k031cSm2u
 github.com/ros4pro/template-hugo v0.0.0-20210523190144-1a8b7dd0875a/go.mod h1:1b7/tuT07WhHwCama5eZRhUSXm4wecjMO9gOQqS6kH8=
 github.com/ros4pro/template-hugo v0.0.0-20210523192111-24cdb4b95d1c h1:8e4v1gB2rkJbO+EMHCaSwrrPaQYSTMqBOUXPfR2hrdA=
 github.com/ros4pro/template-hugo v0.0.0-20210523192111-24cdb4b95d1c/go.mod h1:1b7/tuT07WhHwCama5eZRhUSXm4wecjMO9gOQqS6kH8=
+github.com/ros4pro/template-hugo v0.0.0-20210523192740-dc7097ca1b6c h1:qgFwLWYdwb7VIf1i5DUNwpqCCdWsbIn6gpN6opPcMPs=
+github.com/ros4pro/template-hugo v0.0.0-20210523192740-dc7097ca1b6c/go.mod h1:1b7/tuT07WhHwCama5eZRhUSXm4wecjMO9gOQqS6kH8=
+github.com/ros4pro/template-hugo v0.0.0-20210523193849-a27eb60b2cbe h1:37LjkV/HHtEcDttSTQH6WOfI/TVCHJ4MBIvUGxd7X28=
+github.com/ros4pro/template-hugo v0.0.0-20210523193849-a27eb60b2cbe/go.mod h1:1b7/tuT07WhHwCama5eZRhUSXm4wecjMO9gOQqS6kH8=
