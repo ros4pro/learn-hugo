@@ -1,29 +1,23 @@
 <nav>
-  <ul class="topics">
-      {{ $currentPage := . }}
-      {{ range .Site.Menus.main }}
-      {{ if .HasChildren }}
-      <li class="dd-item parent">
-          <a href="#">
-              {{ .Pre }}
-              <span>{{ .Name }}</span>
-          </a>
-          <ul>
-              {{ range .Children }}
-              <li class="dd-item">
-                  <a href="{{ .URL }}">{{ .Name }}</a>
-              </li>
-              {{ end }}
-          </ul>
-      </li>
-      {{ else }}
-      <li>
-          <a href="{{ .URL }}">
-              {{ .Pre }}
-              <span>{{ .Name }}</span>
-          </a>
-      </li>
-      {{ end }}
-      {{ end }}
-  </nav>
+    {{ $currentPage := . }}
+    <ul>
+        {{ range .Site.Menus.main }}
+        {{ partial "submenu" . }}
+        {{ end }}
+    </ul>
+</nav>
 </aside>
+
+{{ define "partials/submenu" }}
+<li>
+    <a href="{{ .URL }}"> {{ .Name }}</a>
+    {{ if .HasChildren }}
+    <ul>
+        {{ range .Children }}
+        {{ partial "partials/submenu" . }}
+        {{ end }}
+    </ul>
+    {{ end }}
+</li>
+
+{{ end }}

@@ -3,7 +3,8 @@ title: "FAQ Python : environnement virtuel"
 menu:
   main:
     name: "FAQ Python : environnement virtuel"
-    weight: 1
+    weight: 2
+    identifier: "python3"
     parent: "faq"
 ---
 

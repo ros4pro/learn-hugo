@@ -1,9 +1,8 @@
 ---
-title: "FAQ Python 3"
+title: "FAQ"
 menu:
   main:
-    name: "FAQ Python 3"
-    weight: 2
-    identifier: "python3"
-    parent: "faq"
+    name: "FAQ"
+    weight: 9
+    identifier: "faq"
 ---
