@@ -12,7 +12,7 @@
 {{ $context := .context }}
 {{ $currentPage := .current }}
 <li class="{{ if $currentPage.IsMenuCurrent "main" $context }}active{{ end }}">
-    <a href="{{ $context.URL }}"> {{ $context.Name }}</a>
+    <a href="{{ $context.URL }}">{{$context.Name}}</a>
     {{ if $context.HasChildren }}
     <ul class="{{ if $currentPage.HasMenuCurrent "main" $context }}nested-active{{ end }}">
         {{ range $context.Children }}

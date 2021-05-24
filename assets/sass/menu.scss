@@ -16,24 +16,24 @@ main {
 
 /* Color, etc... */
 menu {
-  margin : 0;
-  padding : 0;
-  
+  margin: 0;
+  padding: 0;
+
   height: 100%;
   background-color: $menu-bg;
 
   header {
     background-color: $menu-header-bg;
     border-bottom: 0.5vh solid $menu-header-border;
-    
+
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
   nav {
-    padding-left : 1rem;
-    margin-top : 1rem;
+    padding-left: 1rem;
+    margin-top: 1rem;
 
     a {
       color: $nav-title-text;
@@ -51,6 +51,39 @@ main {
   padding-left: 4%;
 }
 
-.active{
-  background-color: red;
+.active {
+  & > a {
+    color: $nav-title-active;
+  }
+}
+
+li::before {
+  width: 0px;
+  height: 0px;
+}
+
+nav ul li {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    padding-left: 3%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+    display: block;
+    // border-bottom: none;
+    // color: #364149;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $nav-title-bg-active;
+    }
+  }
+}
+
+nav ul li ul {
+  margin-left: 2rem;
 }
