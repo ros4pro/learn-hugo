@@ -1,40 +1,36 @@
-$menu-bg: #A52639;
-$menu-border: #FE5864;
-$nav-bg: #2B304D;
-$body-bg: #1C1F2B;
-$text: #B2BFCF;
-$link: #3EB1D0;
-$link-hover: #0fc6f8;
+@import "variable.scss", "global.scss";
 
-a {
-  color : $link;
-
-  &:hover {
-    color: $link-hover;
-  }
+menu {
+  height: 100vh;
+  width: 15%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow-x: hidden;
 }
 
-body {
-  display : flex;
-  background-color: $body-bg;
-  color: $text;
+main {
+  margin-left: 15%;
 }
 
 menu {
-  min-width: 15%;
   margin : 0;
   padding : 0;
+  
+  height: 100%;
+  background-color: $menu-bg;
+
   header {
+    background-color: $menu-header-bg;
+    border-bottom: 0.5vh solid $menu-header-border;
+    
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-
-    background-color: $menu-bg;
-    border-bottom: 1vh solid $menu-border;
   }
 
   nav {
-    background-color: $nav-bg;
     a {
       color: white;
       text-decoration: none;
@@ -47,11 +43,38 @@ menu {
 }
 
 main {
-  min-width: 50%;
   padding-right: 4%;
   padding-left: 4%;
 }
 
-img {
-  max-width: 100%;
-}
+// menu {
+//   min-width: 15%;
+//   margin : 0;
+//   padding : 0;
+//   header {
+//     text-align: center;
+//     padding-top: 1rem;
+//     padding-bottom: 1rem;
+
+//     background-color: $menu-bg;
+//     border-bottom: 0.5vh solid $menu-border;
+//   }
+
+//   nav {
+//     background-color: $nav-bg;
+//     a {
+//       color: white;
+//       text-decoration: none;
+
+//       &:hover {
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+// }
+
+// main {
+//   min-width: 50%;
+//   padding-right: 4%;
+//   padding-left: 4%;
+// }
