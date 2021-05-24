@@ -1,11 +1,11 @@
-
 body {
   background-color: $body-bg;
+  font-family: "Roboto", sans-serif;
   color: $text;
 }
 
 a {
-  color : $link;
+  color: $link;
 
   &:hover {
     color: $link-hover;
@@ -14,12 +14,16 @@ a {
 
 img {
   max-width: 100%;
-  margin : 2%;
+  margin: 2%;
 }
 
 // Header
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: $color-header;
 }
 
