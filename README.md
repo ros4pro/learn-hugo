@@ -5,7 +5,8 @@ It is created with Hugo, a Jamstack framework.
 
 ## Installation and getting started
 
-1. Install [go](https://golang.org/doc/install) and [hugo](https://gohugo.io/getting-started/installing/).
+1. Install [go](https://golang.org/doc/install) and [hugo (extended)](https://gohugo.io/getting-started/installing/).
+Use the extended version is important for sass.
 
 2. Clone this repository.
 

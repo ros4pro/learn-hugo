@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='{{ .Page.Language | default "fr" }}'>
+
+<head>
+  {{ hugo.Generator }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ partial "favicon.html" }}
+  {{ partial "meta.html" }}
+  <title>{{ .Title }}</title>
+  {{ partial "import_header.html" }}
+</head>
+
+<body>
+  {{ block "main_body" . }}
+  {{ end }}
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+$menu-bg: #A52639;
+$menu-border: #FE5864;
+$nav-bg: #2B304D;
+$body-bg: #1C1F2B;
+$text: #B2BFCF;
+$link: #3EB1D0;
+$link-hover: #0fc6f8;
+
+a {
+  color : $link;
+
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+body {
+  display : flex;
+  background-color: $body-bg;
+  color: $text;
+}
+
+menu {
+  min-width: 15%;
+  margin : 0;
+  padding : 0;
+  header {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    background-color: $menu-bg;
+    border-bottom: 1vh solid $menu-border;
+  }
+
+  nav {
+    background-color: $nav-bg;
+    a {
+      color: white;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+main {
+  min-width: 50%;
+  padding-right: 4%;
+  padding-left: 4%;
+}
+
+header {
+
+}

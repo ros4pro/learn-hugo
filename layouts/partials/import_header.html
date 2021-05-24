@@ -1,0 +1,10 @@
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet"> 
+
+<!-- CSS -->
+<link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+
+{{ $sass := resources.Get "sass/main.scss" }}
+{{ $style := $sass | resources.ToCSS }}
+<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
