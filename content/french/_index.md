@@ -1,12 +1,10 @@
 ---
-title: "Qu'est ce que c'est ?"
+title: "Cours et Travaux pratiques de robotique"
 menu:
   main:
     name: "Qu'est-ce que c'est ?"
     weight: 1
 ---
-
-# Cours et Travaux pratiques de robotique
 
 ROS4PRO est un ensemble de ressources francophones pour l'apprentissage de la robotique opensource avec le framework [ROS](http://ros.org) qui équipera plus de la moitié des robots vendus en 2024. Vous pouvez librement les suivre, les dupliquer et les enrichir puis [partager vos améliorations](https://github.com/ros4pro/learn).
 

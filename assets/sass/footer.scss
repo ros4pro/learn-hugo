@@ -1,0 +1,18 @@
+footer {
+  margin-top: 3rem;
+  margin-left: 20%;
+  max-width: 70%;
+
+  .sponsor {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $footer-bg;
+    border-radius: 10px;
+    padding: 5px;
+    
+    img, a > img {
+      height: 35px;
+      margin: 5px;    
+    }
+  }
+}
