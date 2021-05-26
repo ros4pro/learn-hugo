@@ -1,0 +1,20 @@
+{{ if and .Site.IsMultiLingual (not .Site.Params.DisableLanguageSwitchingButton)}}
+<div>
+    <select id="select-language" onchange="location = this.value;">
+        {{ $siteLanguages := .Site.Languages}}
+        {{ $pageLang := .Page.Lang}}
+        {{ range .Page.AllTranslations }}
+        {{ $translation := .}}
+        {{ range $siteLanguages }}
+        {{ if eq $translation.Lang .Lang }}
+        {{ $selected := false }}
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" {{ if eq $.Page.Lang .Lang}}
+            selected {{ end }}>
+            {{ .LanguageName }}
+        </option>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </select>
+</div>
+{{end}}
