@@ -1,6 +1,6 @@
 {{ if and .Site.IsMultiLingual (not .Site.Params.DisableLanguageSwitchingButton)}}
-<div>
-    <select id="select-language" onchange="location = this.value;">
+<div id="switch_language">
+    <select onchange="location = this.value;">
         {{ $siteLanguages := .Site.Languages}}
         {{ $pageLang := .Page.Lang}}
         {{ range .Page.AllTranslations }}
