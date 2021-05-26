@@ -7,9 +7,7 @@
         {{ $translation := .}}
         {{ range $siteLanguages }}
         {{ if eq $translation.Lang .Lang }}
-        {{ $selected := false }}
-        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" {{ if eq $.Page.Lang .Lang}}
-            selected {{ end }}>
+        <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" {{ if eq $.Page.Lang .Lang}} selected {{ end }}>
             {{ .LanguageName }}
         </option>
         {{ end }}
