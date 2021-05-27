@@ -7,3 +7,5 @@
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ $style := $sass | resources.ToCSS }}
 <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+
+<script defer src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
