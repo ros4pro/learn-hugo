@@ -16,7 +16,7 @@
         {
             "id" : "roscore",
             "text": "Which of these commands will NEVER start a ROS master ?",
-            "type": "choice",
+            "type": "multichoice",
             "hint" : "See course",
             "answers": [
                 "roscore",

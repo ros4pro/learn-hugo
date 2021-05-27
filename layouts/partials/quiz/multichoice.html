@@ -1,0 +1,10 @@
+{{ $id := .id }}
+<div class="choice">
+    <p>{{ .text }}</p>
+    {{ range $index,  $element := .answers }}
+    <div class="answer">
+        <input type="checkbox" id="{{ $id }}-{{ $index }}" name="{{ $id }}" value="{{ $element }}">
+        <label for="{{ $id }}-{{ $index }}">{{ . }}</label>
+    </div>
+    {{ end }}
+</div>
