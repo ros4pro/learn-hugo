@@ -12,7 +12,6 @@
     input[type="radio"] {
       margin-top: -1px;
       vertical-align: middle;
-      height: 100%;
     }
   }
 }
@@ -20,15 +19,14 @@
 #quiz {
   .submit {
     margin-top: 1rem;
-    // margin-left: auto;
-    // margin-right: auto;
     text-align: center;
 
     input[type="submit"] {
       background-color: $submit-bg;
-      border: 1px solid $submit-border;
+      border: none;
       border-radius: 10px;
-      padding : 0.5rem 1rem;
+      padding : 0.7rem 1rem;
+      cursor: pointer;
       color: $submit-text;
     }
   }
