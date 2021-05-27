@@ -1,5 +1,6 @@
 {
-    "name" : "introduction",
+    "id" : "introduction",
+    "name" : "Introduction",
     "questions": [
         {   
             "id" : "rostools",

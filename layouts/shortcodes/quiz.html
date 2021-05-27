@@ -1,6 +1,6 @@
 {{ $name := .Get "name" }}
 {{ range $.Site.Data.quiz }}
-{{ if eq $name .name }}
+{{ if eq $name .id }}
     {{ partial "quiz/form" . }}
 {{ end }} 
 {{ end }}
