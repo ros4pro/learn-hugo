@@ -5,6 +5,7 @@
             "id" : "rostools",
             "text": "Which of these ROS tools is best suited to display a LIDAR scan ?",
             "type": "choice",
+            "hint" : "It's easy !",
             "answers": [
                 "rqt_plot",
                 "rviz",
@@ -16,6 +17,7 @@
             "id" : "roscore",
             "text": "Which of these commands will NEVER start a ROS master ?",
             "type": "choice",
+            "hint" : "See course",
             "answers": [
                 "roscore",
                 "roslaunch",
