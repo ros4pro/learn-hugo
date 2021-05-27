@@ -4,6 +4,8 @@ document
     .getElementById("quiz")
     .addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log("test");
+        
+        
+
         return false;
 });

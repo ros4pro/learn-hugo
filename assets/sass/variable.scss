@@ -10,6 +10,11 @@ $footer-bg: #e0e0e0;
 $menu-bg: #2B304D;
 $menu-header-bg: #A52639;
 $menu-header-border: #FE5864;
-$nav-title-text: #B2BFCF;
+$nav-title-text: $text;
 $nav-title-active: #0fc6f8;
 $nav-title-bg-active: #252737;
+
+/** */
+$submit-bg : $menu-header-bg;
+$submit-border : $menu-header-border;
+$submit-text : $color-header;

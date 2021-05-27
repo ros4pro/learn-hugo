@@ -1,4 +1,3 @@
-<p>Works !</p>
 <form id="quiz">
     {{ range .questions }}
     {{ if eq "choice" .type }}
@@ -6,8 +5,10 @@
     {{ end }}
     {{ end }}
 
-    <!-- TODO : Traduire -->
-    <input type="submit" id="submit_quiz" value="Envoyer le formulaire">
+    <div class="submit">
+        <!-- TODO : Traduire -->
+        <input type="submit" id="submit_quiz" value="Envoyer le formulaire">
+    </div>
     {{ $js := resources.Get "js/main.js" | js.Build (dict "params" .) }}
     <script defer src="{{ $js.Permalink }}"></script>
 </form>
