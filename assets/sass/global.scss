@@ -31,9 +31,40 @@ h1 {
   text-align: center;
 }
 
-// Code 
-// TODO : Needs to be improved with it's own css files 
+// Code
+// TODO : Needs to be improved with it's own css files
 pre {
   padding: 1% 0% 1% 1%;
   border-radius: 10px;
+}
+
+
+table td,
+table th {
+  padding: 8px 10px;
+  border: 1px solid rgb(68, 76, 86);
+}
+
+table tr {
+  background-color: rgb(34, 39, 46);
+}
+
+table tr:nth-child(2n) {
+  background-color: rgb(45, 51, 59);
+}
+
+table pre, table code {
+  padding: 1.5%;
+  border-radius: 8px;
+  background-color: rgb(59, 66, 77);
+  white-space: nowrap;
+}
+
+code {
+  line-height: 20px;
+  font-family: 'JetBrains Mono';
+}
+
+pre {
+  line-height: 20px;
 }

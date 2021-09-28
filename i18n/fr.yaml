@@ -1,0 +1,17 @@
+author:
+  other: Auteurs
+
+help:
+  other: Besoin d'aide ?
+
+help_text:
+  other: Posez votre question sur le
+
+help_link_text:
+  other: forum francophone des utilisateurs de ROS
+
+help_link:
+  other: https://discourse.ros.org/c/local/france/48
+
+update: 
+  other: Dernière mise à jour

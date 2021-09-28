@@ -9,10 +9,37 @@ footer {
     background-color: $footer-bg;
     border-radius: 10px;
     padding: 5px;
-    
-    img, a > img {
+
+    img,
+    a > img {
       height: 35px;
-      margin: 5px;    
+      margin: 5px;
+    }
+  }
+}
+
+@include desktop {
+  footer {
+    margin-left: 30%;
+    max-width: 68%;
+    .sponsor {
+      img,
+      a > img {
+        height: 25px;
+      }
+    }
+  }
+}
+
+@include large-screen {
+  footer {
+    margin-left: 25%;
+    max-width: 70%;
+    .sponsor {
+      img,
+      a > img {
+        height: 35px;
+      }
     }
   }
 }

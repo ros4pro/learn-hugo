@@ -1,20 +1,50 @@
 /* General */
-$body-bg: #1C1F2B;
-$text: #B2BFCF;
-$link: #3EB1D0;
-$link-hover: #0fc6f8;
-$color-header: #FFFFFA;
+$body-bg: #1c1f2b;
+$text: #b2bfcf;
+$link: #3eb1d0;
+$link-hover: #ffffff;
+$color-header: #fffffa;
 $footer-bg: #e0e0e0;
 
 /* Menu (Navigation, ...) */
-$menu-bg: #2B304D;
-$menu-header-bg: #A52639;
-$menu-header-border: #FE5864;
-$nav-title-text: $text;
-$nav-title-active: #0fc6f8;
+$menu-bg: #2b304d;
+$menu-header-bg: #a52639;
+$menu-header-border: #fe5864;
+$nav-title-text: #b2bfcf;
+$nav-title-active: #ffffff;
 $nav-title-bg-active: #252737;
 
-/** */
 $submit-bg : $menu-header-bg;
 $submit-border : $menu-header-border;
-$submit-text : $color-header;
+$submit-text : $color-header; 
+
+/* BREAKPOINTS */
+@mixin desktop {
+  @media only screen and (min-width: 1224px) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media only screen and (min-width: 1800px) {
+    @content;
+  }
+}
+
+@mixin smartphone-landscape {
+  @media only screen and (min-width: 321px) {
+    @content;
+  }
+}
+
+@mixin smartphone-portrait {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 600px) {
+    @content;
+  }
+}

@@ -1,9 +1,17 @@
 {{ define "main_body" }}
   {{ partial "menu" . }}
+  <aside>
+    <a id="button-menu">
+      <i class="fas fa-align-justify"></i>
+    </a>  
+  </aside>  
   <main>
     <h1>{{.Title}}</h1>
     {{ .Content }}
   </main>
 
   {{ partial "footer" . }}
+
+  {{ $built := resources.Get "js/sidebar.js" | js.Build "sidebar.js" }}
+  <script type="text/javascript" defer src="{{ $built.Permalink }}"></script>
 {{ end }}

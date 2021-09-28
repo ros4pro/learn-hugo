@@ -1,0 +1,103 @@
+---
+title: "Comparaison de simulateurs robotiques"
+menu:
+  main:
+    name: "Comparaison de simulateurs robotiques"
+    weight: 1
+    parent: "simulation"
+---
+
+Les simulateurs robotiques permettent de programmer les robots en hors-ligne. Ils permettent donc de tester certains programmes ou trajectoires robots sans avoir à stopper la production ou endommager le robot. Cette partie a pour but de présenter quelques-uns des principaux simulateurs robotiques du marché.
+
+# A - Présentation des principaux simulateurs
+
+## Gazebo
+
+[Gazebo](http://gazebosim.org/) est un des simulateurs les plus connus. Il a été développé en 2004, complètement open-source et intégrant une large variété d'objets et capteurs. Il fonctionne sous Linux (même si quelques versions protégées existent sous Windows). Il est conçu pour reproduire avec grande précision les environnements complexes auquel un robot fait régulièrement face. Il est très bien intégré avec ROS, flexible et produit des simulations précises grâce à quatre différents moteurs physiques (ODE, Bullet, Simbody et DART). Par ailleurs Gazebo bénéficie d'une communauté nombreuse et active. Grâce à OGRE (Object-oriented Graphics Rendering Engine), ce logiciel offre un rendement réaliste des environnements, par exemple un éclairage, des ombres ou des textures de grande qualité. Le logiciel peut également générer des données issues de capteurs ou de caméras préalablement importés. Par ailleurs, en plus d'une grande variété de robots déjà présents, n'importe quel robot peut être importé en utilisant le format SDF. Enfin, les robots, les capteurs ou l'environnement peuvent être controllés via des plugins.   
+
+De nombreux experts le considèrent comme le simulateur le plus complet. 
+
+## RoboDK
+
+[RoboDK](https://robodk.com/) est un logiciel de programmation et simulation hors-ligne dédié aux robots industriels. Il peut tourner à la fois sur Windows, Linux, Mac OS, Raspberry ou Android. Il est disponible gratuitement via une version d'essai ou peut être acheté sur le sit de RoboDK. Il contient une large variété de modèles CAO basés sur plus de 500 robots et outils industriels. Il offre une interface intuitive qui ne nécessite pas de grandes connaissances en programmation. Il est ainsi facile de visualiser le comportement du robot pour une trajectoire spécifique. L'un des grands intérêts du logiciel est la possibilité d'exporter directement les programmmes au robot physique grâce au module "RoboDK Post Processors". Par ailleurs, il contient un module permettant de calibrer le robot, améliorant la précision de la simulation.
+
+## Webots
+
+[Webots](https://www.cyberbotics.com/) est un simulateur développé à l'Ecole Polytechnique fédérale de Lausanne en 196. Il peut être téléchargé depuis le site internet de Cyberbotics. Il fournit un environnement de développement complet (intérieur et extérieur) pour a modélisation, la programmation et la simulation de robots et peut être interfacé avec une application tierce via une communication TCP/IP. Son interface simple et facile d'utilisaion permet d'ajouter et de retirer des objets, robots, de les évaluer dans un scénario avec peu de temps de développement. De plus, le simulateur fournit une grande varité de robots, composants comme des moteurs, des capteurs, des objets, des fournitures ou du matériel. Il inclut également un compilateur (C++) pour tester et contrôler des algorithmes mais le logiciel est également versatile grâce à des APIs open-source, qui sont très utiles pour ceux qui sont à familiers avec un langage de programmation spécifique (Python, Java, Matlab ou ROS) ou une librairie spécifique comme OpenCV. Il utilise le moteur physique ODE (Open Dynamics Engine).
+
+Enfin, Webots propose une documentation exhaustive (à l'aide de tutoriels, d'exemple ou d'un manuel d'utilisation) et bénéficie d'une communauté active.
+
+## CoppeliaSim
+
+[CoppeliaSim](https://www.coppeliarobotics.com/) (anciennement V-Rep) a été développé en 2010. Il s'agit d'un logiciel propriétaire avec une licence éducative gratuite. Il propose un framework avec des fonctions avancées pour tester et débugger des systèmes robotiques complexes. Chaque objet/modèle peut être contrôlé indivuellement via des "child scripts", des plugins, un noeu ROS ou encore une application externe (via une API). Il tourne à la fois sur Windows et Linux. Si les scripts intégrés sont écrits en LUA, CoppeliaSim fournit divers plugins pour Matlab, C+, Python et Java. Les trois éléments principaux de CoppeliaSim se composent d'objets (comme des joints, des shapes, des capteurs, des paths, etc...), des modules de calcul (comme le module de calcul de cinématique inverse ou de détection de collision) and de mécanismes de contrôle (scripts, plugin ou sockets). CoppeliaSim contient également une grande variété e robots, d'objets ou de capteurs. En outre, les modèles existants dans CoppeliaSim sont flexibles et évolutifs. Aussi peuvent-ils être modifiés, copiés ou encore redimensionnés d'une scène à l'autre.  De plus, même si ce n'est pas intuitif, construire de zéro un robot est possible. Les tutoriels et modèles existants permettent d'aider à le faire. Enfin, CoppeliaSim fournit quatre moteurs physiques différents (ODE, Bullet, Vortex Dynamics et Newton). Comparé à Gazebo, il est plus stable avec un réglage et un fonctionnement plus simples.
+
+## OpenRave
+
+[OpenRave](http://openrave.org/) a été développé pour la première fois en 2006 à l'École de science informatique de l’Université de Carnegie Mellon. Il permet de tester, développer et déployer des algorithmes de planification de trajectoire dans des applications réelles de robotique, notamment à l'échelle industriele. Il est multi-plateforme (Linux, Windows et Mac OS). Cependant, il n'est pas encore disponible pour Ubuntu 20.04. Il peut être intégré dans des systèmes robotiques physique à l'aide d'interface et de lignes de commandes.
+
+## Unity
+
+[Unity](https://unity.com/) est un moteur de jeu multi-plateforme (Linux, Windows et Mac OS) développé par Unity Technologies en Juin 2005. Initialement développé pour développer des jeux 3D (et notamment utilisés pour des jeux iOS et Android) grâce à sa prise en main aisée pour des développeurs débutants, son champ d'application a été étendu dans les années 2010 pour créer des simulations 3D dans des domaines comme l'automobile ou l'ingénierie, principalement à travers le développement de son moteur physique dédié Nvidia PhysX.
+
+# B - Comparaison de caractéristiques principales des simulateurs
+
+Dans cette partie, vous trouverez deux tables comparant une liste non-exhaustive de caractéristiques majeures pour un simulateur robotique. Ces tableaux doivent vous permettre de vous aiguiller sur le simulateur le plus utile en fonction de vos besoins.
+
+Le premier tableau se concentre sur des caractéristiques générales de simulateurs comme le langage de programmation ou l'OS supporté.
+
+|                           	| Gazebo                                        	| RoboDK                                                	| Webots                                                                       	| CoppeliaSim                                                             	| OpenRave                                            	| Unity                                                                         	|
+|---------------------------	|-----------------------------------------------	|-------------------------------------------------------	|------------------------------------------------------------------------------	|-------------------------------------------------------------------------	|-----------------------------------------------------	|-------------------------------------------------------------------------------	|
+| Logo                      	| <img src="img/Gazebo_logo.png" width="100"/>  	| <img src="img/RoboDK_logo.png" width="200"/>          	| <img src="img/Webots_logo.png" width="100"/>                                 	| <img src="img/CoppeliaSim_logo.png" width="200"/>                       	| <img src="img/Openrave_logo.png" width="200"/>      	| <img src="img/Unity_logo.png" width="200"/>                                   	|
+|                           	|                                               	|                                                       	|                                                                              	|                                                                         	|                                                     	|                                                                               	|
+| Informations générales    	| Open Source Robotics Foundation               	| RoboDK                                                	| Cyberbotics Ltd                                                              	| Coppelia Robotics                                                       	| OpenRAVE Community                                  	| Unity Technologies                                                            	|
+|                           	|                                               	|                                                       	| (Suisse)                                                                     	|                                                                         	|                                                     	|                                                                               	|
+| Site Internet             	| gazebosim.org                                 	| robodk.com                                            	| cyberbotics.com                                                              	| coppeliarobotics.com                                                    	| openrave.org                                        	| unity3d.com                                                                   	|
+|                           	|                                               	|                                                       	|                                                                              	|                                                                         	|                                                     	|                                                                               	|
+| OS supporté               	| GNU/Linux (Ubuntu)                            	| GNU/Linux (Ubuntu), Mac OS, Windows, Android          	| GNU/Linux (Ubuntu), Mac OS, Windows                                          	| GNU/Linux (Ubuntu), Mac OS, Windows                                     	| GNU/Linux, (Ubuntu), Windows                        	| GNU/Linux (Ubuntu), Mac OS, Windows                                           	|
+|                           	|                                               	|                                                       	|                                                                              	|                                                                         	|                                                     	|                                                                               	|
+| Dernière Mise à jour      	| 11.0.0 (2019-01-30)                           	| 5.2.2 (2021-04-26)                                    	| R2021a (2020-12-15)                                                          	| 4.2.0 (2021-04-06)                                                      	| 0.8.2 (2012-10-18)                                  	| 2021.1.10 (2021-06-04)                                                        	|
+| Langage de Programmation  	| C++                                           	| Python                                                	| C++                                                                          	| Lua                                                                     	| C++                                                 	| C#                                                                            	|
+| API supporté              	| C++                                           	| C, C++, Python, Matlab                                	| C, C++, Python, Java, Matlab                                                 	| C, C++, Python, Java, Urbi, Matlab, Octave                              	| C, C++, Python, Matlab                              	| C#                                                                            	|
+| Moteur Physique           	| ODE, Bullet, Simbody, DART                    	| Aucun                                                 	| Propriétaire basé sur ODE                                                    	| ODE, Bullet, Vortex, Newton                                             	| ODE, Bullet                                         	| NVidia PhysX, Box2D ; (Possible d’utiliser des moteurs physiques open-source) 	|
+|                           	|                                               	|                                                       	| Gratuit et 3 niveaux de licence commercial                                   	|                                                                         	|                                                     	|                                                                               	|
+| Fichiers CAO supportés    	| SDF/URDF, OBJ, STL, Collada                   	| STEP, IGES, STL, WRML                                 	| WBT, VRML, X3D                                                               	| OBJ, STL, DXF, 3DS, Collada, URDF                                       	| XML, VRML, OBJ, Collada                             	| FBX, Collada, DXF, OBJ                                                        	|
+|                           	|                                               	|                                                       	|                                                                              	|                                                                         	|                                                     	|                                                                               	|
+| Compatible ROS ?          	| ROS1 & ROS2                                   	| Non                                                   	| ROS1 & ROS2                                                                  	| ROS1 & ROS2                                                             	| ROS 1                                               	| ROS1 & ROS2                                                                   	|
+| Licences                  	| Open-source (hébergé par ROS)                 	| Version d’essai gratuite (1 mois) Version pro payante 	| Open-source (Apache License 2.0), Gratuit et 3 niveaux de licence commercial 	| Version éducation (étudiants & recherche) gratuite, version pro payante 	| Open-source (Licence publique générale limitée GNU) 	| Version étudiante gratuite, version pro payante                               	|
+| Multithread Possible ?    	| Oui                                           	| Non                                                   	| Oui                                                                          	| Non                                                                     	| Oui                                                 	| Oui                                                                           	|
+
+Ce deuxième tableau se concentre, quant à lui, sur des caractéristiques propres aux robots comme les moteurs, ou le type de robots existants, etc...
+
+|                                       	| Gazebo                                                                                 	| RoboDK                                                          	| Webots                                                                                                             	| CoppeliaSim                                                                             	| OpenRave                        	| Unity                          	|
+|---------------------------------------	|----------------------------------------------------------------------------------------	|-----------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------	|-----------------------------------------------------------------------------------------	|---------------------------------	|--------------------------------	|
+| Famille de robots                     	| Mobile, Humanoïde, Industriel                                                          	| Robots industriels (commerciaux)                                	| Mobile, Humanoïde, Industriel                                                                                      	| Mobile, Humanoïde, Industriel                                                           	| Mobile, Humanoïde, Industriel   	| Mobile, Humanoïde, Industriel  	|
+| (mobiles, humanoïdes, industriels...) 	|                                                                                        	|                                                                 	|                                                                                                                    	|                                                                                         	|                                 	|                                	|
+| Actionneurs                           	| Liaisons Pivots, Prismatiques, Liaisons hélicoïdales et sphériques                     	| Possibilité de créer des axes articulaires et linéaires         	|  Freins, Connecteurs, Emetteurs, Moteurs Linéaires, Muscles, Convoyeurs, Micro, Moteurs linéaires et articulaires  	| Liaisons Pivots, Prismatiques, Sphériques                                               	| Liaisons Pivots et Prismatiques 	| Liaisons Pivots, Prismatiques, 	|
+|                                       	|                                                                                        	|                                                                 	|                                                                                                                    	| Moteurs articulaires et linéaires.                                                      	|                                 	|                                	|
+| Outils                                	| Pinces,                                                                                	| Pinces,  Outils Soudage, Ponçage, Polissage, changeurs d’outils 	| Pinces                                                                                                             	| Pinces,  Outils Soudage, stylos                                                         	| Pinces                          	| Pinces                         	|
+| Capteurs                              	| Cameras, Camera 3D, Capteurs distance et proximité, Capteurs, Laser, Capteurs d’effort 	| Lasers, Cameras, Laser Tracker                                  	| Accéléromètre, Camera, Boussoles, Capteur distance, GPS, Gyro, Lidar, Capteurs de position, Capteurs tactiles      	| Capteurs de vision, d’efforts, de proximité, Accéléromètre gyroscopique, Lasers, Lidars 	| Cameras, Ray-casting Laser      	| Cameras                        	|
+
+# Pour plus d'informations... 
+
+- L. Pitonakava, M. Giuliani, A. Pipe and A. Winfield (2018). Feature and performance comparison of the V-REP, Gazebo and ARGoS robot simulators. DO: 10.1007/978-3-319-96728-8_30 
+
+- A. Ayala, F. Cruz, D. Campos, R. Rubio, B. Fernandes, R. Dazeley (2020). A Comparison of Humanoid Robot Simulators: A Quantitative Approach 
+
+- Shamshiri R R, Hameed I A, Pitonakova L, Weltzien C, Balasundram S K, Yule I J, et al. Simulation software and virtual environments for acceleration of agricultural robotics: Features highlights and performance comparison.    Int J Agric & Biol Eng, 2018; 11(4): 15–31. 
+
+- Serena Ivaldi, Jan Peters, Vincent Padois, Francesco Nori. Tools for simulating humanoid robotdynamics: a survey based on user feedback. IEEE-RAS International Conference on Humanoid Robots (Humanoids), 2014, Madrid, Spain. hal-01116148 
+
+
+# Liens Utiles
+
+- https://gazebosim.org - website of Gazebo 
+
+- https://robodk.com - website of RoboDK 
+
+- https://cyberbotics.com - website-hosting Webots 
+
+- https://coppeliarobotics.com - website of CoppeliaSim 
+
+- http://openrave.org - website of OpenRave 
+
+- https://unity.com/fr - website of Unity 

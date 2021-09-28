@@ -1,0 +1,29 @@
+### 2.4 Install the COCO API
+
+COCO is a database intended to supply algorithms for object detection, segmentation... 
+See [cocodataset.org](https://cocodataset.org) for tutorials and publications.
+
+📥 To install COCO's Python API, clone the `cocoapi.git` site (~ 15 MB) in the `/tmp` folder, type the `make` command in the `cocoapi/PythonAPI` folder, then copy the folder `pycococtools` in your `.../models/research/` folder:
+
+```bash
+(tf2) user@host $ cd /tmp
+(tf2) user@host $ git clone  https://github.com/cocodataset/cocoapi.git
+(tf2) user@host $ cd cocoapi/PythonAPI/
+(tf2) user@host $ make
+(tf2) user@host $ cp -r pycocotools/ <absolute path to tod_tf2>/models/research/
+```
+
+replace `<absolute path to tod_tf2>` by th absolute path to the `tod_tf2` folder on your workstation (for example: `~/catkins_ws/tod_tf2`).
+
+
+
+### 2.5 Install the package `object_detection`
+
+At last go into the `models/research/` directory and enter:
+
+```bash
+# From tod_tf2/models/research/
+(tf2) user@host $ cp object_detection/packages/tf2/setup.py .
+(tf2) user@host $ python setup.py build
+(tf2) user@host $ pip install .
+```

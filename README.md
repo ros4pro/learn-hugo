@@ -1,6 +1,6 @@
 # ROS4PRO Material
 
-This repository is the new learn.e.ros4pro website.
+This repository is the [learn.e.ros4pro](https://learn.e.ros4.pro/) website.
 It is created with Hugo, a Jamstack framework.
 
 ## Installation and getting started
@@ -15,6 +15,13 @@ Use the extended version is important for sass.
 ```bash
 hugo serve
 ```
+
+## Contribute
+### Curriculum keywords
+
+Please use these keywords for the curriculum:
+* `python`
+* `linux`
 
 ***
 <!-- 

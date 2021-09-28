@@ -21,14 +21,14 @@ ROS4PRO est un ensemble de ressources francophones pour l'apprentissage de la ro
 1. [Introduction](introduction/)
 2. [Navigation](navigation/turtlebot/)
 3. [Manipulation](manipulation/ergo-jr/)
-4. [Vision](vision/classification_tf2/)
+4. [Vision](vision/)
 5. [Intégration](integration/ergo-tb-keras/)
 
 ### Parcours n° 2 : Sawyer + tensorflow2 + Turtlebot
 1. [Introduction](introduction/)
 2. [Navigation](navigation/turtlebot/)
 3. [Manipulation](manipulation/sawyer/)
-4. [Vision](vision/classification_tf2/)
+4. [Vision](vision/)
 5. [Intégration](integration/sawyer-tb-keras/)
 
 ## Légende

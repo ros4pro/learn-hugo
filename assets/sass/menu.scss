@@ -1,25 +1,22 @@
 /* Fixed Display */
-menu {
-  height: 100vh;
-  width: 15%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  overflow-x: hidden;
+.sidebar menu {
+  transform: translateX(500px);
 }
 
-main {
-  margin-left: 15%;
-  margin-top: 3rem;
-}
-
-/* Color, etc... */
 menu {
   margin: 0;
   padding: 0;
 
-  height: 100%;
+  height: 100vh;
+  width: 350px;
+  position: fixed;
+  top: 0;
+  left: -500px;
+  z-index: 1;
+  overflow-x: hidden;
+  transform: translateX(0);
+  transition: transform 0.5s;
+
   background-color: $menu-bg;
 
   header {
@@ -31,29 +28,20 @@ menu {
     padding-bottom: 1rem;
   }
 
-  nav {
-    padding-left: 1rem;
-    margin-top: 1rem;
+  nav a {
+    color: $nav-title-text;
+    text-decoration: none;
 
-    a {
-      color: $nav-title-text;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    &:hover {
+      text-decoration: underline;
     }
   }
-}
-
-main {
-  padding-right: 4%;
-  padding-left: 4%;
 }
 
 .active {
   & > a {
     color: $nav-title-active;
+    background-color: $nav-title-bg-active;
   }
 }
 
@@ -72,8 +60,6 @@ nav ul li {
     padding-bottom: 3%;
 
     display: block;
-    // border-bottom: none;
-    // color: #364149;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -101,9 +87,53 @@ nav ul li ul {
     border: 0;
     border-radius: 5px;
     height: 34px;
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right
+    background: url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right
       #ddd;
     -webkit-appearance: none;
     background-position-x: 95%;
+  }
+}
+
+main,
+aside {
+  margin-left: 0px;
+  padding-right: 1rem;
+  padding-left: 3rem;
+}
+
+.sidebar {
+  main,
+  aside {
+    margin-left: 345px;
+  }
+}
+
+#button-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $nav-title-active;
+}
+
+aside {
+  background-color: $menu-header-bg;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@media only screen and (max-device-width: 480px) {
+  menu {
+    width: 250px;
+  }
+  main,
+  aside {
+    padding-left: 1rem;
+  }
+
+  .sidebar {
+    main,
+    aside {
+      margin-left: 250px;
+    }
   }
 }

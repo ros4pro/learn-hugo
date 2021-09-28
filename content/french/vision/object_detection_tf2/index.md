@@ -29,7 +29,7 @@ Un avantage attendu de l'approcje __Object Detection__ est de fournir directemen
 
 L'entraînement des réseaux de neurones avec le module `tensorflow` se fera de préférence dans un environnement virtuel Python (EVP) qui permet de travailler dans un environnement Python  séparé de celui existant pour le travail sous ROS.
 
-💻 Utilise la [FAQ Python : environnement virtuel](https://learn.e.ros4.pro/fr/faq/python_venv/)  pour créer un EVP :
+💻 Utilise la [FAQ Python : environnement virtuel](https://learn.e.ros4.pro/fr/faq/venv/)  pour créer un EVP :
 * nommé `tf2`, 
 * avec une version de Python égale à `3.8`.
 ## 1. Documentation
@@ -693,7 +693,7 @@ Les images produites sont :
 
 Une fois le réseau entraîné et évalué, si les résultats sont bons, "il ne reste plus qu'à" créer le fichier `nn.py` pour réaliser les traitements nécessaires à l'exploitation du réseau entraîné pour ton projet : le but est d'intégrer le réseau de neurones `nn`  dans le contexte ROS :
 
-![intégration ROS](../../integration/ergo-tb-keras/img/UML_integration.png)
+![intégration ROS](../../integration/ergo-tb-tf2/img/UML_integration.png)
  
 1. Attendre que le paramètre ROS  `takeImage` passe à `True` et le remettre à `False`
 3. Obtenir le fichier de l'image prise par la caméra du robot grâce au service ROS `/get_image`

@@ -28,11 +28,21 @@ Notons que Gazebo est constitué d'un serveur (non graphique, `gzserver`) et d'u
 
 Les modèles sont décrit par un fichier xml selon la norme [URDF](https://wiki.ros.org/urdf) (Universal Robot Description Format).
 
-### 3. Un simple cube
+## 3. Un simple cube
 
-Pour la suite du TP, clonez le package [poppy_ergo_jr_gazebo](https://github.com/poppy-project/poppy_ergo_jr_gazebo) dans votre ROS workspace.
+Pour la suite du TP, créez un ROS workspace et clonez le package [poppy_ergo_jr_gazebo](https://github.com/poppy-project/poppy_ergo_jr_gazebo):
 
-Dans `poppy_ergo_jr_gazebo/urdf` on peut voir la définition d'un cube. Pour charger cet URDF dans Gazebo : `rosrun gazebo_ros spawn_model -file cube.urdf -urdf -model test -x 0 -y 0 -z 1`
+```terminal 
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/poppy-project/poppy_ergo_jr_gazebo.git
+cd ~/catkin_ws/
+catkin_make
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+Dans `poppy_ergo_jr_gazebo/urdf` on peut voir la définition d'un cube. Pour charger cet URDF dans l'instance Gazebo executée précédemment, lancez la commande : `rosrun gazebo_ros spawn_model -file cube.urdf -urdf -model test -x 0 -y 0 -z 1`
 
 - Quelles sont les dimensions du cube ?
 - Quelle est la masse du cube ?
@@ -43,9 +53,11 @@ Dans `poppy_ergo_jr_gazebo/urdf` on peut voir la définition d'un cube. Pour cha
 
 Pour supprimer le modèle : `rosservice call gazebo/delete_model "model_name: 'test'"`
 
-### 4. Chargement du modèle du robot
+## 4. Chargement du modèle du robot
 
-On utilise ici un format intermédiaire "xacro", permettant d'ajouter un capacité de "script" (pour calculer des position par exemple) et générer un URDF. On peut visualiser la topologie du modèle avec : `urdf_to_graphiz poppy_ergo_jr.urdf` (un pdf est généré)
+La description du robot se trouve [ici](https://github.com/poppy-project/poppy_ergo_jr_description). Clonnez ce repertoire git dans le dossier `src` de votre `catkin_ws` mettez vous sur la branche `camera_integration` puis compilez le avec la commande `catkin_make` (à lancer à la racine du workspace).
+
+On utilise ici un format intermédiaire "xacro", permettant d'ajouter un capacité de "script" (pour calculer des position par exemple) et générer un URDF. On peut visualiser la topologie du modèle en allant dans `poppy_ergo_jr_description/urdf` en en lancant la commande : `urdf_to_graphiz poppy_ergo_jr.urdf` (un pdf est généré).
 
 Ouvrez le PDF obtenu puis déterminez :
 
@@ -53,7 +65,7 @@ Ouvrez le PDF obtenu puis déterminez :
 - Que représentent les bulles ?
 - Que représentent les flèches et surtout les valeurs xyz et rpy associées ?
 
-Pour importer le modèle dans Gazebo : `roslaunch poppy_ergo_jr_gazebo load_ergo_model.launch` On peut "explorer" le modèle dans le menu à gauche. Pour mieux visualiser les articulations : `View/Transparent` `View/Joints`
+Pour importer le modèle dans Gazebo : `roslaunch poppy_ergo_jr_gazebo load_ergo_model.launch`. On peut "explorer" le modèle dans le menu à gauche. Pour mieux visualiser les articulations : `View/Transparent` `View/Joints`
 
 Le modèle s'effondre car les moteurs ne sont pas simulés.
 
@@ -61,8 +73,11 @@ Le modèle s'effondre car les moteurs ne sont pas simulés.
 
 ## 5. Chargement des contrôleurs de moteurs
 
-Afin de rentre la simulation plus réaliste, nous allons lancer des contrôleurs de moteurs qui vont simuler le comportement de moteurs réels. Il existe plusieurs type de contrôleurs disponible dans Gazebo, nous allons tout d'abord expérimenter avec les contrôleurs en position les plus simples.
+Afin de rendre la simulation plus réaliste, nous allons lancer des contrôleurs de moteurs qui vont simuler le comportement de moteurs réels. Il existe plusieurs type de contrôleurs disponible dans Gazebo, nous allons tout d'abord expérimenter avec les contrôleurs en position les plus simples.
 
+Clonez [ce repertoire](https://github.com/poppy-project/poppy_ergo_jr_moveit_config.git) dans le dossier `src`, mettez vous sur la branche `camera_integration` de votre workspace et compilez le.
+
+- Installer le package effort_controller `sudo apt install ros-noetic-effort-controllers` 
 - lancez : `roslaunch poppy_ergo_jr_gazebo load_ergo_position_controllers.launch` On constate la création de `topics` pour chaque contrôleur
 - Envoyez des commandes en position : `rostopic pub /ergo_jr/m2_position_controller/command [TAB] [TAB]`
 - Comment contrôler la position de la pince dans l'espace cartésien?
@@ -77,19 +92,21 @@ Dans le cas général, calculer les mouvements nécessaires pour atteindre un ob
 
 ![img](https://moveit.ros.org/assets/images/diagrams/moveit_pipeline.png)
 
-### 7. Démarrer MoveIt
+Pour installer moveit lancez: `sudo apt install ros-noetic-moveit*` 
+
+## 7. Démarrer MoveIt
 
 Précédemment nous avons expérimenté avec les contrôleurs en position. MoveIt a besoin de contrôleurs légèrement différents (contrôleurs de trajectoire).
-
+- Installer `sudo apt install ros-noetic-joint-trajectory-controller*`
 - Lancez tout d'abord Gazebo et charger le modèle du robot. Puis lancez les contrôleurs en trajectoire avec : `roslaunch poppy_ergo_jr_gazebo load_ergo_controllers.launch` ⇒ Vous pouvez aussi combiner ces 3 étapes avec un seul fichier .launch : `roslaunch poppy_ergo_jr_gazebo start_gazebo.launch gripper:=true lamp:=false`
 - Lancez MoveIt avec : `roslaunch poppy_ergo_jr_moveit_config start_moveit.launch gripper:=true lamp:=false`
 - Essayez de manipuler le robot : ![img](./img/moveit_marker_annote.png)
 - Dans `Query/Planning Group` sélectionnez `arm`, dans `Options` cochez `Allow Approx IK Solutions`
 - Cliquez sur `Planning/Plan and Execute` observer Rviz et Gazebo
 
-### 8. Créer un `node` python pour contrôler le robot
+## 8. Créer un `node` python pour contrôler le robot
 
-#### 8.1. Créer un package ROS **ros4pro**
+### 8.1. Créer un package ROS **ros4pro**
 
 ```bash
 cd ~/catkin_ws/src
@@ -99,7 +116,7 @@ touch ros4pro/src/manipulate.py       # On créé un noeud Python "manipulate.py
 chmod +x ros4pro/src/manipulate.py    # On rend ce noeud exécutable pour pouvoir le lancer avec rosrun
 ```
 
-#### 8.2. Éditer `manipulate.py`
+### 8.2. Éditer `manipulate.py`
 
 - Nous allons avoir besoin des imports suivants :
 
@@ -145,7 +162,7 @@ q = transform.transformations.quaternion_from_euler(roll, pitch, yaw)
 
 `q` retourné est une liste de 4 éléments contenant x, y, z, w `roll, pitch, yaw` sont des angles en radian (la fonction `radians(angle)` permet de convertir des degrés en radians)
 
-#### 8.3. Utiliser la pince
+### 8.3. Utiliser la pince
 
 - Lancez le service avec `rosrun poppy_ergo_jr_gazebo gripper_gz_service.py`
 - Il est possible d'ouvrir/fermer la pince avec la commande : `rosservice call /ergo_jr/close_gripper "data: false"` pour ouvrir la pince, et "true" pour la fermer.
@@ -156,7 +173,7 @@ q = transform.transformations.quaternion_from_euler(roll, pitch, yaw)
 
 ![img](./img/ergo_jr_gazebo_grab.gif)
 
-#### 8.4. Ajouter des obstacles
+### 8.4. Ajouter des obstacles
 
 - Nous allons avoir besoin du message `PoseStamped` défini dans le module `geometry_msgs.msg`
 - Il est possible d'ajouter un obstacle pour MoveIt comme ceci par exemple :

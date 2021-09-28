@@ -1,0 +1,17 @@
+author:
+  other: Authors
+
+help:
+  other: Need help ?
+
+help_text:
+  other: Ask your question on the
+
+help_link_text:
+  other: ROS user forum
+
+help_link:
+  other: https://discourse.ros.org/c/training/58
+
+update: 
+  other: Last update
