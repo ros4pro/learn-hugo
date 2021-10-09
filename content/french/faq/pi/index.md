@@ -19,7 +19,7 @@ Note préliminaire : la carte SD du robot ne se comporte pas tout-à-fait comme 
 
 Téléchargez ces images ROS en vue de remettre à zéro les cartes SD des robots pour ROS4PRO (⚠️⏳ Optimisez votre temps, le téléchargement peut prendre 1 heure) :
 
-* [Image du Turtlebot pour ROS4PRO](https://github.com/ros4pro/turtlebot3_ros4pro/releases/download/v1.0/2021-05-01-turtlebot.7z)
+* [Image du Turtlebot pour ROS4PRO](https://github.com/ros4pro/turtlebot3_ros4pro/releases/download/v1.0/2021-05-01-turtlebot.img.7z)
 * [Image de Poppy Ergo Jr pour ROS4PRO](https://github.com/poppy-project/poppy-ergo-jr/releases/download/4.0.0/2021-09-18-poppy-ergo-jr.img.7z)
 
 Pour flasher l'une de ces images sur une carte SD :
@@ -104,6 +104,23 @@ sudo timedatectl set-time "2021-09-30 18:00"   # Mettre ici une date et une heur
 sudo timedatectl set-ntp on
 ```
 **Note :** `ntpdate` est osbolète et n'est plus installé sur Ubuntu
+
+### 💽 Espace disque insuffisant sur les robots
+
+**Si votre carte SD fait 8Go**, vous devez forcément libérer de l'espace disque. Supprimez les archives APT du robot `rm -fr /var/cache/apt/archives/*`. Si ce n'est pas suffisant, la suppression de fichiers doit être vue au cas par cas.
+
+**Si votre carte SD fait + de 8Go** : Les images des robots sont conçues pour des cartes SD 8 Go, elles n'utilisent pas tout l'espace disponible de la carte SD. Si vous avez besoin de plus d'espace disque et que la carte SD a bien une effectivement supérieure à 8 Go, il est nécessaire d'étendre la partition au maximum. Pour cela, insérez la carte SD du robot dans votre station de travail et utilisez l'outil GParted pour la redimensionner :
+
+```bash
+sudo apt install gparted
+sudo gparted
+```
+
+Ensuite :
+1. sélectionner la carte SD dans la liste déroulante (⚠️ GParted peut redimensionner n'importe quelle partition de n'importe quel disque, assurez vous de ne pas vous tromper dans la liste déroulante)
+2. faites clic droit sur la ext4 (la partition la plus à droite) et sélectionnez "Redimensionner"
+3. Glisser le curseur de fin de la partition au maximum à droite. Validez ensuite l'opération de redimensionnement.
+
 
 ### 🔧 Procédure de diagnostic
 

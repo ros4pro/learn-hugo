@@ -84,11 +84,11 @@ Nous sommes maintenant capable de sélectionner des pixels en fonction de leur c
 - Une méthode simple consiste à considérer que les pixels d'une couleur choisie font partie d'un "blob" (une région de pixels voisins) représentant le même objet. Dans l'image binaire résultat du seuil, il nous suffit de chercher le `contour` des zones blanches. Pour cela nous allons utiliser la fonction `findContours()` (voir le [tutoriel](https://docs.opencv.org/3.4/d4/d73/tutorial_py_contours_begin.html))
 
 ```python
-imgret, contours, hierarchy = cv.findContours(
+contours, hierarchy = cv.findContours(
    img_seuil, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
 ```
 
-`imgret` est la même image que `img_seuil` `contours` est une liste contenant tous les contours trouvés `hierarchy` contient les informations sur la hiérarchie des contours (les contours à l'intérieur des contours)
+`contours` est une liste contenant tous les contours trouvés `hierarchy` contient les informations sur la hiérarchie des contours (les contours à l'intérieur des contours)
 
 - Sur une image "naturelle" (avec du bruit) les contours trouvés seront rarement parfaits. Il est possible de "filtrer" ces contours en ne considérant par exemple que ceux dons la surface est cohérente avec les objets recherchés (voir le [tutoriel](https://docs.opencv.org/3.4/dd/d49/tutorial_py_contour_features.html))
 - Parcourez la liste des contours et dessinez les contours dont la surface est comprise entre 2500 et 3700 On utilisera une boucle sur `contours`, la fonction `contourArea()` retournant la surface d'un contour, ainsi que la fonction de dessin `drawContours()` (dessinez sur l'image d'origine)
