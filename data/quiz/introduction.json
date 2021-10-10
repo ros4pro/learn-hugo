@@ -12,7 +12,9 @@
                 "rviz",
                 "rqt_graph"
             ],
-            "answer_index": 1
+            "answer_index": [
+                1
+            ]
         },
         {
             "id": "roscore",

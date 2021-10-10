@@ -13,5 +13,5 @@
         <input type="submit" id="submit_quiz" value="Envoyer le formulaire">
     </div>
     {{ $js := resources.Get "js/main.js" | js.Build (dict "params" .) }}
-    <script defer src="{{ $js.Permalink }}"></script>
+    <script defer src="{{ $js.RelPermalink }}"></script>
 </form>
