@@ -1,12 +1,12 @@
 {
-    "id" : "introduction",
-    "name" : "Introduction",
+    "id": "introduction",
+    "name": "Introduction",
     "questions": [
-        {   
-            "id" : "rostools",
+        {
+            "id": "rostools",
             "text": "Which of these ROS tools is best suited to display a LIDAR scan ?",
             "type": "choice",
-            "hint" : "It's easy !",
+            "hint": "It's easy !",
             "answers": [
                 "rqt_plot",
                 "rviz",
@@ -15,16 +15,18 @@
             "answer_index": 1
         },
         {
-            "id" : "roscore",
+            "id": "roscore",
             "text": "Which of these commands will NEVER start a ROS master ?",
             "type": "multichoice",
-            "hint" : "See course",
+            "hint": "See course",
             "answers": [
                 "roscore",
                 "roslaunch",
                 "rosrun"
             ],
-            "answer_index": 3
+            "answer_index": [
+                2
+            ]
         }
     ]
 }
