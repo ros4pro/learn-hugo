@@ -1,11 +1,11 @@
 <form id="quiz">
     {{ range .questions }}
-    {{ if eq "choice" .type }}
-        {{ partial "quiz/choice" . }}
-    {{ end }}
-    {{ if eq "multichoice" .type }}
-        {{ partial "quiz/multichoice" . }}
-    {{ end }}
+        {{ if eq "choice" .type }}
+            {{ partial "quiz/choice" . }}
+        {{ end }}
+        {{ if eq "multichoice" .type }}
+            {{ partial "quiz/multichoice" . }}
+        {{ end }}
     {{ end }}
 
     <div class="submit">
