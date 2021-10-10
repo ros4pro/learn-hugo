@@ -1,12 +1,12 @@
 import * as params from '@params';
 
 const form = document.getElementById("quiz");
-const data = new FormData(form);
 
 const doc = window.jspdf.jsPDF('landscape');
 
 function compute_score() {
-
+    
+    const data = new FormData(form);
     const questions = params.questions;
     let score = 0;
 
@@ -69,6 +69,7 @@ function generate_pdf(user_score) {
     const questions = params.questions;
 
     const question_per_page = 3
+    const data = new FormData(form);
 
     for (let i = 0; i < questions.length; i++) {
 
@@ -111,14 +112,6 @@ function generate_pdf(user_score) {
             doc.text(questions[i].answers[j], 20, x2)
         }
     }
-
-
-    for (const q of questions) {
-
-
-
-    }
-
 
 
 }
