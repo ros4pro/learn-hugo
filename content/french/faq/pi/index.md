@@ -39,6 +39,13 @@ sudo apt-get install --reinstall udisks2
 sudo apt-get install exfat-fuse exfat-utils
 ```
 ## 📡 Connecter le robot en Wifi
+### Utiliser votre smartphone comme point d'accès
+Utilisez votre smartphone comme hotspot réseau. Tous les smartphones ne se valent pas. En particulier :
+* Vérifiez que vous pouvez configurer le **SSID du réseau (son nom)** et le **mot de passe** : pour simplifier utiliser des noms simples sans espace ni caractère spécial
+* Vérifiez que vous pouvez configurer la bande 2.4GHz vs 5GHz. **Priorisez le 5GHz** mais uniquement si vos deux robots ont une Raspberry Pi 3B+ (car Raspberry Pi 3B est seulement compatible 2.4GHz)
+* Vérifiez que vous pouvez visualiser la **liste des postes connectés** : vos robots doivent apparaître
+* Dans une pièce où le nombre de réseaux Wifi est dense, le vôtre pourrait se faire "écraser" par les autres. Utilisez un autre smartphone si besoin.
+
 ### Poppy Ergo Jr
 
 La connexion Wifi de Poppy Ergo Jr se déroule via l'interface graphique Poppy :
@@ -51,7 +58,7 @@ La connexion Wifi de Poppy Ergo Jr se déroule via l'interface graphique Poppy :
 ### Turtlebot 3
 ⚠️ Cette procédure ne fonctionne qu'avec le Turtlebot **éteint** et la carte SD **hors du robot**.
 
-1. Télécharger le fichier [50-cloud-init.yaml](https://files.ros4.pro/50-cloud-init.yaml) et modifiez-le pour renseigner le bon login et mot de passe wifi dans les `WIFI_SSID` et `password`. **Respectez scrupuleusement l'indentation ! Ne rajoutez pas d'espaces ou de sauts de lignes et n'utilisez pas des tabulations (l'identation se fait avec 4 espaces)** Il est facile de faire une erreur sur ce fichier et il n'y aura aucun message d'erreur puisque c'est lui qui détermine si le robot va réussir à s'appairer au réseau. 
+1. Télécharger le fichier [50-cloud-init.yaml](https://files.ros4.pro/50-cloud-init.yaml) et modifiez-le pour renseigner le bon login et mot de passe wifi dans les `WIFI_SSID` et `password`. **Respectez scrupuleusement l'indentation ! Ne rajoutez pas d'espaces ou de sauts de lignes et n'utilisez pas des tabulations (l'indentation se fait avec 4 espaces)** Il est facile de faire une erreur sur ce fichier et il n'y aura aucun message d'erreur puisque c'est lui qui détermine si le robot va réussir à s'appairer au réseau. 
 
 2. Insérer la carde SD du robot en question dans votre poste de travail (pas dans votre robot)
 
