@@ -1,15 +1,15 @@
 ---
-title: "Operate a re-trained TOD neural network"
+title: "Operate a re-trained neural network"
 menu:
   main:
-    name: "Operate a re-trained TOD neural network"
+    name: "Operate a re-trained neural network"
     weight: 7
     parent: "objectDetectionTF2"
 ---
 
 ---
     Targeted learning outcomes:
-    - learn to operate and evaluate a re-trained TOD neural netowork.
+    - learn to operate and evaluate a re-trained neural netowork.
 
     Activity type    : ⚙️ [task]
     Expected duration: 30 minutes (depends on your computer CPU & RAM).
@@ -17,9 +17,9 @@ menu:
 
 ## Evaluate the re-trained network
 
-The Python script plot_object_detection_saved_model.py let's you operate the re-trained network with any new images, the arguments are:
+The Python script `plot_object_detection_saved_model.py` let's you operate the re-trained network with any new images, the arguments are:
 * `-p`: the name of the project
-* `-m`: the path of the `... /saved/` folder containing the weight files of the trained network
+* `-s`: the path of the `... /saved/` folder containing the weight files of the trained network
 * `-i`: the path of the images folder or the path of the image file to analyze
 * `-n`: the maximum number of objects to be detected
 * `-t`: the detection threshold (_threshold_) expressed in% (optional, default value: 50%).
@@ -72,5 +72,5 @@ For each processed image the Python script returns:
 ⚠️ Note that the objects are __in the order of decreasing detection probabilities__:
 * if you want to sort the objects in the image from left to right, you can use the `x` abscissas of bounding boxes,
 * if you want to sort the objects in the image from top to bottom, you can use the `y` ordinate of bounding boxes, <br>
-in any case, the __numpy__ `argsort` function is your friend ...
+in any case, the __numpy__ `argsort` function is your friend ... (you can look at the file `plot_object_detection_sorted_saved_model.py` to see how to use `argsort`).
 

@@ -90,7 +90,7 @@ cv2.destroyAllWindows()
 * soit en lançant un nouveau terminal,
 * soit en tapant la commande `conda deactivate`
 
-Tu dpos collecter quelques dizaines d'image pour l'entraînement du réseau de neurones.
+Tu dois collecter quelques dizaines d'image pour l'entraînement du réseau de neurones.
 
-Une les images réalisées, il faut mettre 90 % des images dans le dossier `<project>/images/train` et le reste dans le dossier `<project>/images/test`.
+Une fois les images collectées, il faut mettre 90 % des images dans le dossier `<project>/images/train` et le reste dans le dossier `<project>/images/test`.
 

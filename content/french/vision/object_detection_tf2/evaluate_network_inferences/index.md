@@ -21,7 +21,7 @@ Vérifie que le réseau entraîné est bien capable de détecter les faces des c
 
 Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau entraîné sur des images, les arguments sont :
 * `-p` : le nom du projet
-* `-m` : le chemin du dossier `.../saved/` contenant les fichiers des poids du réseau entraîné
+* `-s` : le chemin du dossier `.../saved/` contenant les fichiers des poids du réseau entraîné
 * `-i` : le chemin du dossier des images ou le chemin du fichier image à analyser
 * `-n` : le nombre max d'objets à détecter
 * `-t` : le seuil (_threshold_) de détection exprimé en % (optionnel, valeur par défaut : 50 %).
@@ -72,6 +72,6 @@ Pour chaque image traitée on a :
 ⚠️ Note que les objets sont dans __l'ordre des probabilités de détection décroissantes__ : 
 * si tu veux trier les objets dans l'image de gauche à droite, tu peux exploiter les abcisses `x` des boites englobantes,
 * si tu veux trier les objets dans l'image de haut en bas, tu peux exploiter l'ordonnée `y` des boites englobantes,<br>
-dans tous les cas, la fonction __numpy__ `argsort` est ton amie...
+dans tous les cas, la fonction __numpy__ `argsort` est ton amie... (tu peux voir un exemple d'implémentation dans le fichier `plot_object_detection_sorted_saved_model.py`.)
 
 
