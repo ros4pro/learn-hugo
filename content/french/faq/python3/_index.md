@@ -3,7 +3,7 @@ title: "FAQ Python3"
 menu:
   main:
     name: "Python3"
-    weight: 2
+    weight: 3
     identifier: "python3"
     parent: "faq"
 ---

@@ -21,7 +21,7 @@ Vérifie que le réseau entraîné est bien capable de détecter les faces des c
 
 Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau entraîné sur des images, les arguments sont :
 * `-p` : le nom du projet
-* `-s` : le chemin du dossier `.../saved/` contenant les fichiers des poids du réseau entraîné
+* `-s` : le chemin du dossier `.../saved_model/` contenant les fichiers des poids du réseau entraîné
 * `-i` : le chemin du dossier des images ou le chemin du fichier image à analyser
 * `-n` : le nombre max d'objets à détecter
 * `-t` : le seuil (_threshold_) de détection exprimé en % (optionnel, valeur par défaut : 50 %).
