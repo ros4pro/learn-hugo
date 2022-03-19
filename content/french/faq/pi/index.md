@@ -48,12 +48,20 @@ Utilisez votre smartphone comme hotspot réseau. Tous les smartphones ne se vale
 
 ### Poppy Ergo Jr
 
-La connexion Wifi de Poppy Ergo Jr se déroule via l'interface graphique Poppy :
+Utilisez le câble réseau une première fois en vue de configurer le Wifi du robot :
+* Connectez en Ethernet votre robot à votre ordinateur sous Ubuntu
+* Configurez le réseau d'Ubuntu en mode **Local Seulement** (*Link-Local Only*)
+* Chargez l'interface du robot [poppy.local](http://poppy.local) dans votre navigateur
+* Quittez la page de démarrage du robot (*elle s'affiche uniquement si c'est le tout premier démarrage du robot*)
+* Dans les réglages du robot :
+  * Désactivez le hotspot
+  * Activez le Wifi
+  * Entrez le nom du réseau Wifi et le mot de passe de votre hotspot smartphone
+* Faîtes redémarrer la Raspberry Pi du robot
+* Débranchez le câble réseau
+* Vérifiez dans un terminal que `ping poppy.local` renvoie une réponse chaque seconde plutôt qu'une erreur, avant de poursuivre le TP
 
-1. Connectez une première fois votre robot en Ethernet en mode `Lien local` uniquement dans les paramètres réseau.
-2. Débranchez puis rebranchez votre câble réseau (parfois nécessaire)
-3. Depuis votre station de travail ouvrez [`http://poppy.local`](http://poppy.local) puis cliquez sur "Configuration" et activer le paramètre **Wifi** puis remplissez le nom du réseau et son mot de passe.
-4. Faîtes Redémarrer le robot, déconnectez le câble et vérifiez que le ping réussit. 
+⚠️ Il est possible d'utiliser le robot avec le câble plutôt qu'en Wifi, cependant pour utiliser ROS le robot doit pouvoir synchroniser son horloge en se connectant à Internet. Si vous décidez d'utiliser un câble Ethernet direct ne donnant pas accès à Internet, suivez la procédure de synchronisation d'horloge ci-dessous.  
 
 ### Turtlebot 3
 ⚠️ Cette procédure ne fonctionne qu'avec le Turtlebot **éteint** et la carte SD **hors du robot**.
