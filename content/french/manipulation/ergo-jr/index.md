@@ -25,15 +25,21 @@ La robotique de manipulation regroupe la manipulation d'objets avec des robots. 
 
 ### 1.1. Préparer la carte SD
 
-📥 Pour éviter tout problème lié à une précédente utilisation du robot, commencez par flasher la carte SD fournie avec l'image ROS en utilisant [la procédure de la FAQ](/fr/faq/pi/). 
+📥 Si nécessaire, flashez la carte SD fournie avec l'image ROS en utilisant [la procédure de la FAQ](/fr/faq/pi/). 
 
 ### 1.2. Assembler Poppy Ergo Jr
 
-🔧 Pour assembler votre robot, veuillez suivre [le guide d'assemblage](https://docs.poppy-project.org/fr/assembly-guides/ergo-jr/), en suivant les étapes faîtes pour ROS le cas échéant ; et en comparant minutieusement chaque pièce aux photos pour vérifier leur orientation car il est très facile d'assembler ce robot à l'envers même s'il a au final la même allure. Si votre robot était pré-assemblé, redoublez de prudence, d'autres utilsiateurs pourraient avoir monté  
-
-### 1.3. Démarrage de ROS sur Poppy Ergo Jr
+🔧 Pour assembler votre robot s'il est démonté, veuillez suivre [le guide d'assemblage](https://docs.poppy-project.org/fr/assembly-guides/ergo-jr/), en suivant les étapes faîtes pour ROS le cas échéant.
   
-Suiviez la documentation pour [démarrer votre ROS en mode ROS](https://docs.poppy-project.org/fr/programming/ros.html#utiliser-poppy-sous-ros). Consultez les journaux (logs) de Poppy pour vérifier si ROS a correctement démarré : Vous devriez voir apparaître `Connection successful`. La caméra est automatiquement désactivée si elle ne fonctionne pas ⚠️ Ne jamais (dé)brancher la caméra lorsque l'alimentation secteur est branchée : **risques de dommages**. Si l'erreur `"Connection to the robot can't be established"` est affichée, alors vos moteurs n'ont pas été configurés correctement. La suite de ce message d'erreur indique quel(s) moteur(s) pose(nt) problème pour vous aider à le résoudre. Fermez avec Ctrl+C puis utilisez de nouveau Poppy Configure si un moteur est mal configuré.
+👀 Comparez minutieusement chaque pièce par rapport à son montage sur les photos pour vérifier leur orientation car il est très facile d'assembler ce robot à l'envers même s'il a au final la même allure.
+  
+### 1.3. Se connecter à Poppy Ergo Jr
+
+Connectez votre robot en Wifi via [la procédure de la FAQ](/fr/faq/pi/). 
+
+### 1.4. Démarrage de ROS sur Poppy Ergo Jr
+  
+Suivez la documentation pour [démarrer votre ROS en mode ROS](https://docs.poppy-project.org/fr/programming/ros.html#utiliser-poppy-sous-ros). Consultez les journaux (logs) de Poppy pour vérifier si ROS a correctement démarré : Vous devriez voir apparaître `Connection successful`. La caméra est automatiquement désactivée si elle ne fonctionne pas ⚠️ Ne jamais (dé)brancher la caméra lorsque l'alimentation secteur est branchée : **risques de dommages**. Si l'erreur `"Connection to the robot can't be established"` est affichée, alors vos moteurs n'ont pas été configurés correctement. La suite de ce message d'erreur indique quel(s) moteur(s) pose(nt) problème pour vous aider à le résoudre. Fermez avec Ctrl+C puis utilisez de nouveau Poppy Configure si un moteur est mal configuré.
 
 * **PRISE EN MAIN :** Suivez la prise en main du robot proposée sur la documentation pour prendre une image caméra, changer la compliance du robot, et actionner l'effecteur puis revenez ici pour le démarrage des TP.
 
@@ -111,7 +117,7 @@ source ~/.bashrc    # Pour charger votre .bashrc et donc le nouveau master
 
 ✍  Mettez votre robot en mode compliant. Démarrez `rosrun plotjuggler plotjuggler`, démarrez le streaming `ROS Topic Subscriber`, et sélectionnez `/joint_states`. Sélectionnez la position et la vitesse angulaire du moteur `m6` puis faîtes-les glisser sur le graphe. Bougez les moteurs à la main et vérifiez que les valeurs sont tracées en temps réel.
 
-### 2.2. Cinématique, et planification avec MoveIt dans RViz
+### 2.2. Cinématique, et planification avec le Jumeau Numérique MoveIt dans RViz (Digital Twin)
 
 #### 2.2.1. Démarrer avec MoveIt en simulation
 
@@ -338,11 +344,43 @@ Ces deux questions vous ont permis de calculer puis visualiser à l'aide de RViz
   
 #### 2.3.6. Enregistrer et rejouer un mouvement de pick-and-place
 
-Deux méthodes existent avec Poppy Ergo Jr pour enregistrer et rejouer des mouvements à l'identique. Elles sont décrites dans [la documentation Poppy](https://docs.poppy-project.org/fr/programming/ros.html#fonctionnalit%C3%A9-denregistrement-et-rejeu-de-trajectoire-%C3%A0-lidentique).
+L'enregistrement et rejeu de mouvements nécessite que votre noeud ROS s'exécute **sur le robot** uniquement (en vous connectant via SSH) et nécessite **que `poppy_controllers` ne soit PAS démarré**.
+  
+Ce premier extrait de code enregistre un mouvement de 5 secondes dans un fichier : 
+```python
+import time
+from pypot.creatures import PoppyErgoJr
+from pypot.primitive.move import MoveRecorder, Move, MovePlayer
+
+ergo = PoppyErgoJr()
+
+move_recorder = MoveRecorder(ergo, 50, ergo.motors)
+
+ergo.compliant = True
+
+move_recorder.start()
+time.sleep(5)
+move_recorder.stop()
+
+with open('my_nice_move.move', 'w') as f:
+    move_recorder.move.save(f)
+```
+
+Ce second extrait de code permet de charger ce fichier et jouer le mouvement à l'identique :
+```python
+with open('my_nice_move.move') as f:
+    m = Move.load(f)
+
+ergo.compliant = False
+
+move_player = MovePlayer(ergo, m)
+move_player.start()
+```
   
 Faîtes quelques essais avec plusieurs mouvements qui s'alternent, en jouant également avec la compliance, pour bien comprendre le fonctionnement.
 
 ✍  Enregistrez un mouvement de pick-and-place pour attraper un cube et le déposer à un autre endroit
+
 
 
 ## Documentation
