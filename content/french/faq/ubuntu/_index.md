@@ -42,8 +42,9 @@ efface les archives des paquets Python installés avec la commande `conda instal
 
 Le swap est un espace disque qui permet à Linux d'étendre la capacité mémoire.
 
-1. Ajouter une partition *swap* d'une clef USB, par exemple `dev/sdc1` : `sudo swapon /dev/sdc1`
+1. Ajouter une partition *swap* d'une clef USB, par exemple pour `dev/sdc1` tape : `sudo swapon /dev/sdc1`
 
 - Pour créer une partition *swap* sur une clef USB on peut utiliser l'utilitaire **gparted** installé avec la commande `sudo apt install gparted`.
 - Pour voir les disques (disque dur, SSD, clef USB...) accessible sur la machine : `lsblk | grep -v loop`.
 
+2. Si tu veux retirer la clé de swap, tape d'abord `sudo swapoff /dev/sdc1`
