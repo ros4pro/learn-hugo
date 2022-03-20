@@ -73,11 +73,12 @@ Cette configuration est partiellement expliquée dans les diapositives. Pour plu
 Vous aurez besoin des commandes suivantes :
 
 * `ls`, pour lister les fichiers et dossiers courants
-* `cd`, pour changer le dossier courant
-* `mkdir`, pour créer un nouveau dossier
-* `touch`, pour créer un nouveau fichier vide
-* `nano`, pour créer un nouveau fichier et écrire à l'intérieur
-* `tree`, pour afficher la hierarchie de fichiers
+* `cd <dossier>`, pour changer le dossier courant
+* `mkdir <dossier>`, pour créer un nouveau dossier
+* `touch <fichier>`, pour créer un nouveau fichier vide
+* `nano <fichier>`, pour créer un nouveau fichier et écrire à l'intérieur
+* `chmod +x <fichier>` pour passer un fichier exécutable
+* `tree`, pour afficher la hierarchie de fichiers (si elle n'est pas installée, tapez `sudo apt install tree` pour ce faire)
 
 ## 3. 🧑‍🏫 Tutoriels
 
