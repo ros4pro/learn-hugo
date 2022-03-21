@@ -145,7 +145,7 @@ Ensuite :
 
 ### 🔧 Procédure de diagnostic
 
-💻 Dans un terminal taper `ping poppy.local` (pour Poppy) ou `ping raspberrypi.local` (pour Turtlebot) :
+💻 Dans un terminal taper `ping poppy.local` (pour Poppy) ou `ping turtlebot.local` (pour Turtlebot) :
 
 * **Si 1 ligne s'affiche chaque seconde** avec des statistiques et que la première ligne s'affiche en moins de 2 secondes ➡️ Test réseau réussi (1). Vous avez peut-être oublié de démarrer le roscore ou bien `ROS_MASTER_URI` dans le fichier `~/.bashrc` pointe vers le mauvais robot ou bien `ROS_HOSTNAME` est incorrect 
 * **Si une erreur survient** et la commande s'arrête ➡️ Test réseau échoué. Vérifiez que la LED verte ACT de la Raspberry Pi vacille pendant environ 45 secondes lorsque vous venez de brancher l'alimentation :
