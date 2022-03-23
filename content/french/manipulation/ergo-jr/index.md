@@ -59,6 +59,7 @@ Un robot intégré à ROS est composé d'au minimum :
 💻📀 Clonez le package ROS Poppy Ergo Jr Description sur votre PC, il contient le fichier de description URDF du robot :
 
 ```bash
+cd ~/catkin_ws/src
 git clone https://github.com/poppy-project/poppy_ergo_jr_description.git
 ```
 
