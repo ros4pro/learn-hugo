@@ -41,8 +41,6 @@ Connectez votre robot en Wifi via [la procédure de la FAQ](/fr/faq/pi/).
   
 Suivez la documentation pour [démarrer votre ROS en mode ROS](https://docs.poppy-project.org/fr/programming/ros.html#utiliser-poppy-sous-ros). Consultez les journaux (logs) de Poppy pour vérifier si ROS a correctement démarré : Vous devriez voir apparaître `Connection successful`. La caméra est automatiquement désactivée si elle ne fonctionne pas ⚠️ Ne jamais (dé)brancher la caméra lorsque l'alimentation secteur est branchée : **risques de dommages**. Si l'erreur `"Connection to the robot can't be established"` est affichée, alors vos moteurs n'ont pas été configurés correctement. La suite de ce message d'erreur indique quel(s) moteur(s) pose(nt) problème pour vous aider à le résoudre. Fermez avec Ctrl+C puis utilisez de nouveau Poppy Configure si un moteur est mal configuré.
 
-* **PRISE EN MAIN :** Suivez la prise en main du robot proposée sur la documentation pour prendre une image caméra, changer la compliance du robot, et actionner l'effecteur puis revenez ici pour le démarrage des TP.
-
 **Remarque :** Si vos moteurs clignotent en rouge : votre code a créé une collision et ils se sont mis en alarme. Pour désactiver l'alarme il faut débrancher et rebrancher l'alimentation, ce qui fera aussi redémarrer le robot
   
 ## 2. Travaux pratiques
@@ -345,43 +343,15 @@ Ces deux questions vous ont permis de calculer puis visualiser à l'aide de RViz
   
 #### 2.3.6. Enregistrer et rejouer un mouvement de pick-and-place
 
-L'enregistrement et rejeu de mouvements nécessite que votre noeud ROS s'exécute **sur le robot** uniquement (en vous connectant via SSH) et nécessite **que `poppy_controllers` ne soit PAS démarré**.
-  
-Ce premier extrait de code enregistre un mouvement de 5 secondes dans un fichier : 
-```python
-import time
-from pypot.creatures import PoppyErgoJr
-from pypot.primitive.move import MoveRecorder, Move, MovePlayer
+L'enregistrement et rejeu de trajectoire à l'identique est décrit dans la [documentation Poppy](https://docs.poppy-project.org/fr/programming/ros.html#fonctionnalit%C3%A9-denregistrement-et-rejeu-de-trajectoire-%C3%A0-lidentique). 
 
-ergo = PoppyErgoJr()
-
-move_recorder = MoveRecorder(ergo, 50, ergo.motors)
-
-ergo.compliant = True
-
-move_recorder.start()
-time.sleep(5)
-move_recorder.stop()
-
-with open('my_nice_move.move', 'w') as f:
-    move_recorder.move.save(f)
-```
-
-Ce second extrait de code permet de charger ce fichier et jouer le mouvement à l'identique :
-```python
-with open('my_nice_move.move') as f:
-    m = Move.load(f)
-
-ergo.compliant = False
-
-move_player = MovePlayer(ergo, m)
-move_player.start()
-```
-  
-Faîtes quelques essais avec plusieurs mouvements qui s'alternent, en jouant également avec la compliance, pour bien comprendre le fonctionnement.
+Il est recommandé de créer deux noeuds distincts `record.py` et `replay.py` pour bien distinguer l'enregistrement du rejeu.
 
 ✍  Enregistrez un mouvement de pick-and-place pour attraper un cube et le déposer à un autre endroit
 
+#### 2.3.7 Déclencher la prise d'image de la caméra depuis Python
+  
+La prise d'image sur Poppy Ergo Jr est déclenchée via un service ROS nommé `/get_image`. Utilisez la [documentation de `/get_image`](https://docs.poppy-project.org/fr/programming/ros.html#d%C3%A9clencher-la-compliance-la-prise-dimage-ou-la-fermeture-de-la-pince) pour récupérer une image de la caméra et l'afficher dans une fenêtre dédiée via Python.
 
 
 ## Documentation
