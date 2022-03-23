@@ -223,6 +223,9 @@ Le `MoveGroupCommander` est le commandeur de robot de MoveIt, il suffit de lui i
 Il est possible de définir une cible dans l'espace des joints en fournissant une liste des 6 angles moteurs en radians. Dans ce cas il n'y a pas d'évitement de collision. Par exemple, mettre tous les moteurs en position zéro radian :
 
 ```python
+from moveit_commander.move_group import MoveGroupCommander
+
+commander = MoveGroupCommander("arm_and_finger", wait_for_servers=20)
 commander.set_joint_value_target([0, 0, 0, 0, 0, 0])
 commander.go()
 ```
@@ -241,9 +244,6 @@ Démarrez MoveIt d'abord, puis dans un autre terminal, testez le code Python ci-
 ```python
 #!/usr/bin/env python3
 from geometry_msgs.msg import Pose
-from moveit_commander.move_group import MoveGroupCommander
-
-commander = MoveGroupCommander("arm_and_finger", wait_for_servers=20)
 
 pose = Pose()
 pose.position.x = 0.032
