@@ -30,11 +30,15 @@ Exemple sur un portable avec 2 disques SSD NVME (Non-Volatile Memory Express):
 enlève les fichiers `*.deb` des paquets installés par `apt install` qui sont stockés dans le dossier `var\cache\apt\`.
 
 
-2. Nettoyer le cache PIP : `rm ~/.cache/pip/*`
+2. Nettoyer les caches PIP : `rm ~/.cache/pip` et `sudo rm -rf /root/.cache/pip`
 
-efface les archives des paquets Python installés par `pip install` qui restent dans le dossier`~/.cache/pip/`.
+efface les archives des paquets Python installés par `pip install` qui restent dans les dossiers `.cache/pip/`.
 
-3. Nettoyer le cache CONDA : `conda clean -a`
+3. Nettoyer les caches MOZILLA : `rm ~/.cache/mozilla` et `sudo rm -rf /root/.cache/mozilla`
+
+efface les traces de la navigation internet.
+
+4. Nettoyer le cache CONDA : `conda clean -a`
 
 efface les archives des paquets Python installés avec la commande `conda install`.
 
