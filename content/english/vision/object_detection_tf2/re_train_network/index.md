@@ -12,7 +12,7 @@ menu:
     - how to continue the supervised training of a pre-trained TOD neural network.
     - how to export the weights of the re-trained neural network to an operational format.
 
-    Activity type      : ⚙️ [task]
+    Activity type      : ⚙️  [task]
     Expected duration  : 1 to 2 hours or more (depends on your computer CPU & RAM).
 ---
 
@@ -75,7 +75,7 @@ With the project `cube_faces` and the pre-trained network `faster_rcnn_resnet50_
 |126| `label_map_path`              | path of the label file                                                 | 'PATH_TO_BE_CONFIGURED' | 'cube_faces/training/label_map.pbtxt' | used for training stage |
 |128| `input_path`                  | path of the input file for training used for evaluation stage          | 'PATH_TO_BE_CONFIGURED' | 'cube_faces/training/train.record'    | used for training stage |
 |139| `label_map_path`              | path of the label file                                                 | 'PATH_TO_BE_CONFIGURED' | 'cube_faces/training/label_map.pbtxt' | used for evaluation stage|
-|128| `input_path`                  | path of the input file for training used for evaluation stage          | 'PATH_TO_BE_CONFIGURED' | 'cube_faces/training/test.record"    | used for evaluation stage|
+|143| `input_path`                  | path of the input file for training used for evaluation stage          | 'PATH_TO_BE_CONFIGURED' | 'cube_faces/training/test.record"    | used for evaluation stage|
 
 
 ## 2 Launch the re-training

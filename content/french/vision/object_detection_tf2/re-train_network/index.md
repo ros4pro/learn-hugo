@@ -76,7 +76,7 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 |126| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'entraînement |
 |128| `input_path`                  | fichier des données d'entrée d'entraînement au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
 |139| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'évaluation|
-|128| `input_path`                  | fichier des données d'entrée de test au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | '1faces_cubes/training/test.record"    | utilisé pour l'évaluation|
+|143| `input_path`                  | fichier des données d'entrée de test au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
 
 
 ## 2 Lance l'entraînement
