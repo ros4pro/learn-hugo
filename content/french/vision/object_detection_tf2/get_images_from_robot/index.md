@@ -27,14 +27,14 @@ image001.png               |  image002.png
 🤖 Rappels - Lancement du _ROS Master_ et des services _ROS_ sur le robot :
  
 * allumer le robot _Poppy Ergo Jr_,
-* se connecter sur la carte _RPi_ du robot : `ssh pi@poppy.local` (mdp: `raspberry`) 
+* se connecter sur la carte _RPi_ du robot : `ssh poppy@poppy.local` (mdp: `poppy`) 
 * ✅ vérifier que `ROS_MASTER_URI` pointe bien vers `poppy.local:11311` 
 ```bash
 (tf2) user@host: $ ssh pi@poppy.local
-pi@poppy.local password:
+poppy@poppy.local password:
 ...
 
-pi@poppy:~ $ env|grep ROS_MASTER
+poppy@poppy:~ $ env|grep ROS_MASTER
 ROS_MASTER_URI=http://poppy.local:11311
 ```	
 * si `ROS_MASTER_URI` ne pointe pas sur la bonne cible :
@@ -46,7 +46,7 @@ ROS_MASTER_URI=http://poppy.local:11311
 
 * Lance le _ROS Master_ et les services _ROS_ sur le robot avec la commande : 
 ```bash
-pi@poppy:~ $ roslaunch poppy_controllers control.launch
+poppy@poppy:~ $ roslaunch poppy_controllers control.launch
 ...
 ```
 
