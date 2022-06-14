@@ -43,26 +43,22 @@ Quand l'EVP `<nom_evp>` est activé :
 
     * Tu dois définir un chemin d'installation du répertoire `miniconda3` qui ne comporte __ni espace__, __ni caractère accentué__ <br>
     Sous Ubuntu le chemin d'installation par défaut ressemble à `/home/<logname>/miniconda3/`.
-    * Répondre `yes` à la question :<br>
-    `Do you wish the installer to initialize Miniconda3`<br>
-    `by running conda init? [yes|no]`
-
     * À la fin de l'installation réponds `yes` à la question `Do you wish the installer to initialize Miniconda3 by running conda init? [yes|no]`
     * Lance un nouveau terminal ou tape la commande `source ~/.bashrc` pour hériter des modifications du fichier `.bashrc`.
     * Désactive le lancement automatique de l'EVP `(base)` en tapant la commande : `conda config --set auto_activate_base false`.
 
-1. Créé l'EVP avec la commande `conda create -n <nom_evp> python=<version>`
+1. Créer l'EVP avec la commande `conda create -n <nom_evp> python=<version>`
 
     * `<nom_evp>` : nom (libre) de ton EVP : souvent un nom mnémonique comme `pyml`(pour Python machine learning) ou `tf2` (pour un projet avec  tensorflow2)
     * `<version>` :  version de Python que tu veux installer dans ton EVP : par exmple `3.6` ou `3.6.8` ou `3.8`...<br>
 _Nota_: pour utiliser l'API _Tensorflow2 Object Detection_ dans un EVP, la version 3.8 de Python est conseillée.
 
-1. Active ton EVP avec la commande `conda activate <nom_evp>` :
+1. Activer ton EVP avec la commande `conda activate <nom_evp>` :
 
     * L'activation de l'EVP se traduit par le préfixage du *prompt* avec la chaîne : `(<nom_evp>)`.<br>
     Par exemple si le *prompt* courant est `user@host $`, l'activation de l'EVP nommé `tf2` modifie le prompt qui devient : `(tf2) user@host $`
 
-1. 📥 Charge les modules Python nécessaires à ton projet dans ton EVP __activé__ :
+1. 📥 Charger les modules Python nécessaires à ton projet dans ton EVP __activé__ :
 
     Avec ton **EVP activé** utilise `conda install <module_name>`  ou `pip install <module_name>` pour installer le module Python `<module_name>`.
 
@@ -97,7 +93,7 @@ Tu peux ensuite installer des modules Python essentiels au travail avec __tensor
 
 * Afficher les infromations sur la distribution __conda__ : `conda info`
 
-* Listet les EVP connus de __conda__: `conda env list`
+* Lister les EVP connus de __conda__: `conda env list`
 
 * Desactiver l'EVP courant : `conda deactivate`
 
@@ -105,9 +101,9 @@ Tu peux ensuite installer des modules Python essentiels au travail avec __tensor
 
 * Avec ton ** EVP activé**:
 
-   * Lister les modules Python insyallés : `conda list` ou` pip list`
+   * Lister les modules Python installés dans ton EVP : `conda list` ou` pip list`
 
-   * Trouver les versions d'un module Python pour l'EVP activé : `conda search <module>`
+   * Trouver les versions d'un module Python pour ton EVP : `conda search <module>`
 
 * Update the __conda__ command: `conda update -n base -c defaults conda`.
 

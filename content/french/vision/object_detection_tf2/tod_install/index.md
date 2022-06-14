@@ -24,13 +24,12 @@ menu:
 
 ## Plan de l'activité 
 
-L'installation de l'API proposée comporte 6 étapes :
+L'installation de l'API proposée comporte 5 étapes :
 1. Initialiser ton espace de travail
 2. Télécharger et installer le dépôt `tensorflow/models`
 3. Installer les outils `protobuf`
-4. Installer l'_API COCO_
-5. Installer le package `object_detection` 
-6. Tester l'installation de l'API TOD
+4. Installer le package `object_detection` 
+5. Tester l'installation de l'API TOD
 
 Dans toute la suite le _prompt_ du terminal sera noté `(tf2) user@host $` : le préfixe `(tf2)` est là pour bien rappeler que le travail d'installation de l'_API TOD_ se fait dans l'__Environnement Virtuel Python tf2__ que tu auras créé au préalable (cf les Prérequis).
 
@@ -116,22 +115,7 @@ Ces fichiers doivent être traduits en fichiers `*.py` afin que l’_API_ Python
 ```
 Cette commande travaille de façon muette.
 
-### 4. Installe l'API COCO
-
-_COCO_ (_Common Objects in Context_)  est une banque de données destinée à alimenter les algorithmes de détection d’objets, de segmentation 
-(voir [cocodataset.org](https://cocodataset.org) pour les tutoriels, publications…). 
-
-📥 Pour installer l’_API_ Python de _COCO_, clone le site `cocoapi.git` (~ 15 Mo) dans le dossier `/tmp`, tape la commande `make` dans le dossier `cocoapi/PythonAPI`, puis recopie le dossier `pycococtools` dans ton dossier `.../models/research/` :
-```bash
-(tf2) user@host $ cd /tmp
-(tf2) user@host $ git clone  https://github.com/cocodataset/cocoapi.git
-(tf2) user@host $ cd cocoapi/PythonAPI/
-(tf2) user@host $ make
-(tf2) user@host $ cp -r pycocotools/ <chemin absolu du dossier tod_tf2>/models/research/
-```
-remplace `"<chemin absolu du dossier tod_tf2>"` par le chemin absolu du dossier `tod_tf2` sur ta machine (par exemple `~/catkins_ws/tod_tf2`).
-
-### 5. Installe le module `object_detection` 
+### 4. Installe le module `object_detection` 
 
 Pour finir l'installation, place-toi dans le dossier  `models/research/` et tape les commandes :
 ```bash
@@ -143,7 +127,7 @@ Pour finir l'installation, place-toi dans le dossier  `models/research/` et tape
 (tf2) user@host $ pip install .
 ```
 
-### 6. Teste l'installation de l'API TOD
+### 5. Teste l'installation de l'API TOD
 
 Pour tester ton installation de l’API TOD, place-toi dans le dossier `models/research/` et tape la commande :
 ```bash	
