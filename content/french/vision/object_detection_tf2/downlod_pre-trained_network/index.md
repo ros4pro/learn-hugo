@@ -45,10 +45,6 @@ Télecharge puis extrait l'archive TGZ au bon endroit dans l'arborescence de tra
 (tf2) jlc@pikatchou $ rm /tmp/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz
 ```
 puis créé le dossier correspondant `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` dans le dossier `<project>/training`.
-```bash
-# From within tod_tf2/
-(tf2) jlc@pikatchou $ mkdir faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
-```
 
 ## Exemple : projet de reconaissance de chiffres écrits sur des cubes
 

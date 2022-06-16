@@ -17,20 +17,20 @@ menu:
 
 ## Évaluer les inférences du réseau ré-entrainé
 
-Vérifie que le réseau entraîné est bien capable de détecter les faces des cubes en discriminant correctement les numéros écrits sur les faces.
+Le but de cette activité est de Vérifier que le réseau entraîné est bien capable de détecter les faces des cubes en discriminant correctement les numéros écrits sur les faces.
 
-Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau entraîné sur des images, les arguments sont :
-* `-p` : le nom du projet
-* `-s` : le chemin du dossier `.../saved_model/` contenant les fichiers des poids du réseau entraîné
-* `-i` : le chemin du dossier des images ou le chemin du fichier image à analyser
-* `-n` : le nombre max d'objets à détecter
+Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau de neuronnes ré-entraîné sur des images, les arguments sont :
+* `-l` : le chemenin du fichier `label_map.pbtxt`
+* `-s` : le chemin du dossier `saved_model/` contenant les fichiers des poids du réseau ré-entraîné
+* `-i` : le chemin __du dossier des images__ ou le chemin __du fichier image__ à analyser
+* `-n` : le nombre max d'objets à détecter (opetionnel, valeur par défaut : 4)
 * `-t` : le seuil (_threshold_) de détection exprimé en % (optionnel, valeur par défaut : 50 %).
 
 Par exemple pour faire la détection des cubes des images de test avec le réseau que tu viens d'entraîner :
 
 ```bash
 # From within tod_tf2
-(tf2) user@host: $ python plot_object_detection_saved_model.py -p faces_cubes -s $PTN_DIR/saved_model1/saved_model -i faces_cubes/images/test/ -n 4
+(tf2) user@host: $ python plot_object_detection_saved_model.py -l faces_cubes/training/label_map.pbtxt -s $PTN_DIR/saved_model1/saved_model -i faces_cubes/images/test/
 Loading model...Done! Took 13.23 seconds
 Running inference for faces_cubes/images/test/image016.png... [2 2 1 1]
 [0.9998258  0.99902177 0.99812204 0.9964721 ]
@@ -66,12 +66,13 @@ Exemples d'images produites par le script Python :
 
 Pour chaque image traitée on a :
 * la liste des 4 labels des objets trouvé (`1` ou `2`)
-* la liste des 4 probabilités de détection des objets
-* la liste des 4 jeux de coordonnées normalisées des boîtes englobantes [ y, x coin haut gauche puis y, x coin bas droit]. 
+* la liste des 4 probabilités des objets trouvés
+* la liste des 4 jeux de coordonnées normalisées des boîtes englobantes [ y, x du coin haut-gauche puis y, x du coin bas-droit]. 
 
-⚠️ Note que les objets sont dans __l'ordre des probabilités de détection décroissantes__ : 
-* si tu veux trier les objets dans l'image de gauche à droite, tu peux exploiter les abcisses `x` des boites englobantes,
-* si tu veux trier les objets dans l'image de haut en bas, tu peux exploiter l'ordonnée `y` des boites englobantes,<br>
-dans tous les cas, la fonction __numpy__ `argsort` est ton amie... (tu peux voir un exemple d'implémentation dans le fichier `plot_object_detection_sorted_saved_model.py`.)
+⚠️ Note que les listes sont données dans __l'ordre des probabilités de détection décroissantes__ : 
+* si tu veux trier les listes dans l'ordre de gauche à droite dans l'image, tu peux exploiter les abcisses `x` des boites englobantes,
+* si tu veux trier les listes dans l'ordre de haut en bas dan sl'image, tu peux exploiter l'ordonnée `y` des boites englobantes.
+
+Dans tous les cas, la fonction __numpy__ `argsort` est ton amie... (tu peux voir un exemple d'implémentation dans le fichier `plot_object_detection_sorted_saved_model.py`.)
 
 

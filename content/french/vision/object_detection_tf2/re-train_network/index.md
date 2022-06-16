@@ -67,25 +67,29 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 |Line | Parameter name              | Description                                                            | Initial value  | Value |  Comment               |
 |:--|:------------------------------|:-----------------------------------------------------------------------|:----------------:|:---------------:|:--------------------------------|
 |010| `num_classes`                 | nombre de classe d'objets                                              | 90               | 2               | les deux classes `one` et `two` |
-|077| `max_detections_per_class`    | nombre max de détection par classe                                     | 100              | 4               | 4 cubes max par image | 
+|077| `max_detections_per_class`    | nombre max de détection <BR>par classe                                     | 100              | 4               | 4 cubes max par image | 
 |078| `max_total_detections`        | nombre max total de détections                                         | 100              | 4               | 4 cubes max par image | 
-|093| `batch_size`                  | nombre d'images à traiter en lot avant mise à jour des poids du réseau | 64               | 1, 2...       | une valeur trop élevée risque<br> de faire dépasser la capacité<br> mémoire RAM de ta machine.<br>À régler en fonction de la<br>quantité de RAM de <br>ta machine.  |
-|097| `num_steps`                   | Nombre max d'itérations d'entraînement                                 | 25000             | 1000           | une valeur trop grande<br> donne des temps de calcul<br> prohibitifs et un risque<br> de sur-entraînement 
-|113| `fine_tune_checkpoint`        | chemin des fichiers de sauvegarde des poids du réseau pré-entraîné     | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/<br>faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
-|114| `fine_tune_checkpoint_type`   | Choix de l'algorithme : "classification" ou "detection"                | 'classification' | 'detection'  | tu veux faire de la détection<br>d'objets |
-|120| `max_number_of_boxes`         | Nombre max de boîtes englobantes  dans chaque image                    | 100               | 4               | 4 faces de cubes dans une image |
-|122| `use_bfloat16`                | `true` pour les architectures TPU, `false` pour CPU                    | true              | false           |  choix du CPU|
+|093| `batch_size`                  | nombre d'images à traiter avant <BR>mise à jour des poids du réseau | 64               | 1, 2...         | une valeur trop élevée risque<br> de faire dépasser la capacité<br> mémoire RAM de ta machine.<br>À régler en fonction de la<br>quantité de RAM de <br>ta machine.  |
+|097| `num_steps`                   | Nombre max d'itérations<BR>d'entraînement                                 | 25000             | 1000           | une valeur trop grande<br> donne des temps de calcul<br> prohibitifs et un risque<br> de sur-entraînement 
+|113| `fine_tune_checkpoint`        | chemin des fichiers de sauvegarde<BR>des poids du réseau pré-entraîné  | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/<br>faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/<BR>checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
+|114| `fine_tune_checkpoint_type`   | Choix de l'algorithme :<BR> "classification" ou "detection"                | 'classification' | 'detection'     | -> détection d'objets |
+|120| `max_number_of_boxes`         | Nombre max de boîtes englobantes<BR>  dans chaque image                    | 100               | 4              | 4 faces de cubes dans une image |
+|122| `use_bfloat16`                | `true` pour les architectures TPU<BR>`false` pour CPU                    | true              | false          |  choix du CPU|
 |126| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'entraînement |
-|128| `input_path`                  | fichier des données d'entrée d'entraînement au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
+|128| `input_path`                  | fichier des données d'entraînement<BR> au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
 |139| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'évaluation|
-|143| `input_path`                  | fichier des données d'entrée de test au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
+|143| `input_path`                  | fichier des données de test<BR> au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
 
 
 ## 2 Lance l'entraînement
 
 ⚠️ Il est très important de bien vérifier le contenu du fichier `$PTN_DIR/pipeline.configure` avant de lancer l'entraînement : une bonne pratique est de le faire vérifier par quelqu'un d'autre...
 
-⚠️ Ne mettre des valeurs de `batch_size` >= 2 que si ton ordinateur possède un bon CPU avec au moins 4 Gio de RAM !
+⚠️ Ne mettre des valeurs de `batch_size` >= 2 que si ton ordinateur possède un bon CPU avec au moins 4 Gio de RAM ! <br>
+Exemple sur un PC portable _low cost_ (AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM) :
+* `batch_size=1` : le calcul prend environ 5h (18 sec par step) et jusqu'à 2.3 GiO RAM 
+* `batch_size=2` : le calcul prend environ 10h (36 sec par step) et jusqu'à 2.5 GiO RAM 
+* `batch_size=3` : le calcul plante (pas assez de mémoire sur un PC avec 4 Gio RAM)
 
 Copie le fichier `models/research/object_detection/model_main_tf2.py` dans la racine `tod_tf2` :
 ```bash
@@ -99,7 +103,7 @@ Maintenant lance l'entraînement avec la commande :
 ```
 Les fichiers des poids entraînés seront écrits dans le dossier `$PTN_DIR/checkpoint1` : si tu relances l'entraînement, tu peux utiliser `checkpoint2`, `checkpoint3` pour séparer des essais successifs.
 
-Le module _tensorflow_ est assez verbeux...<br>
+Le module _tensorflow_ est assez verbeux et l'entraînement est long à démarrer...<br>
 Au bout d'un "certain temps" (qui peut être assez long, plusieurs dizaines de minutes avec un CPU ordinaire), les logs s'affichent à l'écran, en  particulier les lignes qui commencent par `INFO` montrant que l'entraînement est en cours :
 
 	...
@@ -167,13 +171,20 @@ Serving TensorBoard on localhost; to expose to the network, use a proxy or pass 
 TensorBoard 2.4.0 at http://localhost:6006/ (Press CTRL+C to quit)
 ...
 ```
-`tensorflow` lance un serveur HTTP en local sur ta machine, et tu peux ouvrir la page avec un navigateur pour voir les courbes d'analyse en faisant CTRL + clic avec le curseur de la souris positionné sur le mot `http://localhost:6006/` :
+`tensorBOARD` lance un serveur HTTP en local sur ta machine, et tu peux ouvrir la page avec un navigateur pour voir les courbes d'analyse en faisant CTRL + clic avec le curseur de la souris positionné sur le mot `http://localhost:6006/` :
 
 ![tensorflow](img/tensorboard.png)
 
-Le logiciel _tensorboard_ permet d'examiner l'évolution de statistiques caractéristiques de l'apprentissage.
+On peut voir sur les figures suivantes l'influence de la valeur du paramètre `batch_size` sur la qualité de l'apprentissage : un `batch_size=2` donne de meilleures courbes de _loss_ que'un `batch_size=1`, mais le calcul est plus long et prend plus de mémoire :
 
-## 3. Exporte les poids du réseau entraîné
+Entraînement avec `batch_size=1`  [~5h de calcul et 2.3 GiO RAM sur un portable "AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM"] :<br>
+![tensorflow](img/tensorboard-loss-batch_size-1.png)
+
+Entraînement avec `batch_size=2` [~10h de calcul et 2.5 Gio RAM sur un portable "AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM"] :<br>
+![tensorflow](img/tensorboard-loss-batch_size-2.png)
+
+
+## 3. Exporter les poids du réseau ré-entraîné
 
 Copie le script Python `exporter_main_v2.py` situé dans le dossier `models/reasearch/object_detection/` et lance le pour extraire le __graph d'inférence__ entraîné et le sauvegarder dans un fichier `saved_model.pb`. Ce fichier pourra être rechargé ultérieurement pour exploiter le réseau entraîné :
 ```bash

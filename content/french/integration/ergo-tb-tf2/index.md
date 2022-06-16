@@ -146,10 +146,11 @@ Le serveur de paramètre est simple à mettre en place, mais nous avons détourn
 
 Dans notre situation, les services ROS remplacera le rôle qu'avaient à eux trois l'attente active + les paramètres + la machine à états, bien qu'une machine puisse toutefois être conservée pour le noeud de manipulation qui ne sera pas un service car il est le contrôleur.
 
-🐍 Transformez `nn.py` et `navigate.py` chacun en un service ROS respectivement `/ros4pro/take_image` et `/ros4pro/navigate_to_target`. Vous aurez besoin de :
-a. supprimer l'attente active et les get/set de paramètres
-b. transformer ces 2 noeuds en serveurs et `manipulate.py` en client en vous inspirant du tutoriel [Ecrire un service client et serveur](http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29)
-c. définir vos propres types de service `TakeImage.srv` et `NavigateToTarget.srv` en vous inspirant du tutoriel [Définir des types de messages personnalisés](http://wiki.ros.org/ROS/Tutorials/DefiningCustomMessages) (n'oubliez pas de compiler votre workspace, sourcer le `.bashrc` puis d'importer vos types personnalisés)
+🐍 Transformez `nn.py` et `navigate.py` chacun en un service ROS respectivement `/ros4pro/take_image` et `/ros4pro/navigate_to_target`.<br>
+Vous aurez besoin de :<br>
+a. supprimer l'attente active et les get/set de paramètres<br>
+b. transformer ces 2 noeuds en serveurs et `manipulate.py` en client en vous inspirant du tutoriel [Ecrire un service client et serveur](http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29)<br>
+c. définir vos propres types de service `TakeImage.srv` et `NavigateToTarget.srv` en vous inspirant du tutoriel [Définir des types de messages personnalisés](http://wiki.ros.org/ROS/Tutorials/DefiningCustomMessages)<br>(n'oubliez pas de compiler votre workspace, sourcer le `.bashrc` puis d'importer vos types personnalisés)
 
 
 ### 4.3. Trier tous les cubes à tout emplacement
