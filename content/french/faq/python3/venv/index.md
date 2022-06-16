@@ -83,10 +83,10 @@ Tu peux ensuite installer des modules Python essentiels au travail avec __tensor
 
 ```bash
 (tf2) user@host $ conda update -n base -c defaults conda
-(tf2) user@host $ pip install tensorflow==2.6
+(tf2) user@host $ pip install tensorflow==2.9
 (tf2) user@host $ conda install numpy scipy matplotlib jupyter pandas
 (tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml
-(tf2) user@host $ pip install opencv-python==4.5.1.48
+(tf2) user@host $ pip install opencv-python==4.6.0.66
 ```
 
 ## Commandes utiles

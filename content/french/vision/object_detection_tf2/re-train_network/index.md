@@ -21,31 +21,33 @@ menu:
 
 Cette activité se décompose en 3 étapes :
 
-1. Modifier le fichier de configuration du réseau pré-entraîné pour décrire la configuration d'entraînement.
+1. Modifier le fichier de configuration du réseau pré-entraîné pour décrire la configuration d'entraînement propre à ton travail.
 2. Lancer l'entraînement supervisé.
 3. Exporter les poids du réseau entrainé dans un format utilisable.
 
 ## 0. Préliminaires
 
-Pour simplifier l'écriture des commandes Linux à taper dans le terminal, tu peux définir :
-* une variable shell `PTN` (_Pre-Trained Network_) qui donne le nom du réseau pré-entraîné choisi `<pre-trained_net>`,
-* une variable shell `PTN_DIR` qui donne le chemin d'accès au dossier  `<project>/training/<pre-trained_net>`
+Pour simplifier l'écriture des commandes Linux à taper dans le terminal, tu peux définir à la fin du fichier `.bashrc`:
+* la variable `PTN` (_Pre-Trained Network_) qui donne le nom du réseau pré-entraîné choisi `<pre-trained_net>`,
+* la variable `PTN_DIR` qui donne le chemin d'accès au dossier  `<project>/training/<pre-trained_net>`
 
 ### Exemple
 
 Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` :
 
 ```bash
-user@host $ export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
-user@host $ echo $PTN      # pour vérifier
-faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+user@host $ echo 'export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8' >> ~/.bashrc
+user@host $ echo 'export PTN_DIR=faces_cubes/training/$PTN' >> ~/.bashrc
+```
+puis, après avoir tapé la commande `source ~/.bashrc`, tu peux vérifier que les 2 variables sont bien définies :
 
-user@host $ export PTN_DIR=faces_cubes/training/$PTN
-user@host $ echo $PTN_DIR   # pour vérifier
-faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+```bash
+user@host $ env | grep PTN      # pour vérifier
+PTN_DIR=faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
 ```
 
-## 1. Modifie le fichier de configuration
+## 1. Modifier le fichier de configuration
 
 Le fichier de configuration `pipeline.config` présent dans le dossier `pre-trained/<pre-trained_net>` doit être copié dans le dossier cible `<project>/training/<pre-trained_net>`.
 
@@ -56,7 +58,7 @@ user@host $ cp pre-trained/$PTN/pipeline.config $PTN_DIR
 ```
 
 
-* Il faut ensuite modifier les paramètres du fichier `<project>/training/<pre-trained_net>/pipeline.configure` pour les adapter à l'entraînement.
+* Il faut ensuite modifier les paramètres du fichier `$PTN_DIR/pipeline.configure` pour les adapter à l'entraînement.
 
 ### Exemple
 
@@ -69,7 +71,7 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 |078| `max_total_detections`        | nombre max total de détections                                         | 100              | 4               | 4 cubes max par image | 
 |093| `batch_size`                  | nombre d'images à traiter en lot avant mise à jour des poids du réseau | 64               | 1, 2...       | une valeur trop élevée risque<br> de faire dépasser la capacité<br> mémoire RAM de ta machine.<br>À régler en fonction de la<br>quantité de RAM de <br>ta machine.  |
 |097| `num_steps`                   | Nombre max d'itérations d'entraînement                                 | 25000             | 1000           | une valeur trop grande<br> donne des temps de calcul<br> prohibitifs et un risque<br> de sur-entraînement 
-|113| `fine_tune_checkpoint`        | chemin des fichiers de sauvegarde des poids du réseau pré-entraîné     | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
+|113| `fine_tune_checkpoint`        | chemin des fichiers de sauvegarde des poids du réseau pré-entraîné     | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/<br>faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
 |114| `fine_tune_checkpoint_type`   | Choix de l'algorithme : "classification" ou "detection"                | 'classification' | 'detection'  | tu veux faire de la détection<br>d'objets |
 |120| `max_number_of_boxes`         | Nombre max de boîtes englobantes  dans chaque image                    | 100               | 4               | 4 faces de cubes dans une image |
 |122| `use_bfloat16`                | `true` pour les architectures TPU, `false` pour CPU                    | true              | false           |  choix du CPU|
@@ -81,9 +83,9 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 
 ## 2 Lance l'entraînement
 
-⚠️ Il est très important de bien vérifier le contenu du fichier `<project>/training/<pre-trained_net>/pipeline.configure` avant de lancer l'entraînement : une bonne pratique est de le faire vérifier par quelqu'un d'autre...
+⚠️ Il est très important de bien vérifier le contenu du fichier `$PTN_DIR/pipeline.configure` avant de lancer l'entraînement : une bonne pratique est de le faire vérifier par quelqu'un d'autre...
 
-⚠️ Ne mettre des valeurs de `batch_size` >= 2 que si ton ordinateur possède un CPU puissant avec au moins 4 Gio de RAM !
+⚠️ Ne mettre des valeurs de `batch_size` >= 2 que si ton ordinateur possède un bon CPU avec au moins 4 Gio de RAM !
 
 Copie le fichier `models/research/object_detection/model_main_tf2.py` dans la racine `tod_tf2` :
 ```bash

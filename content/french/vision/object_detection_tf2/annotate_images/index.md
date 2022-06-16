@@ -10,8 +10,8 @@ menu:
 ---
     Acquis d'apprentissage visés :
     - Savoir utiliser le logiciel labelImg pour localiser et nommer les objets dans des images.
-    - Savoir convertir les fichier d'annotations du format XML au format tfreccord attendu par tensorflow.
-    - Savoir comment créer le fichier label_map.pbtxt décrivant les labels de l'apprentissage supervisé.
+    - Savoir convertir les fichier d'annotation du format XML au format tfreccord attendu par tensorflow.
+    - Savoir créer le fichier label_map.pbtxt décrivant les labels de l'apprentissage supervisé.
 
     Type d'activité     : ⚙️ [tâche]
     Durée approximative : 60 minutes 
@@ -24,7 +24,7 @@ L'activité proposée se décompose en 3 étapes :
 2. Convertir les fichiers XML annotés au format _tfrecord_.
 3. Créer le fichier `label_map.pbtxt`.
 
-## 1. Annote les images avec le logiciel labelImg
+## 1. Annoter les images avec le logiciel labelImg
 
 L'annotation des images peut être faite avec le logiciel `labelImg`.
 C’est une étape du travail qui prend du temps et qui peut être réalisée si besoin à plusieurs en se répartissant les images à annoter...<br>
@@ -43,7 +43,7 @@ Pour chaque image, tu dois annoter les objets à reconnaître :
 
 * avec le bouton __[Create RectBox]__, tu entoures une face d'un cube,
 * la boîte des labels s'ouvre alors et tu dois écrire le label `one` ou `two` en fonction de la face entourée<br>
-⚠️ Il est très important de mettre des __labels alphabétiques__ et pas __numériques__ : mettre la chaîne `un` ou `one` mais pas le nombre `1` !
+⚠️ Il est très important de mettre des __labels alphabétiques__ et pas __numériques__ : par exemple mettre la chaîne `un` ou `one` mais pas le nombre `1` !
 * itère le processus pour chacune des faces de cubes présente dans l'image...
 
     première face          |  deuxième face            |  ...fin
@@ -53,9 +53,9 @@ Pour chaque image, tu dois annoter les objets à reconnaître :
 * quand c'est fini, tu cliques sur le bouton __[Save]__ et tu passes à l'image suivante avec le bouton __[Next Image]__.
 * Une fois toutes les images annotées, utilise les boutons __[Open Dir]__ et __[Change Save Dir]__ pour annoter de la même façon les images de test du dossier `<project>/images/test/`.
 
-## 2. Convertis les fichiers XML annotés au format _tfrecord_
+## 2. Convertir les fichiers d'annotation XML au format _tfrecord_
 
-Il faut d'abord créer un fichier _CSV_ unique regroupant les données des différents fichiers _XML_ crées par l'annotation. 
+Il faut d'abord créer un fichier _CSV_ unique regroupant les données des fichiers _XML_ crées par l'annotation. 
 
 Le programme `xml_to_csv_tt.py` permet de créer les deux fichiers `train_labels.csv` et `test_labels.csv` dans le dossier  `<project>/images/`.<br>
 Depuis le dossier `tod_tf2` tape :
@@ -76,7 +76,7 @@ Successfully created the TFRecord file: <faces_cubes/training/test.record>
 ```
 
 
-## 3. Créé le fichier label_map.pbtxt
+## 3. Créer le fichier label_map.pbtxt
  
 La dernière étape consiste a créer le fichier `label_map.pbtxt` dans le dossier `<project>/training/`. 
 

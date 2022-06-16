@@ -10,7 +10,7 @@ menu:
 ---
     Acquis d'apprentissage visés :
     - Connaître les principaux avantages/inconvénients des réseaux R-CNN et SSD.
-    - Savoir installer dans l'arborescence de travail un réseau pré-entrainé téléchargé depuis le site _TensorFlow2 Detection Model Zoo_.
+    - Savoir installer dans l'arborescence de travail un réseau pré-entrainé téléchargé depuis le site "TensorFlow2 Detection Model Zoo".
 
     Type d'activité     : ⚙️ [tâche]
     Durée approximative : 20 minutes (dépend du débit internet)
@@ -25,7 +25,7 @@ Plusieurs familles de __réseaux pré-entrainés__ dédiés à la détection d�
 *(source image : https://arxiv.org/pdf/1311.2524.pdf*)<br>
 Au lieu d’appliquer la sous-fenêtre d'analyse à toutes les positions possibles dans l’image, l’algorithme de recherche ciblée génère 2000 propositions de _régions d’intérêts_ où il est le plus probable de trouver des objets à détecter. Cet algorithme se base sur des éléments tels que la texture, l’intensité et la couleur des objets qu’il a appris à détecter pour proposer des régions d’intérêt. Une fois les 2000 régions choisies, la dernière partie du réseau calcule la probabilité que l’objet dans la région appartienne à chaque classe. Les versions ___Fast R-CNN___ et ___Faster R-CNN__ rendent l’entraînement plus efficace et plus rapide._
 
-* Les réseaux ___SSD___ (_Single Shot Detector_,  voir [lectures](#lectures) [2]) : font partie des détecteurs considérant la détection d’objets comme un problème de régression. L'algorithme ___SSD___ utilise d’abord un réseau de neurones convolutif pour produire une carte des points clés dans l’image puis, comme ___Faster R-CNN___, utilise des cadres de différentes tailles pour traiter les échelles et les ratios d’aspect.
+* Les réseaux ___SSD___ (_Single Shot Detector_,  voir [lectures](#lectures) [2] et [3]) : font partie des détecteurs considérant la détection d’objets comme un problème de régression. L'algorithme ___SSD___ utilise d’abord un réseau de neurones convolutif pour produire une carte des points clés dans l’image puis, comme ___Faster R-CNN___, utilise des cadres de différentes tailles pour traiter les échelles et les ratios d’aspect.
 
 La différence entre ces deux familles de réseaux est qu’un réseau _R-CNN_ réalise une classification sur chacune des 2000 fenêtres générées par l’algorithme de recherche ciblée, alors qu’un réseau _SSD_ cherche à prédire la classe ET la fenêtre de l’objet en même temps. Cela rend les réseaux _SSD_ plus rapides que les réseaux _Faster R-CNN_, mais également moins précis.
 
@@ -40,10 +40,15 @@ qui contient 200 000 images annotées avec 80 objets différents. Cette mesure s
 Télecharge puis extrait l'archive TGZ au bon endroit dans l'arborescence de travail :
 ```bash
 # From within tod_tf2/
-(tf2) jlc@pikatchou $ wget http://download.tensorflow.org/models/object_detection/tf2/20200711/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz -P ~/Téléchargements
-(tf2) jlc@pikatchou $ tar xvzf ~/Téléchargements/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz -C pre-trained
+(tf2) jlc@pikatchou $ wget http://download.tensorflow.org/models/object_detection/tf2/20200711/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz -P /tmp
+(tf2) jlc@pikatchou $ tar xvzf /tmp/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz -C pre-trained
+(tf2) jlc@pikatchou $ rm /tmp/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz
 ```
-puis créer le dossier correspondant `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` dans le dossier `<project>/training`.
+puis créé le dossier correspondant `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` dans le dossier `<project>/training`.
+```bash
+# From within tod_tf2/
+(tf2) jlc@pikatchou $ mkdir faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+```
 
 ## Exemple : projet de reconaissance de chiffres écrits sur des cubes
 

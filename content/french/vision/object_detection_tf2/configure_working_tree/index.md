@@ -48,9 +48,12 @@ L'arborescence générique proposée est la suivante :
 		* les fichiers d'annotation XML créés avec le logiciel `labelImg` : ils donnent, pour chacun des objets d'une image, les coordonnées de la boîte englobant l'objet et le label de l'objet.
     * les fichiers d'annotation CSV (contenu des fichiers XML convertis au format CSV), qui seront à leur tour convertis au format _`tensorflow record`_.
 * Le dossier `<project>/training` contient pour chaque projet :
-	* dossier `<pre_trained_net>` pour chaque réseau pré-entrainé utilisé : tu peux ainsi essayer plusieurs réseaux pré-entraînés pour comprarer leurs performances. C'est dans le dossier `<pre-trained_net>` que sont stockés les fichiers des poids du réseau entraîné par tes soins.
-	* fichiers `train.reccord`  et `test.reccord` : données labelisées d'entraînement et de test au format _tensorflow record_,
-	* fichier `label_map.txt` : liste les labels correspondants aux objets à détecter.
+	* Un dossier `<pre_trained_net>` pour chaque réseau pré-entrainé utilisé : tu peux ainsi essayer plusieurs réseaux pré-entraînés pour comparer leurs performances.<br>
+	C'est dans le dossier `<pre-trained_net>` que sont stockés :
+	    * les fichiers des poids du réseau pré-entraîné téléchargés depuis Internet,
+	    * les fichiers des nouveaux poids du réseau pré-entraîné ré-entraîné par tes soins.
+	* les fichiers `train.reccord`  et `test.reccord` : données labelisées d'entraînement et de test au format _tensorflow record_,
+	* le fichier `label_map.txt` : contient la liste les labels correspondants aux objets à détecter.
 
 * Le dossier `pre-trained/` contient un sous-dossier pour chacun des réseaux pré-entrainés utilisé qui stocke les différents fichiers nécessaires à leur utilisation.
 	
