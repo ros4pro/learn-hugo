@@ -53,9 +53,7 @@ sudo apt install ros-noetic-joy ros-noetic-teleop-twist-joy \
   ros-noetic-compressed-image-transport ros-noetic-rqt* ros-noetic-rviz \
   ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers ros-noetic-tf2-tools
 
-sudo apt install ros-noetic-dynamixel-sdk
-sudo apt install ros-noetic-turtlebot3-msgs
-sudo apt install ros-noetic-turtlebot3
+sudo apt install ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3 ros-noetic-turtlebot3-teleop
 ```
 
 ```bash
