@@ -58,7 +58,7 @@ Prior to the creation of a PVE, you must install _miniconda_ on your computer. Y
 Once _conda_ is installed on your computer, you can install & configure as many PVE as you want following the 3 steps procedure explained bellow.<br>
 ⚠️ Don't do the job now! just understand the commands syntaxe and arguments, the job wil be done for real in the section __Work to do__. 
 
-1. __PVE creation__: `conda create -n <pve_name> python=<version>`
+1. __PVE creation__: `conda create -n <pve_name> pip python=<version>`
     * `<pve_name>` is the (free) name of your PVE, often a mnemonic name like _pyml_ (for _Python machine learning_) 
     or _tf2_ (for working with tensorflow2)…
     * `<version>` is the version of Python you want to install in your PVE (for example _3.6_ or _3.6.8_ or _3.8_…)
@@ -98,18 +98,20 @@ You should get no error in return and see a informations on your __miniconda__ i
 
 With `miniconda` (or `Anaconda`) installed on your computer, create and activate the PVE named `tf2` to work with Python 3.8:
 ```bash
-user@host $ conda create -n tf2 python=3.8
+(base) user@host $ conda create -n tf2 pip python=3.8
+...some stuff ... answer 'y'  to proceed to the installation...
+...
+(base) user@host $ conda update -n base -c defaults conda
 ... some stuff...
 
-user@host $ conda activate tf2
+(base) user@host $ conda activate tf2
 (tf2) user@host $
 ```
 Then install the main Python modules to work with __tensorflow2__ :
 ```bash
-(tf2) user@host $ conda update -n base -c defaults conda
-(tf2) user@host $ pip install tensorflow==2.6
-(tf2) user@host $ conda install numpy scipy matplotlib jupyter pandas
-(tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml opencv-python==4.5.1.48
+(tf2) user@host $ pip install --ignore-installed --upgrade tensorflow==2.9
+(tf2) user@host $ conda install numpy scipy matplotlib jupyter jupyterlab pandas
+(tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml opencv-python==4.6.0.66
 ```
 
 ## Useful commands

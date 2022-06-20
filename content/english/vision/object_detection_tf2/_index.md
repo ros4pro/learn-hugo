@@ -22,13 +22,13 @@ An expected advantage of the Object Detection approach is to provide the boundin
 ## Prerequisites
 
 * Undergraduate or more.
-* Know how to use basic Linux commands to work with and modify the file tree.
-* Good understanding of Python and numpy arrays.
+* Know some basic Linux commands to work with and modify the file tree.
+* Good understanding of Python language and numpy arrays.
 * A first experience of neural networks is desirable.
 
 The training of neural networks with the `tensorflow` module will preferably be done within a __Python virtual environment__ (PVE) which allows one to work in a dedicated Python environment, separate from the existing one for working under ROS.
 
-💻 Use the [Python3: virtual environment](<https://learn.e.ros4.pro/en/faq/python3/venv>) to create an PVE:
+💻 See [Python3: virtual environment](<https://learn.e.ros4.pro/en/faq/python3/venv>) to create an PVE:
 
 * named `tf2`,
 * with a version of Python equal to `3.8`.
