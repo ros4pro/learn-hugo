@@ -20,7 +20,7 @@ Note préliminaire : la carte SD du robot ne se comporte pas tout-à-fait comme 
 Téléchargez ces images ROS en vue de remettre à zéro les cartes SD des robots pour ROS4PRO (⚠️⏳ Optimisez votre temps, le téléchargement peut prendre 1 heure) :
 
 * [Image du Turtlebot pour ROS4PRO](https://github.com/ros4pro/turtlebot3_ros4pro/releases/download/v1.1/2021-10-24-turtlebot.img.7z)
-* [Image de Poppy Ergo Jr pour ROS4PRO](https://github.com/poppy-project/poppy-ergo-jr/releases/download/4.0.1/2021-10-20-poppy-ergo-jr.img.7z)
+* [Image de Poppy Ergo Jr pour ROS4PRO](https://github.com/poppy-project/poppy-ergo-jr/releases/download/4.0.2/2022-01-07-poppy-ergo-jr.img.7z)
 
 Pour flasher l'une de ces images sur une carte SD :
 
