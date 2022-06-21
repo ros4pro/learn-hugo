@@ -20,11 +20,13 @@ menu:
 Le but de cette activité est de Vérifier que le réseau entraîné est bien capable de détecter les faces des cubes en discriminant correctement les numéros écrits sur les faces.
 
 Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau de neuronnes ré-entraîné sur des images, les arguments sont :
-* `-l` : le chemenin du fichier `label_map.pbtxt`
+* `-l` : le chemin du fichier `label_map.pbtxt`
 * `-s` : le chemin du dossier `saved_model/` contenant les fichiers des poids du réseau ré-entraîné
 * `-i` : le chemin __du dossier des images__ ou le chemin __du fichier image__ à analyser
 * `-n` : le nombre max d'objets à détecter (opetionnel, valeur par défaut : 4)
 * `-t` : le seuil (_threshold_) de détection exprimé en % (optionnel, valeur par défaut : 50 %).
+
+![tree.png](img/tree.png)
 
 Par exemple pour faire la détection des cubes des images de test avec le réseau que tu viens d'entraîner :
 
@@ -74,5 +76,16 @@ Pour chaque image traitée on a :
 * si tu veux trier les listes dans l'ordre de haut en bas dan sl'image, tu peux exploiter l'ordonnée `y` des boites englobantes.
 
 Dans tous les cas, la fonction __numpy__ `argsort` est ton amie... (tu peux voir un exemple d'implémentation dans le fichier `plot_object_detection_sorted_saved_model.py`.)
+
+## La suite ....
+
+Quelques idées à bien garder en tête :
+
+* ⚠️  l'EVP `(tf2)` doit être utilisé __UNIQUEMENT pour entraîner le réseau de neurones__.
+* ⚠️  l'EVP `(tf2)` __ne doit pas être utilisé avec ROS pour exploiter__ le réseau de neurone ré-entrainé.
+* ROS utilise l'__installation standard de Python__ sur ta machine, hors de tout EVP : c'est un environnement que tu gères en tapant `sudo apt install python3-...`, ou `pip3 install ...` ou encore `sudo pip3 instal ...`
+* Pour instancier un réseau PPO sous ROS, il faut installer le module tensorflow dans l'envirronnement Python standard de ta machine : `pip3 install tensorflow==2.9` devrait convenir !
+* le fichier `nn.py` dans `tod_tf2` donne une base de départ pour le programme d'intégration de vendredi....
+
 
 

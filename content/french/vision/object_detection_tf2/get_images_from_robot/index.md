@@ -86,9 +86,9 @@ while True:
 cv2.destroyAllWindows()
 ```
 
-📍  En cas de conflit grave entre _ROS_, l'EVP tf2 et _PyQT_ avec le programme `get_image_from_robot.py` tu peux désactiver temporairement l'EVP tf2 :
+📍  En cas de conflit grave entre ROS, l'EVP tf2 et PyQT lors de l'utilisation du programme `get_image_from_robot.py` tu peux désactiver temporairement l'EVP tf2 :
 * soit en lançant un nouveau terminal,
-* soit en tapant la commande `conda deactivate`
+* soit en tapant la commande `conda deactivate`.
 
 Tu dois collecter quelques dizaines d'image pour l'entraînement du réseau de neurones.
 
