@@ -173,9 +173,5 @@ remplace `tf.uint8` par `tf.uint8.as_numpy_dtype`
 	* La partie "__Detection__" (dure de quelques secondes à plusieurs minutes suivant ton CPU) utilise le réseau pré-entraîné `ssd_mobilenet_v1_coco_2017_11_17` pour détecter des objets dans deux images de test :<br>
 ![notebook_test_TOD_image1et2.png](img/notebook_test_TOD_image1et2.png)
 
-	* La partie "__Instance Segmentation__" est plus gourmande en ressources (jusqu'à 8 Go de RAM) et peut durer plusieurs dizaines de minutes sur un CPU ; elle utilise le réseau pré-entraîné `mask_rcnn_inception_resnet_v2_atrous_coco_2018_01_28` pour détecter les objets et leurs masques :<br>
-(_ne lance pas cette cellule si ta machine n'a pas au moins 8 Go de RAM et un CPU puissant_) :<br>
-![notebook_test_TOD_image-mask1.png](img/notebook_test_TOD_image-mask1.png)
-
 
 

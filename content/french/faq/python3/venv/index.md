@@ -49,7 +49,7 @@ Quand l'EVP `<nom_evp>` est activé :
 
 * Ensuite il ya 3 étapes expliquées ci-dessous, à mettre en oeuvre en suivant l'exemple plus bas :
 
-    1. Créer l'EVP : `conda create -n <nom_evp> python=<version>`
+    1. Créer l'EVP : `conda create -n <nom_evp> pip python=<version>`
     * `<nom_evp>` est le nom (libre) de ton EVP, souvent un nom mnémonique comme `pyml` (pour "python machine learning") ou `tf2` (pour un projet avec "tensorflow2"),
     * `<version>` donne la version de l'interpréteur Python à installer dans l'EVP : par exmple `3.6` ou `3.6.8` ou `3.8`...<br>
 _Nota_ : pour l'API _Tensorflow2 Object Detection_ la version 3.8 de Python est conseillée.
@@ -61,7 +61,10 @@ _Nota_ : pour l'API _Tensorflow2 Object Detection_ la version 3.8 de Python est 
     <br>
     <br>
     3. Charger les modules Python nécessaires à ton projet dans l'EVP __activé__ :<br>
-    Avec ton **EVP activé** utilise `conda install <module_name>`  ou `pip install <module_name>` pour installer le module Python `<module_name>`.
+    Avec ton **EVP activé** utilise `conda install <module_name>`  ou `pip install <module_name>` pour installer le module Python `<module_name>`.<br><br>
+    ❓ `conda install...` ou `pip install...` lequel choisir ? le règle est simple :
+        * commence par `conda install...`, qui va installer une version optimisée du module Python si elle est connue de `conda`
+        * utilise `pip install...` si `conda install...` échoue.
   
 ## Exemple
 
@@ -69,26 +72,19 @@ _Nota_ : pour l'API _Tensorflow2 Object Detection_ la version 3.8 de Python est 
 
 Avec `miniconda` installé, créé l'EVP `tf2` pour un travail avec Python en version 3.8, puis active l'EVP :
 ```bash
-user@host $ conda create -n tf2 python=3.8
+user@host $ conda create -n tf2 pip python=3.8
 ... some stuff...
-
+user@host $ conda update -n base -c defaults conda  # mise à jour de la commnande 
 user@host $ conda activate tf2
 (tf2) user@host $
 ```
 📥 Tu peux ensuite installer des modules Python essentiels au travail avec __tensorflow2__ :
 
 ```bash
-(tf2) user@host $ conda update -n base -c defaults conda  # mise à jour de la commnade conda, au cas où....
 (tf2) user@host $ pip install tensorflow==2.9
 (tf2) user@host $ conda install numpy scipy matplotlib jupyter pandas
-(tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml
-(tf2) user@host $ pip install opencv-python==4.6.0.66
+(tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml opencv-python==4.6.0.66
 ```
-
-❓ `conda install...` ou `pip install...` lequel choisir ? le règle est simple :
-
-* commence par `conda install...`, qui va installer une version optimisée du module Python si elle est connue de `conda`
-* utilise `pip install...` si `conda install...` échoue.
 
 ## Commandes utiles
 
