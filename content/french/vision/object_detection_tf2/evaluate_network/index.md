@@ -84,8 +84,8 @@ Quelques idées à bien garder en tête :
 * ⚠️  l'EVP `(tf2)` doit être utilisé __UNIQUEMENT pour entraîner le réseau de neurones__.
 * ⚠️  l'EVP `(tf2)` __ne doit pas être utilisé avec ROS pour exploiter__ le réseau de neurone ré-entrainé.
 * ROS utilise l'__installation standard de Python__ sur ta machine, hors de tout EVP : c'est un environnement que tu gères en tapant `sudo apt install python3-...`, ou `pip3 install ...` ou encore `sudo pip3 instal ...`
-* Pour instancier un réseau PPO sous ROS, il faut installer le module tensorflow dans l'envirronnement Python standard de ta machine : `pip3 install tensorflow==2.9` devrait convenir !
-* le fichier `nn.py` dans `tod_tf2` donne une base de départ pour le programme d'intégration de vendredi....
-
-
+* Pour instancier le réseau sauvegardé, tu vas utiliser la fonction `saved_model.load` du module _tensorflow_ (cf fichier `nn.py`) : il faudra que tu installes le module _tensorflow_ dans l'environnement Python standard de ta machine : `pip3 install tensorflow==2.9` devrait convenir ! 
+* le fichier `nn.py` dans le dossier `tod_tf2` donne une base de départ pour le programme d'intégration de vendredi... <br>
+Pour l'utiliser, il faudra que tu installes d'autres modules : par exemple  `pip3 install opencv-python==4.6.0.66`<br>
+À chaque fois que l'exécution de `nn.py` te donnera un message d'erreur "module xxx not found" il faudra que tu tapes `pip3 install xxxx` pour ajouter le module incriminé dans l'environnement Python standard de ta machine.
 
