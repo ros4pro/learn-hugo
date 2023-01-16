@@ -4,7 +4,7 @@ menu:
   main:
     name: "F450"
     weight: 1
-    parent: "vol"
+    parent: "f450"
 ---
 
 ## Prérequis
