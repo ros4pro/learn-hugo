@@ -115,14 +115,23 @@ Taper `yes` pour confirmer la connexion puis taper le mot de passe (`turtlebot` 
 
 Si vous obtenez l'erreur `Received JointState is XXXXXX.XXXXXX seconds old` ou tout autre erreur en relation avec le temps, il se peut que l'horloge de votre robot et de votre PC soit désynchronisée.
 
-Vérifiez avec la commande `date` que l'horloge ne dérive pas exagérément.
+Vérifiez avec la commande `date` que l'horloge de votre robot est à moins d'une demi-seconde près égale à celle de votre PC.
 
-Vérifiez qu'il est connecté à Internet via la 4G, le réseau Ethernet ou le wifi, puis tapez sur votre PC et/ou en SSH sur le robot :
+Pour activer la synchronisation automatique, vérifiez que la machine à syncrhoniser est connectée à Internet via la 4G, le réseau Ethernet ou le wifi, puis tapez :
 ```
-ssh <usename>@<hostname>.local
-sudo timedatectl set-ntp off
-sudo timedatectl set-time "2021-09-30 18:00"   # Mettre ici une date et une heure approximative
 sudo timedatectl set-ntp on
+```
+
+La commande suivante permet de forcer une nouvelle synchronisation NTP automatique :
+```
+sudo journalctl -u systemd-timesyncd -f     # Dans ce terminal, consultez les logs en direct de la synchronisation NTP
+sudo service systemd-timesyncd restart      # Le synchro a fonctionné uniquement si les logs affichent "Initial synchronization to time server..."
+```
+
+Si vous souhaitez passer de la synchronisation automatique à la **synchronisation manuelle** :
+```
+sudo timedatectl set-ntp off
+sudo timedatectl set-time "2021-09-30 18:00:00"   # Mettre une heure PRECISE à moins d'une demi-sec (il faut être très rapide)
 ```
 **Note :** `ntpdate` est osbolète et n'est plus installé sur Ubuntu
 

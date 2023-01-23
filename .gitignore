@@ -5,3 +5,4 @@
 public
 _vendor
 resources
+.hugo_build.lock
