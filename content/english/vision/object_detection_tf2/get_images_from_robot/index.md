@@ -1,8 +1,8 @@
 ---
-title: "Get images from a Ros service"
+title: "Get images from a ROS service"
 menu:
   main:
-    name: "Get images from a Ros service"
+    name: "Get images from a ROS service"
     weight: 4
     parent: "objectDetectionTF2"
 ---
@@ -15,7 +15,7 @@ menu:
     Expected duration: 60 minutes 
 ---
 
-## Get images with a ROS service
+## Get images from a ROS service
 
 In our context, the images to be processed are available via the ROS service `/get_image` provided by the robot _Poppy Ergo Jr_.
 

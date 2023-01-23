@@ -7,13 +7,12 @@ menu:
     parent: "objectDetectionTF2"
 ---
 ---
-Targeted learning outcomes:
+    Targeted learning outcomes:
+    - how to initialize your workspace for object detection using the TOD API
+    - how to install the TOD API and the required components
 
-     - how to initialize your workspace for object detection using the TOD API
-     - how to install the TOD API and the required components
-
-     Activity type: 🛠️ [task]
-     Expected duration: 60 minutes (depends on internet speed and your computer's CPU & RAM resources).
+    Activity type    : ⚙️ [task]
+    Expected duration: 20 minutes (depends on internet speed and your computer's CPU & RAM resources).
 ---
 
 ## Prerequisites
@@ -47,8 +46,7 @@ The first step is to create the working directory `tod_tf2`, which will be the _
 ```bash
 # From tod_tf2/
 (tf2) user@host $ git clone https://github.com/cjlux/tod_tf2_tools.git
-(tf2) user@host $ cp tod_tf2_tools/*.py .
-(tf2) user@host $ cp tod_tf2_tools/*.ipynb .
+(tf2) user@host $ cp tod_tf2_tools/*.py* .
 ```
 
 ### 2. Download and install the `tensorflow/models` repository
@@ -77,12 +75,6 @@ models
     ...
 ```	
 
-📥 Complete your installation with some Python packages useful for working with the TOD API:
-
-```bash
-(tf2) user@host $ conda install cython contextlib2 pillow lxml
-(tf2) user@host $ pip install labelimg rospkg
-```
 Update the environment variable `PYTHONPATH` by adding these two lines at the end of your  `~/.bashrc` file:
 
 ```bash
@@ -158,23 +150,23 @@ To test your TOD API installation, go to the `models/research/` folder and type:
 The program runs a whole series of tests which can take "some time ..." and must end with an **OK** without giving an error:
 
 	...
-	[       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+    [       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
     [ RUN      ] ModelBuilderTF2Test.test_session
     [  SKIPPED ] ModelBuilderTF2Test.test_session
     [ RUN      ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
-    I1026 22:28:48.083127 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
+    I0123 08:34:37.337631 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
     [ RUN      ] ModelBuilderTF2Test.test_unknown_meta_architecture
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
-    I1026 22:28:48.083944 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
+    I0123 08:34:37.338212 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_meta_architecture
     [ RUN      ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
-    I1026 22:28:48.085861 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
+    I0123 08:34:37.339969 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
     ----------------------------------------------------------------------
-    Ran 24 tests in 58.669s
+    Ran 24 tests in 30.259s
 
     OK (skipped=1)
 
@@ -185,12 +177,9 @@ __The absence of an error message validates the installation of the TOD API on y
 Finally, you can verify the installation of the  TOD API using the IPython notebook `object_detection_tutorial.ipynb` present in the` tod_tf2` folder.<br>
 (note: this is a copy of the original notebook `tod_tf2/models/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb` in which we removed the installation cells of the TOD API and some other cells which may generate errors...).
 
-* ⚠️ Before running the notebook cells, you must correct an error in the file `.../tod_tf2/models/research/object_detection/utils/ops.py` line 850:
-replace `tf.uint8` with` tf.uint8.as_numpy_dtype`
-
 * In the `tod_tf2` folder run the `jupyter notebook` command and load the `object_detection_tutorial.ipynb` notebook.
 * Run the cells one by one, you shouldn't get any mistakes:
 
-    * The "__Detection__" part (runs for few seconds to several minutes depending on your CPU) uses the pre-trained network `ssd_mobilenet_v1_coco_2017_11_17` to detect objects in two test images: <br>
+    * The "__Detection__" part (can run for few seconds to several minutes depending on your CPU) uses the pre-trained network `ssd_mobilenet_v1_coco_2017_11_17` to detect objects in two test images: <br>
 ![notebook_test_TOD_image1et2.png](img/notebook_test_TOD_image1et2.png)
    

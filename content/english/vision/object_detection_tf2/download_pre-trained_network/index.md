@@ -7,13 +7,13 @@ menu:
     parent: "objectDetectionTF2"
 ---
 
----
-     Activity type: ⚙️ [task]
-     Approximate duration: 20 minutes (depends on internet speed)
-    
+---    
     Targeted learning outcomes:
      - to know the main advantages/disadvantages of R-CNN and SSD networks.
      - to know how to install in the working tree a pre-trained network downloaded from the "TensorFlow2 Detection Model Zoo" site.
+
+     Activity type: ⚙️ [task]
+     Approximate duration: 10 minutes (depends on internet speed)
 ---
 
 ## Pre-trained network for Object Detection

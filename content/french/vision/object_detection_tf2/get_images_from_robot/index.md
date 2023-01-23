@@ -19,16 +19,14 @@ menu:
 
 Les images à traiter sont obtenues en utilisant le service _ROS_ `/get_image` proposé par le robot _Poppy Ergo Jr_.
 
-image001.png               |  image002.png
-:-------------------------:|:-------------------------:
-![image1](img/image000.png)   |  ![image2](img/image001.png)
+![image2](img/image001.png)
 
 
 🤖 Rappels - Lancement du _ROS Master_ et des services _ROS_ sur le robot :
  
 * allumer le robot _Poppy Ergo Jr_,
 * se connecter à la carte _RPi_ du robot : `ssh poppy@poppy.local` (mdp: `poppy`) 
-* ✅ vérifier que `ROS_MASTER_URI` pointe bien vers `http://poppy.local:11311` 
+* ✅ vérifier que `ROS_MASTER_URI` du robot pointe bien vers `http://poppy.local:11311` 
 ```bash
 (tf2) user@host: $ ssh pi@poppy.local
 poppy@poppy.local password:
@@ -51,7 +49,7 @@ poppy@poppy:~ $ roslaunch poppy_controllers control.launch
 ```
 
 💻 Maintenant dans un terminal sur ton ordinateur, avec l'EVP `(tf2)` activé :
-* ✅ vérifie que `ROS_MASTER_URI` pointe bien vers `http://poppy.local:11311` 
+* ✅ vérifie que `ROS_MASTER_URI` de ton ordinateur pointe bien vers `http://poppy.local:11311` 
 ```bash
 (tf2) user@host: $ env|grep ROS_MASTER
 ROS_MASTER_URI=http://poppy.local:11311
