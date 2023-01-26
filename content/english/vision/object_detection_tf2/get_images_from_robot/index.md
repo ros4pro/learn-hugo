@@ -25,16 +25,16 @@ In our context, the images to be processed are available via the ROS service `/g
 🤖 Reminders - How to launch the _ROS Master_ and the _ROS services_ on the robot:
 
 * turn on the _Poppy Ergo Jr_ robot,
-* connect to the robot's RPi card: `ssh pi@poppy.local` (pass: `raspberry`):
+* connect to the robot's RPi card: `ssh poppy@poppy.local` (pass: `poppy`):
 ```bash
-(tf2) user@host: $ ssh pi@poppy.local
-pi@poppy.local password:
+(tf2) user@host: $ ssh poppy@poppy.local
+poppy@poppy.local password:
 ...
 ```
-* ✅ check that the `ROS_MASTER_URI` environment variable points to `poppy.local:11311`:
+* ✅ check that the `ROS_MASTER_URI` environment variable points to `localhost:11311`:
 ```bash
 pi@poppy:~ $ env|grep ROS_MASTER
-ROS_MASTER_URI=http://poppy.local:11311
+ROS_MASTER_URI=http://localhost:11311
 ```	
 * if `ROS_MASTER_URI` does not point to the correct target:
     * edit the robot's `~/.bashrc` file,
@@ -47,7 +47,7 @@ pi@poppy:~ $ roslaunch poppy_controllers control.launch
 ...
 ```
 
-💻 Now in a terminal __on your computer__, with the EVP `(tf2)` activated:
+💻 Now in another terminal __on your computer__, with the EVP `(tf2)` activated:
 * ✅ check that `ROS_MASTER_URI` points to `poppy.local: 11311`
 
 ```bash
@@ -60,9 +60,9 @@ ROS_MASTER_URI=http://poppy.local:11311
      * then type `source ~\.bashrc`
      * and check again the value of `ROS_MASTER_URI` ...
 
-🐍 You can use the Python program `get_image_from_robot.py` from the `tod_tf2` directory to save the cube images in files named `imagesxxx.png` 
+🐍 You can use the Python program `tod_tf2/get_image_from_robot.py` to save the cube images in files named `imagesxxx.png` 
 (`xxx` = `001`, `002` ...). <br>
-Pressing any key allows you to switch from one image to another, pressing the `Q` key exits the program:
+Pressing any key switches from one image to another, pressing the `Q` key exits the program:
 
 ```python
 import cv2, rospy
@@ -84,8 +84,7 @@ while True:
 cv2.destroyAllWindows()
 ```
 
-📍 In case of serious conflict betwen ROS, the EVP (tf2) and PyQT when using the program `get_image_from_robot.py` 
-you can temporarily deactivate the EVP tf2:
+⚠️ You must deactivate the __tf2__ VPE to run the program `get_image_from_robot.py`:
 * either by launching a new terminal,
 * or by typing the command `conda deactivate`
 

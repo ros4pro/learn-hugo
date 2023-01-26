@@ -11,7 +11,6 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir organiser et construire l'arborescence de travail pour supporter plusieurs projets de détection d'objets dans des images
 
-    Type d'activité     : ⚙️ [task]
     Durée approximative : 5 minutes
 ---
 

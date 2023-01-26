@@ -11,7 +11,6 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir exploiter un réseau TOD ré-entraîné.
 
-    Type d'activité     : ⚙️ [tâche]
     Durée approximative : 30 minutes (dépend des ressources CPU & RAM de ton ordinateur).
 ---
 

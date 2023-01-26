@@ -13,7 +13,6 @@ menu:
     - Savoir continuer l'entraînement supervisé d'un réseau TOD pré-entraîné.
     - Savoir exporter les poids du réseau entrainé dans un format utilisable.
 
-    Type d'activité     : ⚙️ [tâche]
     Durée approximative : plusieurs heures (dépend des ressources CPU & RAM de ton ordinateur).
 ---
 
@@ -27,7 +26,7 @@ Cette activité se décompose en 3 étapes :
 
 ## 0. Préliminaires
 
-Pour simplifier l'écriture des commandes Linux à taper dans le terminal, tu peux définir à la fin du fichier `.bashrc`:
+Pour simplifier l'écriture des commandes Linux à taper dans le terminal, tu peux définir dans le fichier `config_tf2`:
 * la variable `PTN` (_Pre-Trained Network_) qui donne le nom du réseau pré-entraîné choisi `<pre-trained_net>`,
 * la variable `PTN_DIR` qui donne le chemin d'accès au dossier  `<project>/training/<pre-trained_net>`
 
@@ -36,10 +35,11 @@ Pour simplifier l'écriture des commandes Linux à taper dans le terminal, tu pe
 Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` :
 
 ```bash
-user@host $ echo 'export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8' >> ~/.bashrc
-user@host $ echo 'export PTN_DIR=faces_cubes/training/$PTN' >> ~/.bashrc
+# From within tod_tf2
+user@host $ echo 'export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8' >> config_tf2
+user@host $ echo 'export PTN_DIR=faces_cubes/training/$PTN' >> config_tf2
 ```
-puis, après avoir tapé la commande `source ~/.bashrc`, tu peux vérifier que les 2 variables sont bien définies :
+puis, après avoir tapé la commande `source config_tf2`, tu peux vérifier que les 2 variables sont bien définies :
 
 ```bash
 user@host $ env | grep PTN      # pour vérifier
@@ -58,7 +58,7 @@ user@host $ cp pre-trained/$PTN/pipeline.config $PTN_DIR
 ```
 
 
-* Il faut ensuite modifier les paramètres du fichier `$PTN_DIR/pipeline.configure` pour les adapter à l'entraînement.
+* Il faut ensuite modifier les paramètres du fichier `$PTN_DIR/pipeline.config` pour les adapter à l'entraînement.
 
 ### Exemple
 
@@ -85,11 +85,11 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 
 ⚠️ Il est très important de bien vérifier le contenu du fichier `$PTN_DIR/pipeline.configure` avant de lancer l'entraînement : une bonne pratique est de le faire vérifier par quelqu'un d'autre...
 
-⚠️ Ne mettre des valeurs de `batch_size` >= 2 que si ton ordinateur possède un bon CPU avec au moins 4 Gio de RAM ! <br>
-Exemple sur un PC portable _low cost_ (AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM) :
-* `batch_size=1` : le calcul prend environ 5h (18 sec par step) et jusqu'à 2.3 GiO RAM 
-* `batch_size=2` : le calcul prend environ 10h (36 sec par step) et jusqu'à 2.5 GiO RAM 
-* `batch_size=3` : le calcul plante (pas assez de mémoire sur un PC avec 4 Gio RAM)
+⚠️ Ne mettre des valeurs de `batch_size` > 2 que si ton ordinateur possède un bon CPU avec au moins 6 Gio de RAM ! <br>
+Exemple : pour une entraînement avec 15 images avec `num_steps=1000`, sur un PC portable avec un processeur Intel core i7 et 8 Gio RAM :
+* `batch_size=1` : le calcul prend environ 1h30 (~5.7 sec par step) et jusqu'à ~4 GiO RAM 
+* `batch_size=2` : le calcul prend environ 3h (~11 sec par step) et jusqu'à ~4.5 GiO RAM 
+* `batch_size=4` : le calcul prend environ 6h (~22 sec par step) et jusqu'à ~6 GiO RAM .
 
 Copie le fichier `models/research/object_detection/model_main_tf2.py` dans la racine `tod_tf2` :
 ```bash
@@ -101,88 +101,74 @@ Maintenant lance l'entraînement avec la commande :
 # From within tod_tf2
 (tf2) user@host $ python model_main_tf2.py --model_dir=$PTN_DIR/checkpoint1 --pipeline_config_path=$PTN_DIR/pipeline.config
 ```
-Les fichiers des poids entraînés seront écrits dans le dossier `$PTN_DIR/checkpoint1` : si tu relances l'entraînement, tu peux utiliser `checkpoint2`, `checkpoint3` pour séparer des essais successifs.
+Les fichiers des poids entraînés seront écrits dans le dossier `$PTN_DIR/checkpoint1` : si tu relances l'entraînement, tu peux utiliser `checkpoint2`, `checkpoint3`... pour séparer des essais successifs.
 
 Le module _tensorflow_ est assez verbeux et l'entraînement est long à démarrer...<br>
 Au bout d'un "certain temps" (qui peut être assez long, plusieurs dizaines de minutes avec un CPU ordinaire), les logs s'affichent à l'écran, en  particulier les lignes qui commencent par `INFO` montrant que l'entraînement est en cours :
 
 	...
 	...
-    INFO:tensorflow:Step 100 per-step time 18.002s
-    I1028 00:58:19.951609 140629825712512 model_lib_v2.py:698] Step 100 per-step time 18.002s
-    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.08096047,
-     'Loss/BoxClassifierLoss/localization_loss': 0.06868178,
-     'Loss/RPNLoss/localization_loss': 0.008976435,
-     'Loss/RPNLoss/objectness_loss': 0.000495165,
+    INFO:tensorflow:Step 100 per-step time 11.094s
+    I0123 17:51:15.919782 140056729301632 model_lib_v2.py:705] Step 100 per-step time 11.094s
+    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.13388917,
+     'Loss/BoxClassifierLoss/localization_loss': 0.017869305,
+     'Loss/RPNLoss/localization_loss': 0.0029150385,
+     'Loss/RPNLoss/objectness_loss': 0.0007381027,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.15911385,
+     'Loss/total_loss': 0.15541162,
      'learning_rate': 0.014666351}
-    I1028 00:58:20.032363 140629825712512 model_lib_v2.py:701] {'Loss/BoxClassifierLoss/classification_loss': 0.08096047,
-     'Loss/BoxClassifierLoss/localization_loss': 0.06868178,
-     'Loss/RPNLoss/localization_loss': 0.008976435,
-     'Loss/RPNLoss/objectness_loss': 0.000495165,
+    I0123 17:51:15.920520 140056729301632 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.13388917,
+     'Loss/BoxClassifierLoss/localization_loss': 0.017869305,
+     'Loss/RPNLoss/localization_loss': 0.0029150385,
+     'Loss/RPNLoss/objectness_loss': 0.0007381027,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.15911385,
+     'Loss/total_loss': 0.15541162,
      'learning_rate': 0.014666351}
-    INFO:tensorflow:Step 200 per-step time 17.134s
-    I1028 01:26:52.862514 140629825712512 model_lib_v2.py:698] Step 200 per-step time 17.134s
-    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.063115016,
-     'Loss/BoxClassifierLoss/localization_loss': 0.059545986,
-     'Loss/RPNLoss/localization_loss': 0.006001271,
-     'Loss/RPNLoss/objectness_loss': 0.0012521433,
-     'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.12991442,
-     'learning_rate': 0.0159997}
-    I1028 01:26:52.864115 140629825712512 model_lib_v2.py:701] {'Loss/BoxClassifierLoss/classification_loss': 0.063115016,
-     'Loss/BoxClassifierLoss/localization_loss': 0.059545986,
-     'Loss/RPNLoss/localization_loss': 0.006001271,
-     'Loss/RPNLoss/objectness_loss': 0.0012521433,
-     'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.12991442,
-     'learning_rate': 0.0159997}
     ...
-    INFO:tensorflow:Step 1000 per-step time 17.001s
-    I1028 05:13:56.353814 140629825712512 model_lib_v2.py:698] Step 1000 per-step time 17.001s
-    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.012904001,
-     'Loss/BoxClassifierLoss/localization_loss': 0.014184773,
-     'Loss/RPNLoss/localization_loss': 0.002441862,
-     'Loss/RPNLoss/objectness_loss': 0.0001208472,
+    INFO:tensorflow:Step 1000 per-step time 10.638s
+    I0123 20:30:50.425828 140056729301632 model_lib_v2.py:705] Step 1000 per-step time 10.638s
+    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.05049885,
+     'Loss/BoxClassifierLoss/localization_loss': 0.0066467496,
+     'Loss/RPNLoss/localization_loss': 0.0011727745,
+     'Loss/RPNLoss/objectness_loss': 0.0002043869,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.029651484,
+     'Loss/total_loss': 0.05852276,
      'learning_rate': 0.0266665}
-    I1028 05:13:56.354788 140629825712512 model_lib_v2.py:701] {'Loss/BoxClassifierLoss/classification_loss': 0.012904001,
-     'Loss/BoxClassifierLoss/localization_loss': 0.014184773,
-     'Loss/RPNLoss/localization_loss': 0.002441862,
-     'Loss/RPNLoss/objectness_loss': 0.0001208472,
+    I0123 20:30:50.426177 140056729301632 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.05049885,
+     'Loss/BoxClassifierLoss/localization_loss': 0.0066467496,
+     'Loss/RPNLoss/localization_loss': 0.0011727745,
+     'Loss/RPNLoss/objectness_loss': 0.0002043869,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.029651484,
+     'Loss/total_loss': 0.05852276,
      'learning_rate': 0.0266665}
 
 En cas d'arrêt brutal du programme avec le message "Processus arrêté", ne pas hésiter à diminer la valeur du paramètre `batch_size` jusquà 2, voire 1 si nécessaire.... <br>
-Même avec un `batch_size` de 2, le processus Python peut nécessiter jusqu'à 2 ou 3 Gio de RAM pour lui tout seul, ce qui peut mettre certains portables en difficulté...
+Même avec `batch_size=2`, le processus Python peut nécessiter plusieurs Gio de RAM à lui tout seul, ce qui peut mettre certains portables en difficulté...
 
-Dans l'exemple ci-dessus, on voit des logs tous les 100 pas, avec environ ~17 secondes par pas, soit environ 29 minutes entre chaque affichage et environ 5h de calcul pour les 1000 pas.  Ce calcul est fait avec `batch_size=1` sur un "petit CPU" (AMD A9-9420 RADEON R5 à 3 GHz)..
+Dans l'exemple ci-dessus, on voit des logs tous les 100 pas, avec environ ~10.7 secondes par pas, soit environ 18 minutes entre chaque affichage et ~3h de calcul pour les 1000 pas. Ce calcul est fait avec `batch_size=2` sur un CPU Intel i7.
 
 Une fois l'entraînement terminé tu peux analyser les statistiques d'entraînement avec `tensorboard` en tapant la commande :
 ```bash
 # From within tod_tf2
 (tf2) user@host:~ $ tensorboard --logdir=$PTN_DIR/checkpoint1/train
 Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
-TensorBoard 2.4.0 at http://localhost:6006/ (Press CTRL+C to quit)
+TensorBoard 2.11.2 at http://localhost:6006/ (Press CTRL+C to quit)
 ...
 ```
-`tensorBOARD` lance un serveur HTTP en local sur ta machine, et tu peux ouvrir la page avec un navigateur pour voir les courbes d'analyse en faisant CTRL + clic avec le curseur de la souris positionné sur le mot `http://localhost:6006/` :
+`tensorBOARD` lance un serveur HTTP en local sur ta machine, et tu peux ouvrir la page avec un navigateur pour voir les courbes d'analyse en faisant CTRL + clic avec le curseur de la souris positionné sur l'adresse `http://localhost:6006/` :
 
-![tensorflow](img/tensorboard.png)
+![tensorflow](img/tensorboard-1.png)
 
 On peut voir sur les figures suivantes l'influence de la valeur du paramètre `batch_size` sur la qualité de l'apprentissage : un `batch_size=2` donne de meilleures courbes de _loss_ que'un `batch_size=1`, mais le calcul est plus long et prend plus de mémoire :
 
-Entraînement avec `batch_size=1`  [~5h de calcul et 2.3 GiO RAM sur un portable "AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM"] :<br>
-![tensorflow](img/tensorboard-loss-batch_size-1.png)
+Entraînement avec `batch_size=1`, `num_steps=1000` :<br>
+![tensorflow](img/tensorboard-batch_size-1_loss.png)
 
-Entraînement avec `batch_size=2` [~10h de calcul et 2.5 Gio RAM sur un portable "AMD A9-9420 RADEON R5 à 3 GHz, 4 GiO RAM"] :<br>
-![tensorflow](img/tensorboard-loss-batch_size-2.png)
+Entraînement avec `batch_size=2`, `num_steps=1000` :<br>
+![tensorflow](img/tensorboard-batch_size-2_loss.png)
 
+Entraînement avec `batch_size=4`, `num_steps=1000` :<br>
+![tensorflow](img/tensorboard-batch_size-4_loss.png)
 
 ## 3. Exporter les poids du réseau ré-entraîné
 

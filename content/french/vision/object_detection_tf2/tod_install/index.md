@@ -11,7 +11,6 @@ menu:
     - Savoir initialiser ton espace de travail pour la détection d'objets utilisant l'API TOD
     - Savoir installer l'API TOD et les composants requis
 
-    Type d'activité : ⚙️ [task]
     Durée prévue    : 20 minutes + temps calcul (dépend du débit internet et des ressources CPU & RAM de ton ordinateur).
 ---
 

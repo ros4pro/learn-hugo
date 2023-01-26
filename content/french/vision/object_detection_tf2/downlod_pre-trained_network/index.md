@@ -12,7 +12,6 @@ menu:
     - Connaître les principaux avantages/inconvénients des réseaux R-CNN et SSD.
     - Savoir installer dans l'arborescence de travail un réseau pré-entrainé téléchargé depuis le site "TensorFlow2 Detection Model Zoo".
 
-    Type d'activité     : ⚙️ [task]
     Durée approximative : 10 minutes (dépend du débit internet)
 ---
 

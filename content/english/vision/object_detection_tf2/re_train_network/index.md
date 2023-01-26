@@ -12,7 +12,6 @@ menu:
     - how to continue the supervised training of a pre-trained TOD neural network.
     - how to export the weights of the re-trained neural network to an operational format.
 
-    Activity type      : ⚙️  [task]
     Expected duration  : 1 to 2 hours or more (depends on your computer CPU & RAM).
 ---
 
@@ -26,24 +25,27 @@ The re-train of a TOD pre-trained network involves 3 steps:
 
 ## Preliminaries
 
-To simplify the shell commands that you will have to write you can define two environment variables:
-* `PTN` (_Pre-Trained Network_) :  gives the name of the choosen pre-trained TOD neural network, also designated as `<pre-trained_net>`
-* `PTN_DIR` : gives the path of the directory `<project>/training/<pre-trained_net>`
+To simplify the shell commands that you will have to write you can define two environment variables in the file `config_tf2`:
+* `PTN` (_Pre-Trained Network_) :  the name of the choosen pre-trained TOD neural network, also designated as `<pre-trained_net>`
+* `PTN_DIR` : the path of the directory `<project>/training/<pre-trained_net>`
 
 ### Example
 
-Fot the project `cube_faces` and the network `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` :
+For the project `cube_faces` and the network `faster_rcnn_resnet50_v1_640x640_coco17_tpu-8` :
 
 ```bash
-user@host $ export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
-user@host $ echo $PTN      # to check...
-faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
-
-user@host $ export PTN_DIR=cube_faces/training/$PTN
-user@host $ echo $PTN_DIR   # to check...
-cube_faces/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+# From within tod_tf2
+user@host $ echo 'export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8' >> config_tf2
+user@host $ echo 'export PTN_DIR=faces_cubes/training/$PTN' >> config_tf2
 ```
+then after sourcing `config_tf2`, you can check that the variables are correctly defined:
 
+```bash
+user@host $ source config_tf2
+user@host $ env | grep PTN      # to check
+PTN_DIR=faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
+```
 ## 1. Modify the configuration file
 
 The configuration file `pipeline.config` must be copied from the directory `pre-trained/<pre-trained_net>` to the target directory `<project>/training/<pre-trained_net>`.
@@ -55,7 +57,7 @@ user@host $ cp pre-trained/$PTN/pipeline.config $PTN_DIR
 ```
 
 
-* Then you must edit the file `<project>/training/<pre-trained_net>/pipeline.configure` to  customize some important parameters.
+* Then you must edit the file `<project>/training/<pre-trained_net>/pipeline.config` to  customize some important parameters.
 
 ### Example
 
@@ -80,11 +82,15 @@ With the project `cube_faces` and the pre-trained network `faster_rcnn_resnet50_
 
 ## 2 Launch the re-training
 
-⚠️ It is important to verify carefully the content of the file `<project>/training/<pre-trained_net>/pipeline.configure` before lauching the training: une bonne pratique est de le faire vérifier par quelqu'un d'autre...
+⚠️ It is important to verify carefully the content of the file `<project>/training/<pre-trained_net>/pipeline.configure` before lauching the training: a good practice is to have it checked by someone else...
 
-⚠️ Don't use values of `batch_size`>=2 unless your computer has a powerful CPU and at least 4 GB of RAM !
+⚠️ Don't use values of `batch_size`>=2 unless your computer has a powerful CPU and at least 6 GB of RAM !<br>
+For example on a laptop with a processor Intel core i7 and 8 Gio RAM, with `num_steps=1000`  :
+* `batch_size=1` : the calculation takes about 1h30 (~5.7 sec per step) and up to ~4 GiB RAM
+* `batch_size=2` : the calculation takes about 3h (~11 sec per step) and up to ~4.5 GiO RAM 
+* `batch_size=4` : the calculation takes about 6h (~22 sec per step) and up to ~6 GiO RAM.
 
-Copy the file `models/research/object_detection/model_main_tf2.py` in teh root directory `tod_tf2`:
+Copy the file `models/research/object_detection/model_main_tf2.py` in the root directory `tod_tf2`:
 ```bash
 # From within tod_tf2
 (tf2) user@host $ cp models/research/object_detection/model_main_tf2.py .
@@ -96,63 +102,61 @@ Then launch the training:
 ```
 The trained weights of the network are written in the directory `$PTN_DIR/checkpoint1` : if you launch again another training you can use `checkpoint2`, `checkpoint3`... to separate the results for successive trials.
 
-The _tensorflow_ modile is quite verbose...<br>
+The _tensorflow_ module is quite verbose...<br>
 After a "certain time" (which can be quite long, several tens of minutes with an ordinary CPU), the logs are displayed on the screen, in particular the lines which start with `INFO` showing that the training is in progress:
 
 	...
 	...
-    INFO:tensorflow:Step 100 per-step time 18.002s
-    I1028 00:58:19.951609 140629825712512 model_lib_v2.py:698] Step 100 per-step time 18.002s
-    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.08096047,
-     'Loss/BoxClassifierLoss/localization_loss': 0.06868178,
-     'Loss/RPNLoss/localization_loss': 0.008976435,
-     'Loss/RPNLoss/objectness_loss': 0.000495165,
+    INFO:tensorflow:Step 100 per-step time 11.094s
+    I0123 17:51:15.919782 140056729301632 model_lib_v2.py:705] Step 100 per-step time 11.094s
+    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.13388917,
+     'Loss/BoxClassifierLoss/localization_loss': 0.017869305,
+     'Loss/RPNLoss/localization_loss': 0.0029150385,
+     'Loss/RPNLoss/objectness_loss': 0.0007381027,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.15911385,
+     'Loss/total_loss': 0.15541162,
      'learning_rate': 0.014666351}
-    I1028 00:58:20.032363 140629825712512 model_lib_v2.py:701] {'Loss/BoxClassifierLoss/classification_loss': 0.08096047,
-     'Loss/BoxClassifierLoss/localization_loss': 0.06868178,
-     'Loss/RPNLoss/localization_loss': 0.008976435,
-     'Loss/RPNLoss/objectness_loss': 0.000495165,
+    I0123 17:51:15.920520 140056729301632 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.13388917,
+     'Loss/BoxClassifierLoss/localization_loss': 0.017869305,
+     'Loss/RPNLoss/localization_loss': 0.0029150385,
+     'Loss/RPNLoss/objectness_loss': 0.0007381027,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.15911385,
+     'Loss/total_loss': 0.15541162,
      'learning_rate': 0.014666351}
     ...
-    ...
-    ...
-    INFO:tensorflow:Step 1000 per-step time 17.001s
-    I1028 05:13:56.353814 140629825712512 model_lib_v2.py:698] Step 1000 per-step time 17.001s
-    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.012904001,
-     'Loss/BoxClassifierLoss/localization_loss': 0.014184773,
-     'Loss/RPNLoss/localization_loss': 0.002441862,
-     'Loss/RPNLoss/objectness_loss': 0.0001208472,
+    INFO:tensorflow:Step 1000 per-step time 10.638s
+    I0123 20:30:50.425828 140056729301632 model_lib_v2.py:705] Step 1000 per-step time 10.638s
+    INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.05049885,
+     'Loss/BoxClassifierLoss/localization_loss': 0.0066467496,
+     'Loss/RPNLoss/localization_loss': 0.0011727745,
+     'Loss/RPNLoss/objectness_loss': 0.0002043869,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.029651484,
+     'Loss/total_loss': 0.05852276,
      'learning_rate': 0.0266665}
-    I1028 05:13:56.354788 140629825712512 model_lib_v2.py:701] {'Loss/BoxClassifierLoss/classification_loss': 0.012904001,
-     'Loss/BoxClassifierLoss/localization_loss': 0.014184773,
-     'Loss/RPNLoss/localization_loss': 0.002441862,
-     'Loss/RPNLoss/objectness_loss': 0.0001208472,
+    I0123 20:30:50.426177 140056729301632 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.05049885,
+     'Loss/BoxClassifierLoss/localization_loss': 0.0066467496,
+     'Loss/RPNLoss/localization_loss': 0.0011727745,
+     'Loss/RPNLoss/objectness_loss': 0.0002043869,
      'Loss/regularization_loss': 0.0,
-     'Loss/total_loss': 0.029651484,
+     'Loss/total_loss': 0.05852276,
      'learning_rate': 0.0266665}
 
 if the process stops suddenly with the message "Process stopped", do not hesitate to reduce the value of `batch_size` down to 2, or even 1 if necessary .... <br>
-Even with a `batch_size` of 2, the Python process may require up to 2-3 GB of RAM on its own, which can put some laptops in difficulty ...
+Even with `batch_size=2`, the Python process may require many GiB of RAM on its own, which can put some laptops in difficulty ...
 
-In the example above, we see logs every 100 steps, with approximately 17 seconds per step, or approximately 29 minutes between each display and approximately 5 hours of calculation for the 1000 steps. This calculation is done with `batch_size=1` on a rather "small CPU" (AMD A9-9420 RADEON R5 at 3 GHz).
+In the example above, we see logs every 100 steps, with ~10.7 seconds per step, or approximately 18 minutes between each display and ~3 hours of calculation for 1000 steps. This calculation is done with `batch_size=2` on an Intel core i7 CPU with 8 GiB RAM.
 
 Once the training is finished you can analyze the training statistics with `tensorboard` by typing the command:
 ```bash
 # From within tod_tf2
 (tf2) user@host:~ $ tensorboard --logdir=$PTN_DIR/checkpoint1/train
 Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
-TensorBoard 2.4.0 at http://localhost:6006/ (Press CTRL+C to quit)
+TensorBoard 2.11.2 at http://localhost:6006/ (Press CTRL+C to quit)
 ...
 ```
-`tensorboard` launches a local HTTP server on your computer and you can load the page with a web brower to see the performance plots by hiting CTRL + left_clic while the mouse cursor is positionned over `http://localhost:6006/` :
+`tensorboard` launches a local HTTP server on your computer and you can load the page with a web brower to see the performance plots by hiting "CTRL + left_clic" whith the mouse cursor positionned over `http://localhost:6006/` :
 
-![tensorflow](img/tensorboard.png)
+![tensorflow](img/tensorboard-1.png)
 
 _tensorboard_ lets you observe the evolution over steps of the main statistics of the learning process.
 

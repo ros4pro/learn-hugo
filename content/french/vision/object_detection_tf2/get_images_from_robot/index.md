@@ -11,7 +11,6 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir obtenir avec ROS les images d'une caméra placée sur un robot.
 
-    Type d'activité     : ⚙️ [tâche]
     Durée approximative : 60 minutes 
 ---
 
@@ -26,14 +25,14 @@ Les images à traiter sont obtenues en utilisant le service _ROS_ `/get_image` p
  
 * allumer le robot _Poppy Ergo Jr_,
 * se connecter à la carte _RPi_ du robot : `ssh poppy@poppy.local` (mdp: `poppy`) 
-* ✅ vérifier que `ROS_MASTER_URI` du robot pointe bien vers `http://poppy.local:11311` 
+* ✅ vérifier que `ROS_MASTER_URI` du robot pointe bien vers `http://localhost:11311` 
 ```bash
 (tf2) user@host: $ ssh pi@poppy.local
 poppy@poppy.local password:
 ...
 
 poppy@poppy:~ $ env|grep ROS_MASTER
-ROS_MASTER_URI=http://poppy.local:11311
+ROS_MASTER_URI=http://localhost:11311
 ```	
 * si `ROS_MASTER_URI` ne pointe pas sur la bonne cible :
     * édite le fichier `~/.bashrc` du robot, 
@@ -48,7 +47,7 @@ poppy@poppy:~ $ roslaunch poppy_controllers control.launch
 ...
 ```
 
-💻 Maintenant dans un terminal sur ton ordinateur, avec l'EVP `(tf2)` activé :
+💻 Maintenant dans un autre terminal sur ton ordinateur, avec l'EVP `(tf2)` activé :
 * ✅ vérifie que `ROS_MASTER_URI` de ton ordinateur pointe bien vers `http://poppy.local:11311` 
 ```bash
 (tf2) user@host: $ env|grep ROS_MASTER
@@ -61,8 +60,8 @@ ROS_MASTER_URI=http://poppy.local:11311
     * et vérifie de nouveau la valeur de `ROS_MASTER_URI`...
 
 
-🐍 Tu peux utiliser maintenant le programme Python `get_image_from_robot.py` du dossier `tod_tf2` pour enregistrer les images des cubes dans des fichiers nommées `imagesxxx.png` (`xxx` = `001`, `002`...). <br>
-Un appui sur une touche clavier permet de passer d'une image à l'autre, un appui sur la touche `Q` permet de quitter le programme :
+🐍 Tu peux utiliser le programme `tod_tf2/get_image_from_robot.py` pour enregistrer les images des cubes dans des fichiers nommées `imagesxxx.png` (`xxx` = `001`, `002`...). <br>
+Un appui sur une touche clavier fait passer d'une image à l'autre, la touche `Q` permet de quitter le programme :
 
 ```python
 import cv2, rospy
@@ -84,7 +83,7 @@ while True:
 cv2.destroyAllWindows()
 ```
 
-📍  En cas de conflit grave entre ROS, l'EVP tf2 et PyQT lors de l'utilisation du programme `get_image_from_robot.py` tu peux désactiver temporairement l'EVP tf2 :
+⚠️ Il faut désactiver l'EVP __tf2__ pour lancer le programme `get_image_from_robot.py` dans l'environnement Python par défaut (celui qui a servi à installer ROS) :
 * soit en lançant un nouveau terminal,
 * soit en tapant la commande `conda deactivate`.
 

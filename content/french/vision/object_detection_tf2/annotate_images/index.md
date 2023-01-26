@@ -13,7 +13,6 @@ menu:
     - Savoir convertir les fichier d'annotation du format XML au format tfreccord attendu par tensorflow.
     - Savoir créer le fichier label_map.pbtxt décrivant les labels de l'apprentissage supervisé.
 
-    Type d'activité     : ⚙️ [tâche]
     Durée approximative : 60 minutes 
 ---
 
@@ -26,9 +25,9 @@ L'activité proposée se décompose en 3 étapes :
 
 ## 1. Annoter les images avec le logiciel labelImg
 
-L'annotation des images peut être faite avec le logiciel `labelImg`.
+L'annotation des images peut être faite avec le logiciel `labelImg`.<br>
 C’est une étape du travail qui prend du temps et qui peut être réalisée si besoin à plusieurs en se répartissant les images à annoter...<br>
-Le lancement de `labelImg` se fait faite dans l'EVP `tf2` :
+Le lancement de `labelImg` se fait avec l'EVP `tf2` activé :
 ```bash
 (tf2) user@host:~ $ labelImg
 ```
