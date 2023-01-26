@@ -207,9 +207,8 @@ faces_cubes/training/
 │           └── variables
 │               ├── variables.data-00000-of-00001
 │               └── variables.index
-├── label_map.pbtxt
+├── label_map.txt
 ├── test.record
 └── train.record
-
 ```
 

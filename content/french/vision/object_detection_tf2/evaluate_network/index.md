@@ -19,7 +19,7 @@ menu:
 Le but de cette activité est de Vérifier que le réseau entraîné est bien capable de détecter les faces des cubes en discriminant correctement les numéros écrits sur les faces.
 
 Le script Python `plot_object_detection_saved_model.py` permet d'exploiter le réseau de neuronnes ré-entraîné sur des images, les arguments sont :
-* `-l` : le chemin du fichier `label_map.pbtxt`
+* `-l` : le chemin du fichier `label_map.txt`
 * `-s` : le chemin du dossier `saved_model/` contenant les fichiers des poids du réseau ré-entraîné
 * `-i` : le chemin __du dossier des images__ ou le chemin __du fichier image__ à analyser
 * `-n` : le nombre max d'objets à détecter (opetionnel, valeur par défaut : 4)
@@ -31,7 +31,7 @@ Par exemple pour faire la détection des cubes des images de test avec le résea
 
 ```bash
 # From within tod_tf2
-(tf2) user@host: $ python plot_object_detection_saved_model.py -l faces_cubes/training/label_map.pbtxt -s $PTN_DIR/saved_model1/saved_model -i faces_cubes/images/test/
+(tf2) user@host: $ python plot_object_detection_saved_model.py -l faces_cubes/training/label_map.txt -s $PTN_DIR/saved_model1/saved_model -i faces_cubes/images/test/
 Loading model...Done! Took 13.23 seconds
 Running inference for faces_cubes/images/test/image016.png... [2 2 1 1]
 [0.9998258  0.99902177 0.99812204 0.9964721 ]
@@ -83,8 +83,7 @@ Quelques idées à bien garder en tête :
 * ⚠️  l'EVP `(tf2)` doit être utilisé __UNIQUEMENT pour entraîner le réseau de neurones__.
 * ⚠️  l'EVP `(tf2)` __ne doit pas être utilisé avec ROS pour exploiter__ le réseau de neurone ré-entrainé.
 * ROS utilise l'__installation standard de Python__ sur ta machine, hors de tout EVP : c'est un environnement que tu gères en tapant `sudo apt install python3-...`, ou `pip3 install ...` ou encore `sudo pip3 instal ...`
-* Pour instancier le réseau sauvegardé, tu vas utiliser la fonction `saved_model.load` du module _tensorflow_ (cf fichier `nn.py`) : il faudra que tu installes le module _tensorflow_ dans l'environnement Python standard de ta machine : `pip3 install tensorflow==2.9` devrait convenir ! 
+* Pour instancier le réseau sauvegardé, tu vas utiliser la fonction `saved_model.load` du module _tensorflow_ (cf fichier `nn.py`) : il faut que tu installes le module _tensorflow_ dans l'environnement Python standard de ta machine : `pip3 install tensorflow==2.11.0` devrait convenir ! 
 * le fichier `nn.py` dans le dossier `tod_tf2` donne une base de départ pour le programme d'intégration de vendredi... <br>
 Pour l'utiliser, il faudra que tu installes d'autres modules : par exemple  `pip3 install opencv-python==4.6.0.66`<br>
-À chaque fois que l'exécution de `nn.py` te donnera un message d'erreur "module xxx not found" il faudra que tu tapes `pip3 install xxxx` pour ajouter le module incriminé dans l'environnement Python standard de ta machine.
-
+À chaque fois que l'exécution de `nn.py` donne un message d'erreur "module xxx not found" il faut ajouter le module incriminé dans l'environnement Python standard de ta machine avec la commande `pip3 install xxxx`.
