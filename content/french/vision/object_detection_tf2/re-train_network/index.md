@@ -75,9 +75,9 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 |114| `fine_tune_checkpoint_type`   | Choix de l'algorithme :<BR> "classification" ou "detection"                | 'classification' | 'detection'     | -> détection d'objets |
 |120| `max_number_of_boxes`         | Nombre max de boîtes englobantes<BR>  dans chaque image                    | 100               | 4              | 4 faces de cubes dans une image |
 |122| `use_bfloat16`                | `true` pour les architectures TPU<BR>`false` pour CPU                    | true              | false          |  choix du CPU|
-|126| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'entraînement |
+|126| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'entraînement |
 |128| `input_path`                  | fichier des données d'entraînement<BR> au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
-|139| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.pbtxt' | utilisé pour l'évaluation|
+|139| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'évaluation|
 |143| `input_path`                  | fichier des données de test<BR> au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
 
 
