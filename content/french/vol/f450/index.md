@@ -74,9 +74,6 @@ Nous allons maintenant pouvoir installer un emulateur pour le controleur de vol 
 
 ### 2. Installer PX4
 Maintenant que nous avons un environnement ROS opérationnel, nous devons télécharger le firmware PX4 qui possède des outils permettant de simuler entièrement le controleur de vol (Pixhawk). Ainsi, nous pourrons avoir les mêmes interfaces de pilotage que dans la réalité.
-
-Pour pouvoir compiler le firmware vous devez installer les paquets du script [ici](https://github.com/aiRCS-Lab/scripts/blob/main/install_ros_noetic_rpy_ubuntu_focal.sh).
-
 Dans un premier temps, nous devons récupérer le repertoire sur Github et ensuite nous devons le compiler :
 
 ```bash
