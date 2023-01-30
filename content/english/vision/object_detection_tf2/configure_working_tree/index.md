@@ -11,8 +11,8 @@ menu:
     Targeted learning outcomes:
     - how to organize and create the working tree to support several projects for the detection of objects in images 
 
-    Activity type:      : 🛠️ [task]
-    Expected duration: 15 minutes
+    Activity type:   : ⚙️ [task]
+    Expected duration: 5 minutes
 ---
 
 ## The multi-project work tree
@@ -71,7 +71,7 @@ The `<project>` directory is named `cube_faces`, which gives the tree structure:
 	│   │   │   └── *.jpg, *.png ... *.xml
 	│   │   ├── train
 	│   │   │   └── *.jpg, *.png ... *.xml
-	│   │   └── *.csv	│   │
+	│   │   └── *.csv
 	│   └── training
 	│       ├── <pre-trained_net>
 	│       ├── train.record

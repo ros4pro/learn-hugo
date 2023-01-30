@@ -11,9 +11,8 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir utiliser le logiciel labelImg pour localiser et nommer les objets dans des images.
     - Savoir convertir les fichier d'annotation du format XML au format tfreccord attendu par tensorflow.
-    - Savoir créer le fichier label_map.pbtxt décrivant les labels de l'apprentissage supervisé.
+    - Savoir créer le fichier label_map.txt décrivant les labels de l'apprentissage supervisé.
 
-    Type d'activité     : ⚙️ [tâche]
     Durée approximative : 60 minutes 
 ---
 
@@ -22,13 +21,13 @@ menu:
 L'activité proposée se décompose en 3 étapes :
 1. Annoter les images avec le logiciel _labelImg_ pour localiser et nommer les objets dans les images d'entraînement.
 2. Convertir les fichiers XML annotés au format _tfrecord_.
-3. Créer le fichier `label_map.pbtxt`.
+3. Créer le fichier `label_map.txt`.
 
 ## 1. Annoter les images avec le logiciel labelImg
 
-L'annotation des images peut être faite avec le logiciel `labelImg`.
+L'annotation des images peut être faite avec le logiciel `labelImg`.<br>
 C’est une étape du travail qui prend du temps et qui peut être réalisée si besoin à plusieurs en se répartissant les images à annoter...<br>
-Le lancement de `labelImg` se fait faite dans l'EVP `tf2` :
+Le lancement de `labelImg` se fait avec l'EVP `tf2` activé :
 ```bash
 (tf2) user@host:~ $ labelImg
 ```
@@ -76,9 +75,9 @@ Successfully created the TFRecord file: <faces_cubes/training/test.record>
 ```
 
 
-## 3. Créer le fichier label_map.pbtxt
+## 3. Créer le fichier label_map.txt
  
-La dernière étape consiste a créer le fichier `label_map.pbtxt` dans le dossier `<project>/training/`. 
+La dernière étape consiste a créer le fichier `label_map.txt` dans le dossier `<project>/training/`. 
 
 Ce fichier décrit la « carte des labels » (_label map_) nécessaire à l’entraînement du réseau. 
 Cette carte permet de connaître l’_ID_ (nombre entier) associé à chaque étiquette (_label_) identifiant les objets à reconnaître. La structure type du fichier est la suivante :
@@ -96,7 +95,7 @@ Cette carte permet de connaître l’_ID_ (nombre entier) associé à chaque ét
 
 ### Exemple
 
-Pour le projet `face_cubes`, le contenu du fichier `faces_cubes/training/label_map.pbtxt` à créer est :
+Pour le projet `face_cubes`, le contenu du fichier `faces_cubes/training/label_map.txt` à créer est :
 
 	item {
 	  id: 1

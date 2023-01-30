@@ -12,14 +12,12 @@ menu:
     - How to create and use a Python Virtual Environment with the command `conda` under ubuntu.
 
     Type of the nugge: ⚙️ [task]
-    Expected duration: 30-45 minutes (depending on your Internet connexion).
+    Expected duration: 20-40 minutes (depending on your Internet connexion).
 ---
 
 ## Interest
 
-The state of the art regarding Python programming (Machine Learning, Data processing...) consists in using a __Python Virtual Environment__ (PVE) 
-to encapsulate each project in a dedicated and sustainable environment.<br>
-Each PVE provides a dedicated computing environment containing a specific installation of Python:
+The state of the art regarding Python programming (Machine Learning, Data processing...) consists in using a __Python Virtual Environment__ (PVE) to encapsulate each project in a dedicated and sustainable environment. Each PVE provides a dedicated computing environment containing a specific installation of Python:
 * independent of other Python installs likely to coexist on the same machine,
 * independent of computer updates.
 
@@ -52,11 +50,10 @@ of the PVE tree.
 
 ## Understanding how to create a PVE with `conda` and Ubuntu
 
-
 Prior to the creation of a PVE, you must install _miniconda_ on your computer. You will do this in the section <b>Work do to</b>.<br>
 
 Once _conda_ is installed on your computer, you can install & configure as many PVE as you want following the 3 steps procedure explained bellow.<br>
-⚠️ Don't do the job now! just understand the commands syntaxe and arguments, the job wil be done for real in the section __Work to do__. 
+⚠️ Don't do the job now! just understand the commands syntaxe and arguments, the job wil be done for real in the section [work to do](#Work_to_do). 
 
 1. __PVE creation__: `conda create -n <pve_name> pip python=<version>`
     * `<pve_name>` is the (free) name of your PVE, often a mnemonic name like _pyml_ (for _Python machine learning_) 
@@ -78,17 +75,18 @@ Once _conda_ is installed on your computer, you can install & configure as many 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ➡️ use `pip install...` if conda fails.
 
 
-## Work to do
+## Work to do <a name="work_to_do"></a>
 
 ### 🔨 Install `miniconda`
 
-Download and install miniconda on your computer from https://docs.conda.io/en/latest/miniconda.html. Pay attention to these points:
+📥 Download and install miniconda by following https://conda.io/projects/conda/en/stable/user-guide/install/linux.html. Pay attention to these points:
 
 * You must define an installation path for the `miniconda3` directory which does not contain spaces or accentuated characters<br>
 (the default installation path on Ubuntu looks like `/home/<logname>/miniconda3`)
 * At the end of the installation answer _yes_ to the question _"Do you wish the installer to initialize Miniconda3 by running conda init? [yes | no]"_
 * Start a new terminal or type the command `source ~/.bashrc` to inherit changes from your `.bashrc` file: the `conda` command becomes available in the terminal.
-* Advice: you can disable the automatic launch of the PVE `(base)` by typing the command: `conda config --set auto_activate_base false`.
+* Disable the automatic launch of the PVE `(base)` by typing the command: `conda config --set auto_activate_base false`.
+* Finally, update the `conda` command with the command: `conda update -n base -c defaults conda`.
 
 Now it's done. If you want to check your installation launch a new terminal and try the command `conda info`<br>
 You should get no error in return and see a informations on your __miniconda__ installation displayed on the screen.
@@ -98,20 +96,18 @@ You should get no error in return and see a informations on your __miniconda__ i
 
 With `miniconda` (or `Anaconda`) installed on your computer, create and activate the PVE named `tf2` to work with Python 3.8:
 ```bash
-(base) user@host $ conda create -n tf2 pip python=3.8
+user@host $ conda create -n tf2 python=3.8
 ...some stuff ... answer 'y'  to proceed to the installation...
 ...
-(base) user@host $ conda update -n base -c defaults conda
-... some stuff...
 
 (base) user@host $ conda activate tf2
 (tf2) user@host $
 ```
 Then install the main Python modules to work with __tensorflow2__ :
 ```bash
-(tf2) user@host $ pip install --ignore-installed --upgrade tensorflow==2.9
-(tf2) user@host $ conda install numpy scipy matplotlib jupyter jupyterlab pandas
-(tf2) user@host $ pip install scikit-learn scikit-image seaborn pydot rospkg pyyaml opencv-python==4.6.0.66
+(tf2) user@host $ pip install tensorflow==2.11.0
+(tf2) user@host $ pip install scipy==1.9.0 matplotlib==3.6.0 kiwisolver==1.4.0
+(tf2) user@host $ pip install scikit-learn scikit-image seaborn jupyter jupyterlab pydot rospkg chardet labelimg
 ```
 
 ## Useful commands
@@ -121,7 +117,7 @@ Then install the main Python modules to work with __tensorflow2__ :
 |`conda info` |Display information about **conda**|
 |`conda env list` |List the PVEs known by **conda**|
 |`conda deactivate` |Deactivate the current PVE|
-|`conda activate <pve_name>` |Activate the PVE named `<pve_name>`|
+|`conda activate <PVE_name>` |Activate the PVE named `<PVE_name>`|
 |`conda list` or `pip list`|List installed packages for current activated PVE|
 |`conda search <module>` |Find versions of a Python module for current activated PVE|
 

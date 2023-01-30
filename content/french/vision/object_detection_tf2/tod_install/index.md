@@ -11,8 +11,7 @@ menu:
     - Savoir initialiser ton espace de travail pour la détection d'objets utilisant l'API TOD
     - Savoir installer l'API TOD et les composants requis
 
-    Type d'activité : 🛠️ [setup]
-    Durée prévue    : 60 minutes (dépend du débit internet et des ressources CPU & RAM de ton ordinateur).
+    Durée prévue    : 20 minutes + temps calcul (dépend du débit internet et des ressources CPU & RAM de ton ordinateur).
 ---
 
 ## Prérequis
@@ -46,8 +45,7 @@ La première étape consiste à créer le répertoire de travail `tod_tf2`, qui 
 ```bash
 # From tod_tf2/
 (tf2) user@host $ git clone https://github.com/cjlux/tod_tf2_tools.git
-(tf2) user@host $ cp tod_tf2_tools/*.py .
-(tf2) user@host $ cp tod_tf2_tools/*.ipynb .
+(tf2) user@host $ cp tod_tf2_tools/*.py* .
 ```
 
 ### 2. Télécharge et installe le dépôt `tensorflow/models`
@@ -76,19 +74,13 @@ models
     ...
 ```	
 
-📥 Complète ton installation avec quelques paquets Python utiles pour le travail avec l'_API TOD_ :
-
-```bash
-(tf2) user@host $ conda install cython contextlib2 pillow lxml
-(tf2) user@host $ pip install labelimg rospkg
-```
 Mets à jour la variable d’environnement `PYTHONPATH` en ajoutant à la fin de ton fichier `~/.bashrc` les deux lignes :
 ```bash
 export TOD_ROOT="<chemin absolu du dossier tod_tf2>"
 export PYTHONPATH=$TOD_ROOT/models:$TOD_ROOT/models/research:$PYTHONPATH
 ```
 remplace `"<chemin absolu du dossier tod_tf2>"` par le chemin absolu du dossier `tod_tf2` 
-sur ta machine (en général c'est : `/home/<logname>/catkin_ws/todtf2`).
+sur ta machine (par exmple : `/home/<logname>/catkin_ws/todtf2`).
 
 * Lance un nouveau terminal pour activer le nouvel environnement shell : tout ce qui suit sera fait dans ce nouveau terminal.
 
@@ -117,7 +109,7 @@ Cette commande travaille de façon muette.
 
 ### 4. Installe le module `object_detection` 
 
-Pour finir l'installation, place-toi dans le dossier  `models/research/` et tape les commandes :
+Pour finir l'installation, place-toi dans le dossier  `models/research/` et installe l'API TOD :
 ```bash
 (tf2) user@host $ cd ~/catkin_ws/tod_tf2       # adapte au besoin si le chemin d'accès à tod_tf2 est différent
 (tf2) user@host $ cd models/research/
@@ -137,23 +129,23 @@ Pour tester ton installation de l’API TOD, place-toi dans le dossier `models/r
 Le programme déroule toute une série de tests qui peuvent durer "un certain temsp..." et doit se terminer par un OK sans faire apparaître d'erreur :
 
 	...
-	[       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+    [       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
     [ RUN      ] ModelBuilderTF2Test.test_session
     [  SKIPPED ] ModelBuilderTF2Test.test_session
     [ RUN      ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
-    I1026 22:28:48.083127 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
+    I0123 08:34:37.337631 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
     [ RUN      ] ModelBuilderTF2Test.test_unknown_meta_architecture
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
-    I1026 22:28:48.083944 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
+    I0123 08:34:37.338212 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_meta_architecture
     [ RUN      ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
     INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
-    I1026 22:28:48.085861 140638063505792 test_util.py:2188] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
+    I0123 08:34:37.339969 140223845503616 test_util.py:2457] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
     [       OK ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
     ----------------------------------------------------------------------
-    Ran 24 tests in 58.669s
+    Ran 24 tests in 30.259s
 
     OK (skipped=1)
 
@@ -164,13 +156,10 @@ __L'absence de message d'erreur valide l'installation de l'_API TOD_ sur ta mach
 Pour finir, tu peux vérifier l’installation de l'_API TOD_en utilisant le notebook IPython `object_detection_tutorial.ipynb` présent dans le dossier `tod_tf2`.<br>
 (note : c'est une copie du notebook original `tod_tf2/models/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb` dans lequelle on a enlevé les cellules d'installation de l'_API_TOD_ et quelques autres cellules qui peuvent générer des erreurs...).
 
-* ⚠️ Avant d'exécuter les cellules du notebook, il faut corriger une erreur dans le fichier `.../tod_tf2/models/research/object_detection/utils/ops.py`, ligne 850 :
-remplace `tf.uint8` par `tf.uint8.as_numpy_dtype`
-
-* Dans le dossier `tod_tf2` lance la commande `jupyter notebook` et charge le notebook `object_detection_tutorial.ipynb`.
+* Dans le dossier `tod_tf2` lance la commande `jupyter lab` (ou `jupyter notebook`) et charge le notebook `object_detection_tutorial.ipynb`.
 * Exécute les cellules une à une, tu ne dois pas avoir d’erreur :
 
-	* La partie "__Detection__" (dure de quelques secondes à plusieurs minutes suivant ton CPU) utilise le réseau pré-entraîné `ssd_mobilenet_v1_coco_2017_11_17` pour détecter des objets dans deux images de test :<br>
+	* La partie "__Detection__" (qui dure de quelques secondes à plusieurs minutes suivant ton CPU) utilise le réseau pré-entraîné `ssd_mobilenet_v1_coco_2017_11_17` pour détecter des objets dans deux images de test :<br>
 ![notebook_test_TOD_image1et2.png](img/notebook_test_TOD_image1et2.png)
 
 

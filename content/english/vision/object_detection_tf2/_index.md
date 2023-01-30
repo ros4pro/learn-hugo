@@ -14,10 +14,15 @@ In this section you learn to use the __Tensorflow Object Detection__ (_a.k.a_ TO
 * a _transfer learning_ mechanism to continue the training of pre-trained networks with your own labeled images,
 to obtain the detection of the objects of interest.
 
-Unlike the __Classification__ strategy presented in the section [Classification](<https://learn.e.ros4.pro/en/vision/classification_tf2/>),
+__Pros__: Unlike the __Classification__ strategy presented in the section [Classification](<https://learn.e.ros4.pro/en/vision/classification_tf2/>),
 the __Object detection__ can directly find the bounding boxes of the targeted objects: it avoids the usage of conventional image processing to extract the sub-images of the targeted objets, then to classify the sub-images. The drawback of the image processing used to create the sub-images to be classified is that it involves some low level (pixel level) pre-processing of the image : thresholding, contour extraction, segmentation, etc... This processing is quite fragile: sensitive to brightness, to the presence or not of a black background ...
 
 An expected advantage of the Object Detection approach is to provide the bounding boxes of the detected objects directly, without going through the image pre-processing step.
+
+__Cons__: The main disadvantages of the __Object Detection__ approach are:
+
+* the complexity of getting started with the _TOD API_, partly due to the incompatibilities between versions 1 and 2 of tensorflow,
+* the possibly very long re-training times of the pre-trained networks (neural networks of complex architecture comprising a large number of neurons). In some cases, it is required to use accelerated hardware resources (GPU or TPU) to have acceptable training times (a few hours instead of several tens of hours, etc.).
 
 ## Prerequisites
 

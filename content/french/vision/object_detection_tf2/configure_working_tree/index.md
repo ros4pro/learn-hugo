@@ -1,5 +1,5 @@
 ---
-title: "Configurer l'arborescence de travail pour plusieurs projets de détection d'objets dans des images"
+title: "Créer l'arborescence de travail pour plusieurs projets de détection d'objets dans des images"
 menu:
   main:
     name: "Configurer l'arborescence"
@@ -11,8 +11,7 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir organiser et construire l'arborescence de travail pour supporter plusieurs projets de détection d'objets dans des images
 
-    Type d'activité     : 🛠️ [setup]
-    Durée approximative : 15 minutes
+    Durée approximative : 5 minutes
 ---
 
 ## Principe de l'arborescence de travail multi-projets
@@ -71,7 +70,7 @@ Le dossier `<project>` folder est appelé par exeme `faces_cubes`, ce qui donne 
 	│   │   │   └── *.jpg, *.png ... *.xml
 	│   │   ├── train
 	│   │   │   └── *.jpg, *.png ... *.xml
-	│   │   └── *.csv	│   │
+	│   │   └── *.csv
 	│   └── training
 	│       ├── <pre-trained_net>
 	│       ├── train.record
