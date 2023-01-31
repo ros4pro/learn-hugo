@@ -39,9 +39,11 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 user@host $ echo 'export PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8' >> config_tf2
 user@host $ echo 'export PTN_DIR=faces_cubes/training/$PTN' >> config_tf2
 ```
-puis, après avoir tapé la commande `source config_tf2`, tu peux vérifier que les 2 variables sont bien définies :
+puis, après avoir sourcé le fichier `config_tf2`, tu peux vérifier que les 2 variables sont bien définies :
 
 ```bash
+# From within tod_tf2
+user@host $ source config_tf2   
 user@host $ env | grep PTN      # pour vérifier
 PTN_DIR=faces_cubes/training/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
 PTN=faster_rcnn_resnet50_v1_640x640_coco17_tpu-8
@@ -66,19 +68,19 @@ Avec le projet `faces_cubes` et le réseau `faster_rcnn_resnet50_v1_640x640_coco
 
 |Line | Parameter name              | Description                                                            | Initial value  | Value |  Comment               |
 |:--|:------------------------------|:-----------------------------------------------------------------------|:----------------:|:---------------:|:--------------------------------|
-|010| `num_classes`                 | nombre de classe d'objets                                              | 90               | 2               | les deux classes `one` et `two` |
-|077| `max_detections_per_class`    | nombre max de détection <BR>par classe                                     | 100              | 4               | 4 cubes max par image | 
-|078| `max_total_detections`        | nombre max total de détections                                         | 100              | 4               | 4 cubes max par image | 
-|093| `batch_size`                  | nombre d'images à traiter avant <BR>mise à jour des poids du réseau | 64               | 1, 2...         | une valeur trop élevée risque<br> de faire dépasser la capacité<br> mémoire RAM de ta machine.<br>À régler en fonction de la<br>quantité de RAM de <br>ta machine.  |
+|010| `num_classes`                 | nombre de classe<BR>d'objets                                              | 90               | 2               | les deux classes `one` et `two` |
+|077| `max_detections_per_class`    | nombre max de<BR>détections par classe                                   | 100              | 4               | 4 cubes max par image | 
+|078| `max_total_detections`        | nombre max total de<br>détections                                       | 100              | 4               | 4 cubes max par image | 
+|093| `batch_size`                  | nombre d'images à<BR>traiter avant mise à<BR> jour des poids<br> du réseau  | 64               | 1, 2...         | une valeur trop élevée risque<br> de faire dépasser la capacité<br> mémoire RAM de ta machine.<br>À régler en fonction de la<br>quantité de RAM de <br>ta machine.  |
 |097| `num_steps`                   | Nombre max d'itérations<BR>d'entraînement                                 | 25000             | 1000           | une valeur trop grande<br> donne des temps de calcul<br> prohibitifs et un risque<br> de sur-entraînement 
-|113| `fine_tune_checkpoint`        | chemin des fichiers de sauvegarde<BR>des poids du réseau pré-entraîné  | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/<br>faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/<BR>checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
-|114| `fine_tune_checkpoint_type`   | Choix de l'algorithme :<BR> "classification" ou "detection"                | 'classification' | 'detection'     | -> détection d'objets |
-|120| `max_number_of_boxes`         | Nombre max de boîtes englobantes<BR>  dans chaque image                    | 100               | 4              | 4 faces de cubes dans une image |
-|122| `use_bfloat16`                | `true` pour les architectures TPU<BR>`false` pour CPU                    | true              | false          |  choix du CPU|
-|126| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'entraînement |
-|128| `input_path`                  | fichier des données d'entraînement<BR> au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
-|139| `label_map_path`              | chemin du fichier des labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'évaluation|
-|143| `input_path`                  | fichier des données de test<BR> au format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
+|113| `fine_tune_checkpoint`        | chemin des fichiers de <BR>sauvegarde des poids<BR>du réseau pré-entraîné  | 'PATH_TO_BE_CONFIGURED' | 'pre-trained/faster_rcnn_resnet50_v1_640x640_coco17_tpu-8/checkpoint/ckpt-0' | se termine par `/ckpt-0`<br> qui est le préfixe des<br> fichiers dans le dossier<br>`.../checkpoint/` |
+|114| `fine_tune_checkpoint_type`   | Choix de l'algorithme :<BR> "classification" ou<BR>"detection"                | 'classification' | 'detection'     | -> détection d'objets |
+|120| `max_number_of_boxes`         | Nombre max de boîtes<BR>englobantes dans<BR>chaque image                    | 100               | 4              | 4 faces de cubes dans une image |
+|122| `use_bfloat16`                | `true` pour les<BR>architectures TPU<BR>`false` pour CPU                    | true              | false          |  choix du CPU|
+|126| `label_map_path`              | chemin du fichier des<BR>labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'entraînement |
+|128| `input_path`                  | fichier des données<BR>d'entraînement<BR> au format `tfrecord`       | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/train.record'    | utilisé pour l'entraînement |
+|139| `label_map_path`              | chemin du fichier des<BR>labels                                           | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/label_map.txt' | utilisé pour l'évaluation|
+|143| `input_path`                  | fichier des données<BR>de test au<BR>format `tfrecord`              | 'PATH_TO_BE_CONFIGURED' | 'faces_cubes/training/test.record"    | utilisé pour l'évaluation|
 
 
 ## 2 Lance l'entraînement
