@@ -45,7 +45,7 @@ La première étape consiste à créer le répertoire de travail `tod_tf2`, qui 
 ```bash
 # From tod_tf2/
 (tf2) user@host $ git clone https://github.com/cjlux/tod_tf2_tools.git
-(tf2) user@host $ cp tod_tf2_tools/*.py* .
+(tf2) user@host $ cp tod_tf2_tools/*py* .
 ```
 
 ### 2. Télécharge et installe le dépôt `tensorflow/models`
