@@ -37,14 +37,14 @@ Le parcours proposé dans cette activité comporte un prérequis et 7 activités
 
 Activités |  Description                                                            | Lien | Durée approximative | 
 :--------:|:------------------------------------------------------------------------|:-----|:---------|
-prérequis| Créer/initialser un Environnement Virtuel Python pour travailler avec l'_API TOD_ | [Python3 : Environnement virtuel](https://learn.e.ros4.pro/fr/faq/python3/venv/) | 40 min. (dépend du débit Internet)
-1| Installer l'API _TensorFlow Oject Detection_ (_TOD_)                      | [Installer l'API TOD](tod_install/) | 60 min.<br>_selon le débit internet et de les ressources CPU & RAM_ |
-2| Configurer l'arborescence de travail multi-projets                        | [Configurer l'arboresecnce de travail](configure_working_tree) | 15 min.| 
-3| Télécharger un réseau pré-entraîné à la détection d'objets dans des images| [Télécharger un réseau pré-entraîné](downlod_pre-trained_network/)| 20 min. <br>_selon le débit internet_|
-4| Obtenir les images avec la caméra du robot                                | [Obtenir les images avec le robot](get_images_from_robot/) | 30 min. |
-5| Annoter les images et créer le fichiers des données d'entraînement        | [Annoter les images pour l'entraînement supervisé](annotate_images)| 60 min. |
+prérequis| Créer/initialser un Environnement Virtuel Python pour travailler avec l'_API TOD_ | [Python3 : Environnement virtuel](https://learn.e.ros4.pro/fr/faq/python3/venv/) | 15-20 min. (dépend du débit Internet)
+1| Installer l'API _TensorFlow Oject Detection_ (_TOD_)                      | [Installer l'API TOD](tod_install/) | 20 min.<br>_selon le débit internet et de les ressources CPU & RAM_ |
+2| Configurer l'arborescence de travail multi-projets                        | [Configurer l'arboresecnce de travail](configure_working_tree) | 5 min.| 
+3| Télécharger un réseau pré-entraîné à la détection d'objets dans des images| [Télécharger un réseau pré-entraîné](downlod_pre-trained_network/)| 10 min. <br>_selon le débit internet_|
+4| Obtenir les images avec la caméra du robot                                | [Obtenir les images avec le robot](get_images_from_robot/) | 20 min. |
+5| Annoter les images et créer le fichiers des données d'entraînement        | [Annoter les images pour l'entraînement supervisé](annotate_images)| 30 min. |
 6| Continuer l'entraînement du réseau avec les nouvelles données             | [Ré-entraîner le réseau](re-train_network) | plusieurs heures <br>_selon les ressources CPU & RAM de ton ordinateur_|
-7| Évaluer les inférences du réseau ré-entrainé avec des images de test      | [Évaluer les inférences du réseau ré-entrainé](evaluate_network) | 30 minutes<br> _selon les ressources CPU & RAM de ton ordinateur_|
+7| Évaluer les inférences du réseau ré-entrainé avec des images de test      | [Évaluer les inférences du réseau ré-entrainé](evaluate_network) | 20 minutes<br> _selon les ressources CPU & RAM de ton ordinateur_|
 
 Une fois ces étapes terminées, "il ne reste plus qu'à" intégrer l'exploitation du réseau ré-trainé dans l'environnement ROS...
 

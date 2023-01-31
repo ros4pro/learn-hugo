@@ -11,7 +11,7 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir exploiter un réseau TOD ré-entraîné.
 
-    Durée approximative : 10 minutes (dépend des ressources CPU & RAM de ton ordinateur).
+    Durée approximative : 20 minutes (dépend des ressources CPU & RAM de ton ordinateur).
 ---
 
 ## Évaluer les inférences du réseau ré-entrainé
@@ -78,7 +78,7 @@ Quelques idées à bien garder en tête :
     * Tu dois installer le module _tensorflow_ dans l'environnement Python standard de ta machine : `pip3 install tensorflow==2.11.0` devrait faire le job.
     * Pour instancier le réseau ré-entraîné que tu as sauvegardé, utilise la fonction `saved_model.load` du module _tensorflow_ (cf fichier `nn.py`) : 
 
-* Le fichier `nn.py` dans le dossier `tod_tf2` donne une base de départ l'exploitation du réseau ré-entraîné :
+* Le fichier `nn.py` dans le dossier `tod_tf2` montre un exemple d'exploitation du réseau ré-entraîné :
     * Exécute le fichier dans l'environnement Python standard (mêmes arguments `-l` et `-s` que `plot_object_detection_saved_model.py`: <br>
      `user@host:~/catkin_ws/tod_tf2$ python3 nn.py -l faces_cubes/training/label_map.txt -s $PTN_DIR/saved_model1/saved_model -v`
     * Installe les modules Python manquants si besoin.l'environnement Python standard de ta machine avec la commande `pip3 install xxxx`.

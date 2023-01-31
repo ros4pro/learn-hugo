@@ -11,7 +11,7 @@ menu:
     Acquis d'apprentissage visés :
     - Savoir obtenir avec ROS les images d'une caméra placée sur un robot.
 
-    Durée approximative : 60 minutes 
+    Durée approximative : 30 minutes 
 ---
 
 ## Obtenir les images avec la caméra d'un noeud ROS
