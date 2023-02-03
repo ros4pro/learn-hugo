@@ -39,7 +39,18 @@ sudo apt-get install --reinstall udisks2
 sudo apt-get install exfat-fuse exfat-utils
 ```
 ## 📡 Connecter le robot en Wifi
-### Utiliser votre smartphone comme point d'accès
+
+
+### Mise en place
+
+#### Workshop : Utilisation des routeurs
+
+Lors des workshop ROS, le wifi vous est fourni via des routeurs.  
+Une combinaison nom et mot de passe vous sont donnés au début de la session (souvent ROS4PRO\<groupe\> comme nom de wifi et mot de passe)   
+Vérifiez que vous avez bien des Raspberry qui supportent le 5 GHz (Raspberry Pi 3B+ à minima). 
+
+#### Utiliser votre smartphone comme point d'accès
+
 Utilisez votre smartphone comme hotspot réseau. Tous les smartphones ne se valent pas. En particulier :
 * Vérifiez que vous pouvez configurer le **SSID du réseau (son nom)** et le **mot de passe** : pour simplifier utiliser des noms simples sans espace ni caractère spécial
 * Vérifiez que vous pouvez configurer la bande 2.4GHz vs 5GHz. **Priorisez le 5GHz** mais uniquement si vos deux robots ont une Raspberry Pi 3B+ (car Raspberry Pi 3B est seulement compatible 2.4GHz)
@@ -87,6 +98,8 @@ SSH (Secure SHell) permet d'ouvrir un terminal à distance sur une autre machine
 * Le nom de la machine distante (par ex `poppy.local` ou `turtlebot.local`)
 * Le nom d'utilisateur propriétaire de la session sur laquelle ouvrir un terminal (`poppy` pour Poppy ou `ubuntu` pour Turtlebot)
 * Le mot de passe de cette session (cf mots ce passe par défaut ci-dessous)
+
+Note : Par mesure de sécurité, la commande ssh n'affiche pas le mot de passe tapé que vous écrivez. 
 
 La commande est l'une des suivantes, à taper dans un terminal sur Ubuntu :
 
