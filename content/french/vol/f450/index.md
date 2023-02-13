@@ -82,17 +82,17 @@ Dans un premier temps, nous devons récupérer le repertoire sur Github et ensui
 ```bash
 cd ~
 
-git clone https://github.com/PX4/PX4-Autopilot.git --recursive /home/$USER/PX4-Firmware/
+git clone -b v1.13.2 https://github.com/PX4/PX4-Autopilot.git --recursive /home/$USER/PX4-Firmware/
 
-echo 'source ~/PX4-Firmware/Tools/simulation/gazebo/setup_gazebo.bash ~/PX4-Firmware ~/PX4-Firmware/build/px4_sitl_default' >> /home/$USER/.bashrc
+echo 'source ~/PX4-Firmware/Tools/setup_gazebo.bash ~/PX4-Firmware ~/PX4-Firmware/build/px4_sitl_default' >> /home/$USER/.bashrc
 echo 'export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Firmware' >> /home/$USER/.bashrc
-echo 'export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Firmware/Tools/simulation/gazebo-classic/sitl_gazebo-classic' >> /home/$USER/.bashrc
+echo 'export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Firmware/Tools/sitl_gazebo' >> /home/$USER/.bashrc
 echo 'export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/usr/lib/x86_64-linux-gnu/gazebo-9/plugins' >> /home/$USER/.bashrc
 
 source ~/.bashrc
 
 cd ~/PX4-Firmware
-make px4_sitl_default gazebo_iris
+make px4_sitl_default gazebo
 ```
 
 Une fois la dernière commande lancée, la compilation du firmware va démarrer. Une fois cette dernière terminée, une simulation de décollage va commencer. Vous pouvez regarder le resultat de la simulation dans la fenêtre de Gazebo.
