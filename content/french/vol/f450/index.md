@@ -15,7 +15,7 @@ menu:
 
 ## Diapositives
 
-{{<pdf src="https://cdn.aircslab.fr/shares/cours_ros4pro.pdf" >}}
+{{<pdf src="https://cdn.aircslab.fr/cours_ros4pro.pdf" >}}
 
 ## Quelques alias
 Les alias sont des racourcis qui nous permettent d'éxectuer des commandes recurentes plus rapidement. 
