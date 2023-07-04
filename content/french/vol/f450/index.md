@@ -15,7 +15,7 @@ menu:
 
 ## Diapositives
 
-{{<pdf src="https://aircslab.fr/shares/make_drone_fly.pdf" >}}
+{{<pdf src="https://cdn.aircslab.fr/shares/cours_ros4pro.pdf" >}}
 
 ## Quelques alias
 Les alias sont des racourcis qui nous permettent d'éxectuer des commandes recurentes plus rapidement. 
@@ -388,7 +388,7 @@ source ~/.bashrc
 Nous pouvons maintenant relancer la simulation et aller sur QGroundControl pour désactiver le GPS du drone et dire à ce dernier d'utiliser les données du système MOCAP.
 Pour désactiver le GPS, il faut aller dans "Vehicle Setup" puis dans "Parameters" et chercher `has_gps` est passer ce paramètre à `disable`.
 
-![disable gps](images/qgc_has_gps.png)
+![disable gps](../images/qgc_has_gps.png)
 
 Vous devez maintenant `restart` complètement la simulation pour que le nouveau paramètre soit appliqué. 
 
@@ -401,17 +401,17 @@ Vous devez maintenant `restart` complètement la simulation pour que le nouveau 
 ### 1. Le materiel & assemblage
 Afin de pouvoir faire voler un drone, il nous faut un drone ... Pour ce faire, des drones pré-assemblés sont mis à votre disposition **sans hélices** (il faudrat venir les demander à votre encadrant de TP lors des tests en cage). Il suffit de flasher la carte SD du companion computer et de l'insérer dans ce dernier. 
 
-Pour ce faire il vous est demandé de télécharger l'image du companion computer disponible [ici](https://test.test). Une fois le téléchargement terminé, utilisez [Balena Etcher](https://www.balena.io/etcher/) pour écrire l'image sur la carte SD.
+Pour ce faire il vous est demandé de télécharger l'image du companion computer disponible [ici](https://cdn.aircslab.fr/noetic_2023.zip). Une fois le téléchargement terminé, utilisez [Balena Etcher](https://www.balena.io/etcher/) pour écrire l'image sur la carte SD.
 
 L'image ci-dessous montre comment le companion computer est assemblé sur le drone :
-![odroid on drone](images/odroid_on_drone.jpg)
+![odroid on drone](../images/odroid_on_drone.jpg)
 
 La carte SD doit être insérée entre le connecteur d'alimentation et le potr HDMI (à droite sur la photo ci-dessus). Une fois la carte insérée, il est nécessaire de vérifier que l'intérupteur (en haut à droite sur la photo) est bien positionné sur **µSD**. Si ce n'est pas le cas le **companion computer ne démarrera pas. Vérifiez la présence d'une clef WiFi sinon vous ne pourrez pas vous y connecter en SSH**.
 
 > Si vous ne trouvrez pas l'adresse IP de votre Companion Computer ne pas hésiter à venir me demander.
 
 Enfin, il faut vérifier que le PixHawk est bien relié depuis le port TELEM 2 au port USB du companion computer. Ce cable est en réalité un convertisseur UART vers USB. Il permet la communication entre le firmware du controleur de vol (Pixhawk) et ROS (companion computer). On peut en voir le connecteur USB sur la photo ci-dessus, et on peut voir le connecteur coté pixhawk sur la photo ci-dessous.
-![connexion telem 2 pixhawk](images/pixhawk.jpg)
+![connexion telem 2 pixhawk](../images/pixhawk.jpg)
 
 ### 2. Installation de ROS sur le companion computer embarqué
 Une fois le drone mis sous tension, le companion computer devrait démarrer après quelques minutes. Le companion computer permet de faire tourner ROS sur le drone directement. C'est ce dernier qui va permettre de communiquer avec le serveur MOCAP et, pour ceux qui vont plus loin, de gérer les caméras et autres capteurs qui permettent de faire de l'avoidance. Enfin, il permet aussi de calculer les trajectoires en fonction des différents obstacles détectés par le drone.
