@@ -98,11 +98,11 @@ user@host $ conda create -n tf2 python=3.8
 user@host $ conda activate tf2
 (tf2) user@host $
 ```
-Installe ensuite les principaux modules Python pour travailler avec __tensorflow2__ :
+Installe ensuite les modules Python en utilisant le fichier `requirements.txt` de ton projet :
 ```bash
-(tf2) user@host $ pip install tensorflow==2.11.0
-(tf2) user@host $ pip install scipy==1.9.0 matplotlib==3.6.0 kiwisolver==1.4.0
-(tf2) user@host $ pip install scikit-learn scikit-image seaborn jupyter jupyterlab pydot rospkg chardet labelimg
+(tf2) user@host $ cd <dossier_projet_contenant_le_fichier_requirements.txt>
+(tf2) user@host $ pip install -r requirements .txt
+... some stuff...
 ```
 
 ## Commandes utiles
